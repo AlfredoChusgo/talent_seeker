@@ -34,25 +34,26 @@ export default function Grouped() {
   }, [dispatch]);
 
   return (
+    <Grid item  xs={12} sm={6} md={8} lg={8} xl={8}>
+      <Autocomplete
+        id="grouped-demo"
+        multiple
+        options={sortedOptions}
+        groupBy={(option) => option.groupDisplayName}
+        getOptionLabel={(option) => option.displayName}
 
-    <Autocomplete
-      id="grouped-demo"
-      multiple
-      options={sortedOptions}
-      groupBy={(option) => option.groupDisplayName}
-      getOptionLabel={(option) => option.displayName}
-      sx={{ width: 300 }}
-      // renderInput={(params) => <TextField {...params} label="Search..." />}
-      renderInput={(params) => (
-        <div style={{ display: 'flex' }}>          
-          <TextField {...params} label="Search..." />
-          <IconButton 
-          //onClick={handleSearch}
-          >
-            <SearchIcon />
-          </IconButton>
-        </div>
-      )}
-    />
+        // renderInput={(params) => <TextField {...params} label="Search..." />}
+        renderInput={(params) => (
+          <div style={{ display: 'flex' }}>
+            <TextField {...params} label="Search..." />
+            <IconButton
+            //onClick={handleSearch}
+            >
+              <SearchIcon />
+            </IconButton>
+          </div>
+        )}
+      />
+    </Grid>
   );
 }

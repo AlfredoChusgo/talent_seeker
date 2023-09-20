@@ -178,12 +178,13 @@ export default function Root() {
         <Grid container alignItems="center"
           justifyContent="center"
           style={{ minHeight: 'calc(100vh - 64px)' }}>
-          <Grid item>
+          {/* <Grid item>
             <Paper>
-              {/* Your centered content */}
+              
               <Outlet />
             </Paper>
-          </Grid>
+          </Grid> */}
+          <Outlet />
         </Grid>
 
 
