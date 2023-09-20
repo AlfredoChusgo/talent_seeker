@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link, Outlet } from 'react-router-dom';
+import { Grid, Paper } from '@mui/material';
 
 //import MenuIcon from '@mui/icons-material/Menu';
 
@@ -93,9 +94,9 @@ function ButtonAppBar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                  <Link to={`/${page}`}>{page}</Link>
+                    <Link to={`/${page}`}>{page}</Link>
                   </Typography>
-                  
+
                 </MenuItem>
               ))}
             </Menu>
@@ -173,9 +174,19 @@ export default function Root() {
     <>
       <div className="App">
         <ButtonAppBar></ButtonAppBar>
-        <div id="detail">
-          <Outlet />
-        </div>
+
+        <Grid container alignItems="center"
+          justifyContent="center"
+          style={{ minHeight: 'calc(100vh - 64px)' }}>
+          <Grid item>
+            <Paper>
+              {/* Your centered content */}
+              <Outlet />
+            </Paper>
+          </Grid>
+        </Grid>
+
+
       </div>
     </>
   );
