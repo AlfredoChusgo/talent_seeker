@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 enum PromiseState{
     IDLE = "idle",
@@ -29,25 +30,42 @@ const initialState: SearchHomeState = {
 // Define an asynchronous thunk action using createAsyncThunk
 export const fetchItems = createAsyncThunk('searchHome/fetchItems', async () => {
     // Simulate a delay of 2 seconds (2000 milliseconds) before resolving
-    return await new Promise<SearchHomeItem[]>((resolve) => {
-      setTimeout(() => {
-        resolve([
-          {
-            id: "23s46",
-            displayName : "Value1",
-            groupId: "23ojofa",
-            groupDisplayName : "Group1",
-          },
-          {
-            id: "23s461",
-            displayName : "Value2",
-            groupId: "23ojof23a",
-            groupDisplayName : "Group2",
-          }
-        ]);
-      }, 2000);
-    });
+    // return await new Promise<SearchHomeItem[]>((resolve) => {
+    //   setTimeout(() => {
+    //     resolve([
+    //       {
+    //         id: "23s46",
+    //         displayName : "Value1",
+    //         groupId: "23ojofa",
+    //         groupDisplayName : "Group1",
+    //       },
+    //       {
+    //         id: "23s461",
+    //         displayName : "Value2",
+    //         groupId: "23ojof23a",
+    //         groupDisplayName : "Group2",
+    //       }
+    //     ]);
+    //   }, 2000);
+    // });
+
+    try {
+      const response = await axios.get("fake_data/search_home_data.json");
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   });
+
+  export const fetchJsonData = createAsyncThunk('data/fetchJsonData', async (filePath) => {
+    try {
+      const response = await axios.get("fake_data/search_home_data.json");
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  });
+
   
 const searchHomeSlice = createSlice({
   name: 'searchHome',
