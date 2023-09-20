@@ -1,10 +1,12 @@
 // src/app/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import searchHomeReducer from '../features/search_home/search_home_slice';
+import resourceListReducer from '../features/resource_list/resource_list_slice';
 import { useDispatch } from 'react-redux'
 const store = configureStore({
   reducer: {
-    searchHome: searchHomeReducer, 
+    searchHome: searchHomeReducer,
+    resourceList: resourceListReducer,
   },
 });
 
