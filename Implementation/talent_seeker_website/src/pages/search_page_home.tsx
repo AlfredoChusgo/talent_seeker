@@ -7,19 +7,13 @@ import store, { RootState, useAppDispatch } from '../redux/store/store';
 import { fetchItems } from '../redux/features/search_home/search_home_slice';
 import { Button, Grid, IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { } from '../data/models';
+
 export default function Grouped() {
 
 
   const dispatch = useAppDispatch;
   const { items, loading, error } = useSelector((state: RootState) => state.searchHome);
-
-  // const options = items.map((option) => {
-  //   const firstLetter = option.title[0].toUpperCase();
-  //   return {
-  //     firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
-  //     ...option,
-  //   };
-  // });
   const options = items;
 
   const sortedOptions = [...items].sort((a, b) =>

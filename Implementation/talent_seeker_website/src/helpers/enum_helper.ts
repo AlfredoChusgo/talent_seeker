@@ -1,4 +1,5 @@
-import { SkillLevel } from "../redux/features/resource_list/resource_list_slice";
+import { SkillLevel } from "../data/models";
+
 
 
 export function getSkillLevelString(skillLevel: SkillLevel): string {

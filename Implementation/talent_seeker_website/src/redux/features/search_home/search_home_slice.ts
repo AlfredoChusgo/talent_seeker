@@ -1,19 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-enum PromiseState{
-    IDLE = "idle",
-    PENDING = 'pending',
-    SUCCEDED = 'succeeded',
-    FAILED = 'failed',
-}
-
-interface SearchHomeItem {
-    id: string;
-    displayName : string;
-    groupId: string;
-    groupDisplayName : string;
-}
+import { PromiseState, SearchHomeItem } from '../../../data/models';
 
 interface SearchHomeState {
   items: SearchHomeItem[];
@@ -27,28 +14,7 @@ const initialState: SearchHomeState = {
     error : "",
 };
 
-// Define an asynchronous thunk action using createAsyncThunk
 export const fetchItems = createAsyncThunk('searchHome/fetchItems', async () => {
-    // Simulate a delay of 2 seconds (2000 milliseconds) before resolving
-    // return await new Promise<SearchHomeItem[]>((resolve) => {
-    //   setTimeout(() => {
-    //     resolve([
-    //       {
-    //         id: "23s46",
-    //         displayName : "Value1",
-    //         groupId: "23ojofa",
-    //         groupDisplayName : "Group1",
-    //       },
-    //       {
-    //         id: "23s461",
-    //         displayName : "Value2",
-    //         groupId: "23ojof23a",
-    //         groupDisplayName : "Group2",
-    //       }
-    //     ]);
-    //   }, 2000);
-    // });
-
     try {
       const response = await axios.get("fake_data/search_home_data.json");
       return response.data;
@@ -72,12 +38,6 @@ const searchHomeSlice = createSlice({
   initialState,
   reducers: 
   {
-    // refreshData: (state) => {
-    //   state.value += 1;
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1;
-    // },
   },
   extraReducers : (builder)=>{
     builder.addCase(fetchItems.pending, (state) => {
@@ -94,5 +54,4 @@ const searchHomeSlice = createSlice({
   }
 });
 
-//export const { increment, decrement } = searchHomeSlice.actions;
 export default searchHomeSlice.reducer;

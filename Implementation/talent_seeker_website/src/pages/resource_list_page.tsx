@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import store, { RootState, useAppDispatch } from '../redux/store/store';
-import { ResourceItem, SkillLevel, fetchResourceItems } from '../redux/features/resource_list/resource_list_slice';
+import { fetchResourceItems } from '../redux/features/resource_list/resource_list_slice';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,6 +21,7 @@ import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/Info';
 import CardActions from '@mui/material/CardActions';
 import { getSkillLevelString } from '../helpers/enum_helper';
+import { ResourceItem } from '../data/models';
 
 
 export default function ResourceListPage() {
