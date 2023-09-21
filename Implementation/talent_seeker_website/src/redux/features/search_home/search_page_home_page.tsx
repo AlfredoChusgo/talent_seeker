@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import store, { RootState, useAppDispatch } from '../redux/store/store';
-import { fetchItems } from '../redux/features/search_home/search_home_slice';
+import store, { RootState, useAppDispatch } from '../../store/store';
+import { fetchItems } from './search_home_slice';
 import { Button, Grid, IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { } from '../data/models';
+import { } from '../../../data/models';
 
 export default function Grouped() {
 

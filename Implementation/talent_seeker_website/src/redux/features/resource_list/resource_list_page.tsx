@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import store, { RootState, useAppDispatch } from '../redux/store/store';
-import { fetchResourceItems } from '../redux/features/resource_list/resource_list_slice';
+import store, { RootState, useAppDispatch } from '../../store/store';
+import { fetchResourceItems } from './resource_list_slice';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -20,8 +20,8 @@ import deepPurple from '@mui/material/colors/deepPurple';
 import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/Info';
 import CardActions from '@mui/material/CardActions';
-import { getSkillLevelString } from '../helpers/enum_helper';
-import { ResourceItem } from '../data/models';
+import { getSkillLevelString } from '../../../helpers/enum_helper';
+import { ResourceItem } from '../../../data/models';
 
 
 export default function ResourceListPage() {

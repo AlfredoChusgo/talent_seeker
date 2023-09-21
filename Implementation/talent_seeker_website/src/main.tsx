@@ -8,10 +8,10 @@ import {
 import "./index.css";
 import ErrorPage from "./pages/error_page";
 import Root from "./routes/root";
-import SearchPageHome from "./pages/search_page_home";
+import SearchPageHome from "./redux/features/search_home/search_page_home_page";
 import { Provider } from 'react-redux';
 import store from './redux/store/store';
-import ResourceListPage from "./pages/resource_list_page";
+import ResourceListPage from "./redux/features/resource_list/resource_list_page";
 // import Root from "src/routes/root";
 // import ErrorPage from "src/pages/error-page";
 
