@@ -8,6 +8,7 @@ const generateFakeSearchItem = () => {
     displayName: faker.word.noun(),
     groupId: faker.datatype.uuid(),
     groupDisplayName: faker.helpers.arrayElement(['PO', "Developer", 'Skill']),
+    objectType : faker.helpers.arrayElement(['role', "resource", 'skill'])
   };
 };
 
@@ -15,7 +16,7 @@ const generateFakeResourceItems = () => {
   let role = faker.helpers.arrayElement([
     { id: "74635442",name:"Product Owner"},
     { id: "94635441",name:"Developer"},
-    { id: "11635445",name:"Quality Assurance"},    
+    { id: "11635445",name:"Quality Assurance"},
   ]);
 
   let skills = faker.helpers.arrayElements([{

@@ -44,4 +44,11 @@ export interface SearchHomeItem {
     displayName : string;
     groupId: string;
     groupDisplayName : string;
+    objectType: string;
+}
+
+export interface SearchResourceFilterQuery {
+    resourceIds : string[];
+    roleIds: string[];
+    skillIds : string[];
 }

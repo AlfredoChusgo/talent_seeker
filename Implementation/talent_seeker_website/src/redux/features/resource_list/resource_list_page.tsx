@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import store, { RootState, useAppDispatch } from '../../store/store';
-import { fetchResourceItems } from './resource_list_slice';
+import { fetchAllResourceItems } from './resource_list_slice';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -105,7 +105,7 @@ export default function ResourceListPage() {
 
 
     useEffect(() => {
-        store.dispatch(fetchResourceItems());
+        store.dispatch(fetchAllResourceItems());
     }, [dispatch]);
 
     return <Box sx={{ flexGrow: 1 }}>
