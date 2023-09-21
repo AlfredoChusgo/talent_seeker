@@ -17,7 +17,7 @@ import { Grid, Paper } from '@mui/material';
 
 //import MenuIcon from '@mui/icons-material/Menu';
 
-const pages = ['searchPageHome', 'resourceList', 'Blog'];
+const pages = ['searchPageHome', 'resourceList'];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ButtonAppBar() {
@@ -62,45 +62,6 @@ function ButtonAppBar() {
             LOGO
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link to={`/${page}`}>{page}</Link>
-                  </Typography>
-
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -125,10 +86,13 @@ function ButtonAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
+                component={Link} // Use Link component
+                to={`/${page}`} // Specify the link target
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 <Typography textAlign="center">
-                  <Link to={`/${page}`}>{page}</Link>
+                  {/* <Link to={`/${page}`}>{page}</Link> */}
+                  {page}
                 </Typography>
               </Button>
             ))}

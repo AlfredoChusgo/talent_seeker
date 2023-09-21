@@ -19,6 +19,7 @@ import deepOrange from '@mui/material/colors/deepOrange';
 import deepPurple from '@mui/material/colors/deepPurple';
 import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/Info';
+import AddIcon from '@mui/icons-material/Add';
 import CardActions from '@mui/material/CardActions';
 import { getSkillLevelString } from '../../../helpers/enum_helper';
 import { ResourceItem } from '../../../data/models';
@@ -33,23 +34,24 @@ export default function ResourceListPage() {
             <Grid item xs={2}>
                 <Paper>
                     <Card sx={{ display: 'flex' }}>
-                        <Stack direction="row" spacing={1} alignContent={"center"} justifyContent={"center"} alignSelf={"center"}>
-                            <Avatar>{resource.name[0]}</Avatar>
+                        <Stack direction="row" spacing={1} alignContent={"center"} justifyContent={"center"} alignSelf={"center"}>                            
                             <Box >
-                            <CardContent >
-                                <Typography component="div" variant="h6">
-                                    {resource.name} {resource.lastName}
-                                </Typography>
-                                <Typography variant="subtitle1" color="text.secondary" component="div">
-                                    {resource.role.name}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button size="small" variant="text" startIcon={<InfoIcon />}>
-                                    {/* Details */}
-                                </Button>
-                            </CardActions>
-                        </Box>
+                                <CardContent >
+                                <Avatar>{resource.name[0]}{resource.lastName[0]}</Avatar>
+                                    <Typography component="div" variant="h6">
+                                        {resource.name} {resource.lastName}
+                                    </Typography>
+                                    <Typography variant="subtitle1" color="text.secondary" component="div">
+                                        {resource.role.name}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small" variant="text" startIcon={<InfoIcon />}>
+                                    </Button>
+                                    <Button size="small" variant="text" startIcon={<AddIcon />}>
+                                    </Button>
+                                </CardActions>
+                            </Box>
                         </Stack>
 
 
@@ -92,12 +94,12 @@ export default function ResourceListPage() {
             <Grid container spacing={2}>
                 {buildPersonCard(e)}
                 {buildSkillsCards(e)}
-                <Grid item xs={1} alignContent={'center'} alignSelf={'center'}>
+                {/* <Grid item xs={1} alignContent={'center'} alignSelf={'center'}>
                     
                 </Grid>
                 <Grid item xs={1} sx={{ bgcolor: deepPurple[500] }}>
                     xs=1
-                </Grid>
+                </Grid> */}
             </Grid>
 
         );
@@ -109,7 +111,8 @@ export default function ResourceListPage() {
     }, [dispatch]);
 
     return <Box sx={{ flexGrow: 1 }}>
-        <Grid container direction="column" spacing={0}>
+        <Grid container direction="column" spacing={0} alignItems="center"
+            justifyContent="center" >
             {resourceItemsUI}
         </Grid>
     </Box>;
