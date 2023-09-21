@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-enum SkillLevel
+export enum SkillLevel
 {
     Novice,         // Basic knowledge, limited experience
     Beginner,       // Limited proficiency, still learning
@@ -12,7 +12,7 @@ enum SkillLevel
 }
 
 
-interface ResourceItem{
+export interface ResourceItem{
     id: string;
     name : string;
     lastName : string ;
@@ -24,12 +24,12 @@ interface ResourceItem{
     skills: SkillItem[]
 }
 
-interface RoleItem{
+export interface RoleItem{
     id: string;
     name : string;    
 }
 
-interface SkillItem{
+export interface SkillItem{
     id: string;
     name : string;
     skillLevel : SkillLevel
