@@ -9,10 +9,12 @@ import {applyFilters} from '../resource_list/resource_list_slice';
 import { Button, Grid, IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchHomeItem } from '../../../data/models';
+import { useNavigate } from 'react-router-dom';
 
 export default function Grouped() {
 
   const [selectedValues, setSelectedValues] = useState<SearchHomeItem[]>([]);
+  const navigate = useNavigate();
 
   const handleAutocompleteChange = (event: any, newValue: SearchHomeItem[]) => {
     console.log(newValue);
@@ -24,7 +26,7 @@ export default function Grouped() {
   const options = items;
 
   const sortedOptions = [...items].sort((a, b) =>
-    -b.groupDisplayName.localeCompare(a.groupDisplayName)
+    -b.objectType.localeCompare(a.objectType)
   );
 
 
@@ -35,9 +37,19 @@ export default function Grouped() {
   }, [dispatch]);
 
   function handleSearch(event: any): void {
-    const filters = {}
-    console.log(event);
-    //store.dispatch(applyFilters())
+    //['PO', "Developer", 'Skill']
+    const rolesIds = selectedValues.filter(e=>e.objectType === "role").map(e=>e.id);
+    const resourcesIds = selectedValues.filter(e=>e.objectType === "resource").map(e=>e.id);
+    const skillsIds = selectedValues.filter(e=>e.objectType === "skill").map(e=>e.id);
+
+    const filters = {
+      resourceIds : resourcesIds,
+      roleIds : rolesIds,
+      skillIds : skillsIds
+    }
+    //console.log(event);
+    store.dispatch(applyFilters(filters));
+    navigate('/resourceList');
   }
 
   return (
@@ -46,7 +58,7 @@ export default function Grouped() {
         id="grouped-demo"
         multiple
         options={sortedOptions}
-        groupBy={(option) => option.groupDisplayName}
+        groupBy={(option) => option.objectType}
         getOptionLabel={(option) => option.displayName}
         onChange={handleAutocompleteChange}
         value={selectedValues}

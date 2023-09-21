@@ -4,13 +4,91 @@ const { faker } = require('@faker-js/faker');
 const generateFakeSearchItem = () => {
   return {
     id: faker.datatype.uuid(),
-    //displayName: faker.internet.userName(),
     displayName: faker.word.noun(),
-    groupId: faker.datatype.uuid(),
-    groupDisplayName: faker.helpers.arrayElement(['PO', "Developer", 'Skill']),
     objectType : faker.helpers.arrayElement(['role', "resource", 'skill'])
   };
 };
+
+let skills = [{
+  "id": "1",
+  "name": "SQL"
+},
+{
+  "id": "2",
+  "name": "C#"
+},
+{
+  "id": "3",
+  "name": "React"
+},
+{
+  "id": "4",
+  "name": "Angular"
+},
+{
+  "id": "5",
+  "name": "JavaScript"
+},
+{
+  "id": "6",
+  "name": "HTML"
+},
+{
+  "id": "7",
+  "name": "CSS"
+},
+{
+  "id": "8",
+  "name": "Node.js"
+},
+{
+  "id": "9",
+  "name": "Python"
+},
+{
+  "id": "10",
+  "name": "Java"
+},
+{
+  "id": "11",
+  "name": "ASP.NET"
+},
+{
+  "id": "12",
+  "name": "Ruby on Rails"
+},
+{
+  "id": "13",
+  "name": "TypeScript"
+},
+{
+  "id": "14",
+  "name": "PHP"
+},
+{
+  "id": "15",
+  "name": "Vue.js"
+},
+{
+  "id": "16",
+  "name": "Django"
+},
+{
+  "id": "17",
+  "name": "MySQL"
+},
+{
+  "id": "18",
+  "name": "MongoDB"
+},
+{
+  "id": "19",
+  "name": "Express.js"
+},
+{
+  "id": "20",
+  "name": "Redux"
+}];
 
 const generateFakeResourceItems = () => {
   let role = faker.helpers.arrayElement([
@@ -149,6 +227,32 @@ const generateFakeResources = (count) => {
   return users;
 };
 
+const generateSearchItems = (resources) => {
+  const result = [
+    { id: "74635442", displayName: "Product Owner", objectType: "role" },
+    { id: "94635441", displayName: "Developer", objectType: "role" },
+    { id: "11635445", displayName: "Quality Assurance", objectType: "role" },
+  ];
+
+  skills.forEach(skill=>{
+    result.push({
+      id: skill.id,
+      displayName: `${skill.name}`,
+      objectType: 'skill',
+    });
+  });
+
+  resources.forEach(element => {
+    result.push({
+      id: element.id,
+      displayName: `${element.name} ${element.lastName}`,
+      objectType: 'resource',
+    });
+  });
+
+  return result;
+};
+
 const saveToJSONFile = async (users, filename) => {
   const fs = require('fs/promises');
   const jsonData = JSON.stringify(users, null, 2);
@@ -157,8 +261,9 @@ const saveToJSONFile = async (users, filename) => {
 
 const main = async () => {
   const count = 100; // Generate 100 fake users
-  const searchItems = generateFakeSearchItems(count);
+  //const searchItems = generateFakeSearchItems(count);
   const resources = generateFakeResources(100);
+  const searchItems = generateSearchItems(resources);
 
   await saveToJSONFile(searchItems, 'output/search_home_data.json');
   await saveToJSONFile(resources, 'output/resources_data.json');

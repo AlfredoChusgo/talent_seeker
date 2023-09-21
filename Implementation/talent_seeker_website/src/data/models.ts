@@ -42,8 +42,6 @@ export enum PromiseState{
 export interface SearchHomeItem {
     id: string;
     displayName : string;
-    groupId: string;
-    groupDisplayName : string;
     objectType: string;
 }
 

@@ -47,9 +47,13 @@ const resourceListSlice = createSlice({
       .addCase(fetchAllResourceItems.fulfilled, (state, action) => {
         state.loading = false;
         const filteredResources = action.payload.filter((resource) => {
-          if(state.filters.resourceIds.length == 0 && 
-            state.filters.roleIds.length == 0 &&
-            state.filters.skillIds.length == 0){
+          const resourceFilterNotApplied = state.filters.resourceIds.length == 0;
+          const roleFilterNotApplied = state.filters.roleIds.length ==  0;
+          const skillFilterNotApplied = state.filters.skillIds.length == 0;
+
+          if(resourceFilterNotApplied && 
+            roleFilterNotApplied &&
+            skillFilterNotApplied){
               return true;
             }
 
@@ -58,9 +62,12 @@ const resourceListSlice = createSlice({
           const roleIdsFilter = state.filters.roleIds.includes(resource.role.id);
 
           const resourceSkillsId = resource.skills.map(skill => skill.id);
-          const skillIdsFilter = resourceSkillsId.every((skillId) => state.filters.skillIds.includes(skillId));
+          const skillIdsFilter = state.filters.skillIds.every((skillId) => resourceSkillsId.includes(skillId));
           
-          return resourceIdsFilter && roleIdsFilter && skillIdsFilter;
+          
+          return (!resourceFilterNotApplied ? resourceIdsFilter : true ) 
+                && (!roleFilterNotApplied ? roleIdsFilter : true) 
+                && (!skillFilterNotApplied ? skillIdsFilter : true);
 
         });
         state.resourceList = filteredResources;
