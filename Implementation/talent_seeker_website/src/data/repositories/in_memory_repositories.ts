@@ -5,6 +5,18 @@ import { IResourceRepository, ISearchRepository, ITeamRepository } from "./inter
 export class InMemoryResourceRepository implements IResourceRepository {
     private resources: ResourceItem[] = [];
     private isLoaded: boolean = false;
+    private static instance : InMemoryResourceRepository;
+
+    private constructor() {
+        // private constructor to prevent constructing new instances of the Singleton outside the class
+    }
+
+    public static getInstance(): InMemoryResourceRepository {
+        if (!InMemoryResourceRepository.instance) {
+            InMemoryResourceRepository.instance = new InMemoryResourceRepository();
+        }
+        return InMemoryResourceRepository.instance;
+    }
 
     private async loadResources(): Promise<void> {
 
@@ -61,10 +73,23 @@ export class InMemoryTeamRepository implements ITeamRepository {
     private teams: TeamItem[] = [];
     private isLoaded: boolean = false;
 
+    private static instance : InMemoryTeamRepository;
+
+    private constructor() {
+        // private constructor to prevent constructing new instances of the Singleton outside the class
+    }
+
+    public static getInstance(): InMemoryTeamRepository {
+        if (!InMemoryTeamRepository.instance) {
+            InMemoryTeamRepository.instance = new InMemoryTeamRepository();
+        }
+        return InMemoryTeamRepository.instance;
+    }
+
     private async loadResources(): Promise<void> {
 
         try {
-            const response = await axios.get("fake_data/search_teams_data.json");
+            const response = await axios.get("fake_data/teams_data.json");
             this.teams = response.data;
             this.isLoaded = true;
         } catch (error) {
@@ -233,3 +258,7 @@ export class InMemorySearchRepository implements ISearchRepository {
         return result;
     }
 }
+
+export const resourcesRepository : InMemoryResourceRepository = InMemoryResourceRepository.getInstance();
+export const teamsRepository : InMemoryTeamRepository = InMemoryTeamRepository.getInstance();
+export const searchRepository : ISearchRepository = new InMemorySearchRepository(resourcesRepository,teamsRepository);

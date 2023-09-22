@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { ResourceItem, SearchResourceFilterQuery } from '../../../data/models';
-
+import { resourcesRepository } from '../../../data/repositories/in_memory_repositories';
 
 interface ResourceListState {
   resourceList: ResourceItem[];
@@ -23,8 +22,9 @@ const initialState: ResourceListState = {
 
 export const fetchAllResourceItems = createAsyncThunk<ResourceItem[]>('resourcesList/fetchResourceItems', async ()   => {
   try {
-    const response = await axios.get("fake_data/resources_data.json");
-    return response.data;
+    //const response = await axios.get("fake_data/resources_data.json");
+    const response = await resourcesRepository.getAll();
+    return response;
   } catch (error) {
     throw error;
   }

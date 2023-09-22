@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { SearchHomeItem, SearchItem } from '../../../data/models';
+import {  SearchItem } from '../../../data/models';
+import { searchRepository } from '../../../data/repositories/in_memory_repositories';
 
 interface SearchTeamState {
   teams: SearchItem[];
@@ -14,10 +15,11 @@ const initialState: SearchTeamState = {
     error : "",
 };
 
-export const fetchTeamItems = createAsyncThunk('searchTeam/fetchItems', async () => {
+export const fetchTeamItems = createAsyncThunk<SearchItem[]>('searchTeam/fetchItems', async ():Promise<SearchItem[]> => {
     try {
-      const response = await axios.get("fake_data/search_teams_data.json");
-      return response.data;
+      //const response = await axios.get("fake_data/search_teams_data.json");
+      const response = await searchRepository.getAllTeams();
+      return response;
     } catch (error) {
       throw error;
     }

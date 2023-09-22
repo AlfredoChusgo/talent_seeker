@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { PromiseState, SearchHomeItem } from '../../../data/models';
-
+import { searchRepository } from '../../../data/repositories/in_memory_repositories';
 interface SearchHomeState {
   items: SearchHomeItem[];
   loading : PromiseState;
@@ -16,22 +16,13 @@ const initialState: SearchHomeState = {
 
 export const fetchItems = createAsyncThunk('searchHome/fetchItems', async () => {
     try {
-      const response = await axios.get("fake_data/search_home_data.json");
-      return response.data;
+      // const response = await axios.get("fake_data/search_home_data.json");
+      const response = await searchRepository.getAllResources();
+      return response;
     } catch (error) {
       throw error;
     }
   });
-
-  export const fetchJsonData = createAsyncThunk('data/fetchJsonData', async (filePath) => {
-    try {
-      const response = await axios.get("fake_data/search_home_data.json");
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  });
-
   
 const searchHomeSlice = createSlice({
   name: 'searchHome',
