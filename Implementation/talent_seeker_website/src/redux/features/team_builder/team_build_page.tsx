@@ -7,11 +7,13 @@ import { fetchAllResourceItems } from '../resource_list/resource_list_slice';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ResourceListComponent from '../../components/resourcec_list_component';
-import {  IconButton } from '@mui/material';
-import { SearchHomeItem } from '../../../data/models';
+import {  AutocompleteChangeReason, IconButton } from '@mui/material';
+import { SearchHomeItem, SearchItem } from '../../../data/models';
 import SearchResourceComponent from '../../components/search_resource_component';
 import { applyFilters } from '../resource_list/resource_list_slice';
 import { fetchItems } from '../search_home/search_home_slice';
+import SearchTeamComponent from '../../components/search_team_component';
+import { fetchTeamItems } from './search_team_slice';
 
 
 export default function TeamBuilderPage() {
@@ -46,8 +48,14 @@ export default function TeamBuilderPage() {
   
     useEffect(() => {
       store.dispatch(fetchItems());
+      store.dispatch(fetchTeamItems());
     }, [dispatch]);  
 
+
+    //SearchTeam
+    const [seletedTeam, setSeletedTeam] = useState<SearchItem | null >(null);
+    const { teams } = useSelector((state: RootState) => state.searchTeam);
+    //endSearchTeam
     return <Box sx={{ flexGrow:  0}}>
         <Grid container direction="row" spacing={1} >
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}  >
@@ -71,15 +79,12 @@ export default function TeamBuilderPage() {
                 <Grid container direction="column" spacing={1}
                     justifyContent="center" >
                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                        <SearchResourceComponent searchItems={items} selectedValues={selectedValues}
-                            searchButtonConfiguration={{
-                                isEnabled: true,
-                                searchButtonComponent: <IconButton
-                                >
-                                </IconButton>
-                            }}
-                            handleAutoCompleteChange={handleAutocompleteChange}
-                        />
+                        <SearchTeamComponent 
+                        searchItems={teams} 
+                        selectedValue={seletedTeam} 
+                        handleAutoCompleteChange={function (event: any, value: SearchItem | null, reason: AutocompleteChangeReason): void {
+                            setSeletedTeam(value);
+                        } }/>
                     </Grid>
                     <ResourceListComponent resourcesItems={resourceList} />
                 </Grid>

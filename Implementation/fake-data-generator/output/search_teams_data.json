@@ -1,0 +1,152 @@
+[
+  {
+    "id": "16e80344-adf8-4eff-a69c-649453d8f1c7",
+    "displayName": "Focus",
+    "objectType": "team"
+  },
+  {
+    "id": "165ac289-bdd2-40e3-9f32-5449791954ef",
+    "displayName": "Alpine",
+    "objectType": "team"
+  },
+  {
+    "id": "7151b454-22f5-4f06-b0d4-ca746d5e08be",
+    "displayName": "Prius",
+    "objectType": "team"
+  },
+  {
+    "id": "8192e6c4-9b51-4e7a-9d33-663520356db9",
+    "displayName": "Alpine",
+    "objectType": "team"
+  },
+  {
+    "id": "248bb10c-7789-4979-8eba-cd8ff9fa8d13",
+    "displayName": "CTS",
+    "objectType": "team"
+  },
+  {
+    "id": "1433dc1f-3790-401f-9c2e-9e7d3635de57",
+    "displayName": "Ranchero",
+    "objectType": "team"
+  },
+  {
+    "id": "0973a376-fe5b-4eb4-a926-65f72962f2b1",
+    "displayName": "Element",
+    "objectType": "team"
+  },
+  {
+    "id": "eb6a5d3f-66d4-4f3b-8476-79feb42f2b5a",
+    "displayName": "Explorer",
+    "objectType": "team"
+  },
+  {
+    "id": "fecde3c7-ff9b-4ee7-99d0-90d88b4aa2b2",
+    "displayName": "Volt",
+    "objectType": "team"
+  },
+  {
+    "id": "01a82eb9-ff33-4360-8aa7-464292d48080",
+    "displayName": "A4",
+    "objectType": "team"
+  },
+  {
+    "id": "5e66571e-a2ae-4592-93f8-3a5334fdf83b",
+    "displayName": "Grand Caravan",
+    "objectType": "team"
+  },
+  {
+    "id": "fa34b67a-a5bb-4f59-b6e9-618dac86ad4a",
+    "displayName": "Charger",
+    "objectType": "team"
+  },
+  {
+    "id": "4c354c32-02f4-495e-889c-60df75570ce7",
+    "displayName": "Expedition",
+    "objectType": "team"
+  },
+  {
+    "id": "b46754a3-9e4a-4770-be84-b6ef1b41add6",
+    "displayName": "Model X",
+    "objectType": "team"
+  },
+  {
+    "id": "6dc07dd4-48d1-4951-a1ed-9f7a664a8e33",
+    "displayName": "Wrangler",
+    "objectType": "team"
+  },
+  {
+    "id": "a32f2abf-a16d-44d8-a462-57f88ad134d4",
+    "displayName": "Accord",
+    "objectType": "team"
+  },
+  {
+    "id": "83e89b27-81c1-4011-b93e-37328664bf5d",
+    "displayName": "Model T",
+    "objectType": "team"
+  },
+  {
+    "id": "db9ead83-90e6-4ef2-a5eb-0416817f7475",
+    "displayName": "Durango",
+    "objectType": "team"
+  },
+  {
+    "id": "1c4dbec2-9109-4440-b224-87c77771f584",
+    "displayName": "Volt",
+    "objectType": "team"
+  },
+  {
+    "id": "143516f3-47e6-486d-8341-9e534eb193bf",
+    "displayName": "Aventador",
+    "objectType": "team"
+  },
+  {
+    "id": "cb960cf8-0661-4cd5-bc80-b1dff3c9809a",
+    "displayName": "Camry",
+    "objectType": "team"
+  },
+  {
+    "id": "402dbf4c-a8f5-4849-86ea-57ab1e72ee40",
+    "displayName": "CX-9",
+    "objectType": "team"
+  },
+  {
+    "id": "fcd8b6ac-c51c-49ba-9857-aa3fc3a00c14",
+    "displayName": "XTS",
+    "objectType": "team"
+  },
+  {
+    "id": "d5c88761-dfd3-459e-894f-a653cb68fc7c",
+    "displayName": "Model T",
+    "objectType": "team"
+  },
+  {
+    "id": "a440158c-cf43-4d35-81fd-9c40b7672475",
+    "displayName": "XC90",
+    "objectType": "team"
+  },
+  {
+    "id": "a198d48c-b696-4940-be7d-cdbfc7bcca0b",
+    "displayName": "Camaro",
+    "objectType": "team"
+  },
+  {
+    "id": "fed4d2f5-769c-4ade-b7c5-644dcff15825",
+    "displayName": "Prius",
+    "objectType": "team"
+  },
+  {
+    "id": "0aabc9b4-e4ec-4fec-b4a4-b28fe6b61c11",
+    "displayName": "Ranchero",
+    "objectType": "team"
+  },
+  {
+    "id": "bfab3582-c0d0-4149-8065-8c4e647d4186",
+    "displayName": "V90",
+    "objectType": "team"
+  },
+  {
+    "id": "cb9c9c0a-fa39-4b87-8c71-dbe8f1a17a76",
+    "displayName": "A4",
+    "objectType": "team"
+  }
+]

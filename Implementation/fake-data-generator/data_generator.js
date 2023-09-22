@@ -210,6 +210,13 @@ const generateFakeResourceItems = () => {
     skills : skills,
   };
 };
+const generateFakeTeamItems = () => {
+  return {
+    id: faker.string.uuid(),
+    displayName: faker.vehicle.model(),
+    objectType : "team"
+  };
+}
 
 const generateFakeSearchItems = (count) => {
   const users = [];
@@ -225,6 +232,14 @@ const generateFakeResources = (count) => {
     users.push(generateFakeResourceItems());
   }
   return users;
+};
+
+const generateSearchTeamItems = (count) => {
+  const items = [];
+  for (let i = 0; i < count; i++) {
+    items.push(generateFakeTeamItems());
+  }
+  return items;
 };
 
 const generateSearchItems = (resources) => {
@@ -264,9 +279,11 @@ const main = async () => {
   //const searchItems = generateFakeSearchItems(count);
   const resources = generateFakeResources(100);
   const searchItems = generateSearchItems(resources);
+  const searchTeamItems = generateSearchTeamItems(30);
 
   await saveToJSONFile(searchItems, 'output/search_home_data.json');
   await saveToJSONFile(resources, 'output/resources_data.json');
+  await saveToJSONFile(searchTeamItems, 'output/search_teams_data.json');
   console.log('Fake users generated and saved to fake-users.json');
 };
 

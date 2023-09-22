@@ -1,4 +1,5 @@
-import { ResourceItem, SearchHomeItem } from "./models";
+import { AutocompleteChangeReason } from "@mui/material/Autocomplete";
+import { ResourceItem, SearchHomeItem, SearchItem } from "./models";
 
 export interface ResourceListComponentProps{
     resourcesItems : ResourceItem[];
@@ -14,4 +15,10 @@ export interface SearchResourceComponentProps {
 export interface SearchButtonConfiguration {
     isEnabled : boolean;
     searchButtonComponent : React.ReactNode;
+}
+
+export interface SearchTeamComponentProps {
+    searchItems : SearchItem[];    
+    selectedValue : SearchItem | null;
+    handleAutoCompleteChange : (event: any, value: SearchItem | null, reason : AutocompleteChangeReason) => void;
 }

@@ -50,3 +50,9 @@ export interface SearchResourceFilterQuery {
     roleIds: string[];
     skillIds : string[];
 }
+
+export interface SearchItem {
+    id: string;
+    displayName : string;
+    objectType: string;
+}
