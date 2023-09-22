@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit';
 import { PromiseState, SearchHomeItem } from '../../../data/models';
 import { searchRepository } from '../../../data/repositories/in_memory_repositories';
 interface SearchHomeState {
