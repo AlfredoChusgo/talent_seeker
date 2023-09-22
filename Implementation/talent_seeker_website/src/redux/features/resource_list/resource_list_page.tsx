@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ResourceListComponent from '../../components/resourcec_list_component';
 import { Paper } from '@mui/material';
+import { showSnackbar } from '../global_snackbar/global_snackbar_slice';
+import { SnackbarSeverity } from '../../../data/models';
 
 
 export default function ResourceListPage() {
@@ -18,11 +20,17 @@ export default function ResourceListPage() {
         store.dispatch(fetchAllResourceItems());
     }, [dispatch]);
 
+    function handleOnClickInfo(resourceId:string): void{
+        store.dispatch(showSnackbar({message:`Clicked Info ${resourceId}`,severity:SnackbarSeverity.Warning}));
+        
+    }
+
     return <Box sx={{ flexGrow: 1 }}>
         <Paper elevation={2}>
             <Grid container direction="column" spacing={0} alignItems="center"
                 justifyContent="center" >
-                <ResourceListComponent resourcesItems={resourceList} />
+                <ResourceListComponent resourcesItems={resourceList} infoButtonConfiguration={{isEnabled:true , action : handleOnClickInfo }}
+                addButtonConfiguration={{isEnabled : false , action : ()=>{} }} />
             </Grid>
         </Paper>
     </Box>;

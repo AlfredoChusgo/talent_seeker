@@ -41,6 +41,12 @@ export const removeResourceFromTeam = createAsyncThunk<TeamItem, { resourceId: s
 
 export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string, teamId: string }>('teamDetail/addResourceToTeam', async ({ resourceId, teamId },thunkAPI) => {
   try {
+    if(!teamId){
+      const errorMessage = "Please select a team first";
+      thunkAPI.dispatch(showSnackbar({message:errorMessage, severity: SnackbarSeverity.Error,}));  
+      throw new Error(errorMessage);
+    }
+
     const teamResponse = await teamsRepository.getById(teamId);
     const isResourcecInTeam = teamResponse.resources.some(resource=> resource.id === resourceId);
 
@@ -95,12 +101,24 @@ const teamDetailSlice = createSlice({
       .addCase(removeResourceFromTeam.fulfilled, (state, action) => {
         state.loading = false;
         state.teamDetail = action.payload;
-        
+
       })
       .addCase(removeResourceFromTeam.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'An error occurred.';
-        // showSnackbar({message:state.error, severity: SnackbarSeverity.Error});
+      });
+
+    builder.addCase(addResourceToTeam.pending, (state) => {
+      state.loading = true;
+    })
+      .addCase(addResourceToTeam.fulfilled, (state, action) => {
+        state.loading = false;
+        state.teamDetail = action.payload;
+
+      })
+      .addCase(addResourceToTeam.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'An error occurred.';
       });
   }
 });

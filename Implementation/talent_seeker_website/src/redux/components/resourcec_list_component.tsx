@@ -26,9 +26,6 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
     //const { resourceList, loading, error } = useSelector((state: RootState) => state.resourceList);
 
     const buildPersonCard = (resource: ResourceItem) => {
-        if(addButtonConfiguration.isEnabled){
-            addButtonConfiguration.action(resource.id);
-        }
 
         return (
             <Grid item xs={6} sm={6}  md={4} lg={4}  sx={{ width: '100%'}}>

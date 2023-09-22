@@ -15,7 +15,7 @@ import { fetchItems } from '../search_home/search_home_slice';
 import SearchTeamComponent from '../../components/search_team_component';
 import { fetchTeamItems } from '../search_team/search_team_slice';
 import TeamDetailComponent from '../../components/team_detail_component';
-import { fetchTeamDetail } from '../team_detail/team_detail_slice';
+import { addResourceToTeam, fetchTeamDetail } from '../team_detail/team_detail_slice';
 
 import { showSnackbar } from '../global_snackbar/global_snackbar_slice';
 
@@ -68,11 +68,11 @@ export default function TeamBuilderPage() {
     //addResourceToTeam
     function handleOnClickInfo(resourceId:string): void{
         store.dispatch(showSnackbar({message:`Clicked Info ${resourceId}`,severity:SnackbarSeverity.Warning}));
+        
     }
 
     function handleOnClickAddResource(resourceId:string): void{
-        store.dispatch(showSnackbar({message:`Clicked Added ${resourceId}`,severity:SnackbarSeverity.Warning}));
-
+        store.dispatch(addResourceToTeam({resourceId:resourceId,teamId:seletedTeam?.id ?? ""}));
     }
 
     //endAddResourceToTeam
