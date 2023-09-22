@@ -9,7 +9,7 @@ import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import { IconButton } from '@mui/material';
+import { Container, IconButton } from '@mui/material';
 import store from '../store/store';
 import { removeResourceFromTeam } from '../features/team_detail/team_detail_slice';
 
@@ -20,9 +20,9 @@ export default function TeamDetailComponent({ team }: TeamDetailComponentProps) 
             <List sx={{ width: '90%', bgcolor: 'background.paper' }}>
                 <ListItem alignItems="center" secondaryAction={
                     <IconButton edge="end" aria-label="comments">
-                        <DeleteForeverIcon onClick ={()=>{
-                            store.dispatch(removeResourceFromTeam({teamId: team.id, resourceId: resource.id}));
-                        }}/>
+                        <DeleteForeverIcon onClick={() => {
+                            store.dispatch(removeResourceFromTeam({ teamId: team.id, resourceId: resource.id }));
+                        }} />
                     </IconButton>
                 }>
                     <ListItemAvatar>
@@ -48,7 +48,12 @@ export default function TeamDetailComponent({ team }: TeamDetailComponentProps) 
     });
 
     if (team.resources.length > 0) {
-        return resourceItemsUI;
+        return (<Container>
+            <Typography variant="h6" color="textSecondary">
+                Team Members
+            </Typography>
+            {resourceItemsUI}
+        </Container>);
     }
     else {
         return (
