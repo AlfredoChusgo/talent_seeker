@@ -17,7 +17,7 @@ import { Grid, Paper } from '@mui/material';
 
 //import MenuIcon from '@mui/icons-material/Menu';
 
-const pages = ['searchPageHome', 'resourceList'];
+const pages = ['searchPageHome', 'resourceList', 'teamBuilder'];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ButtonAppBar() {

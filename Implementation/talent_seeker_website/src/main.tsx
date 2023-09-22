@@ -12,6 +12,7 @@ import SearchPageHome from "./redux/features/search_home/search_page_home_page";
 import { Provider } from 'react-redux';
 import store from './redux/store/store';
 import ResourceListPage from "./redux/features/resource_list/resource_list_page";
+import TeamBuilderPage from "./redux/features/team_builder/team_build_page";
 // import Root from "src/routes/root";
 // import ErrorPage from "src/pages/error-page";
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "resourceList",
         element : <ResourceListPage></ResourceListPage>
+      },
+      {
+        path: "teamBuilder",
+        element : <TeamBuilderPage></TeamBuilderPage>
       }
       
     ]

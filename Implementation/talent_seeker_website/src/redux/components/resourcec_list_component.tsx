@@ -29,8 +29,8 @@ export default function ResourceListComponent( {resourcesItems } : ResourceListC
         return (
             <Grid item xs={2}>
                 <Paper>
-                    <Card sx={{ display: 'flex' }}>
-                        <Stack direction="row" spacing={1} alignContent={"center"} justifyContent={"center"} alignSelf={"center"}>                            
+                    <Card >
+                        <Stack direction="row" spacing={1} >                            
                             <Box >
                                 <CardContent >
                                 <Avatar>{resource.name[0]}{resource.lastName[0]}</Avatar>
@@ -61,7 +61,7 @@ export default function ResourceListComponent( {resourcesItems } : ResourceListC
         const skillsCards = skills.map(skill => {
 
             return (
-                <Grid item xs={2} >
+                <Grid item  >
                     <Paper elevation={1}>
                         <Card sx={{ display: 'flex' }}>
 
@@ -95,5 +95,16 @@ export default function ResourceListComponent( {resourcesItems } : ResourceListC
         );
     });
 
-    return resourceItemsUI;
+    if(resourcesItems.length > 0){
+        return resourceItemsUI;
+    }
+    else{
+        return (
+            <Grid container justifyContent="center" alignItems="center" direction="column" spacing={0}>
+              <Grid item xs={10}>
+                <Typography variant="h5">No results to display</Typography>
+              </Grid>
+            </Grid>
+          );
+    }
 }
