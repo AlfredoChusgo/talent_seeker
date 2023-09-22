@@ -13,7 +13,9 @@ import SearchResourceComponent from '../../components/search_resource_component'
 import { applyFilters } from '../resource_list/resource_list_slice';
 import { fetchItems } from '../search_home/search_home_slice';
 import SearchTeamComponent from '../../components/search_team_component';
-import { fetchTeamItems } from './search_team_slice';
+import { fetchTeamItems } from '../search_team/search_team_slice';
+import TeamDetailComponent from '../../components/team_detail_component';
+import { fetchTeamDetail } from '../team_detail/team_detail_slice';
 
 
 export default function TeamBuilderPage() {
@@ -56,6 +58,11 @@ export default function TeamBuilderPage() {
     const [seletedTeam, setSeletedTeam] = useState<SearchItem | null >(null);
     const { teams } = useSelector((state: RootState) => state.searchTeam);
     //endSearchTeam
+
+    //team
+    // const [seletedTeam, setSeletedTeam] = useState<SearchItem | null >(null);
+    const { teamDetail } = useSelector((state: RootState) => state.teamDetail);
+    //endTeam
     return <Box sx={{ flexGrow:  0}}>
         <Grid container direction="row" spacing={1} >
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}  >
@@ -84,9 +91,14 @@ export default function TeamBuilderPage() {
                         selectedValue={seletedTeam} 
                         handleAutoCompleteChange={function (event: any, value: SearchItem | null, reason: AutocompleteChangeReason): void {
                             setSeletedTeam(value);
+
+                            if(value !=null){
+                                store.dispatch(fetchTeamDetail({teamId: value.id}));
+                            }
+                            
                         } }/>
                     </Grid>
-                    <ResourceListComponent resourcesItems={resourceList} />
+                    <TeamDetailComponent team={teamDetail} />
                 </Grid>
             </Grid>
 

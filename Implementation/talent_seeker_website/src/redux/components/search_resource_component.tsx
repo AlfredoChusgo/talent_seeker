@@ -18,7 +18,7 @@ export default function SearchResourceComponent({searchItems,selectedValues,sear
         value={selectedValues}
         renderInput={(params) => (
           <div style={{ display: 'flex' }}>
-            <TextField {...params} label="Search..." />
+            <TextField {...params} label="Search Resource..." />
              {searchButtonConfiguration.isEnabled && (
                 searchButtonConfiguration.searchButtonComponent
             )}

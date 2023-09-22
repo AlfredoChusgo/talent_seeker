@@ -210,13 +210,7 @@ const generateFakeResourceItems = () => {
     skills : skills,
   };
 };
-const generateFakeTeamItems = () => {
-  return {
-    id: faker.string.uuid(),
-    displayName: faker.vehicle.model(),
-    objectType : "team"
-  };
-}
+
 
 const generateFakeSearchItems = (count) => {
   const users = [];
@@ -234,11 +228,16 @@ const generateFakeResources = (count) => {
   return users;
 };
 
-const generateSearchTeamItems = (count) => {
+const generateSearchTeamItems = (teams) => {
   const items = [];
-  for (let i = 0; i < count; i++) {
-    items.push(generateFakeTeamItems());
-  }
+  
+  teams.forEach(e=>{
+    items.push({
+      id: e.id,
+      displayName: e.name,
+      objectType: "team"
+    })
+  });
   return items;
 };
 
@@ -268,6 +267,22 @@ const generateSearchItems = (resources) => {
   return result;
 };
 
+const generateFakeTeamItems = (resources) => {
+  return {
+    id: faker.string.uuid(),
+    name: faker.vehicle.model(),
+    resources : faker.helpers.arrayElements(resources,{ min: 3, max: 10 })
+  };
+}
+
+const generateTeams = (count,resources) => {
+  const items = [];
+  for (let i = 0; i < count; i++) {
+    items.push(generateFakeTeamItems(resources));
+  }
+  return items;
+}
+
 const saveToJSONFile = async (users, filename) => {
   const fs = require('fs/promises');
   const jsonData = JSON.stringify(users, null, 2);
@@ -279,11 +294,13 @@ const main = async () => {
   //const searchItems = generateFakeSearchItems(count);
   const resources = generateFakeResources(100);
   const searchItems = generateSearchItems(resources);
-  const searchTeamItems = generateSearchTeamItems(30);
+  const teams = generateTeams(30,resources);
+  const searchTeamItems = generateSearchTeamItems(teams);
 
   await saveToJSONFile(searchItems, 'output/search_home_data.json');
   await saveToJSONFile(resources, 'output/resources_data.json');
   await saveToJSONFile(searchTeamItems, 'output/search_teams_data.json');
+  await saveToJSONFile(teams, 'output/teams_data.json');
   console.log('Fake users generated and saved to fake-users.json');
 };
 

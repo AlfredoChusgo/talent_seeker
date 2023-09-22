@@ -56,3 +56,9 @@ export interface SearchItem {
     displayName : string;
     objectType: string;
 }
+
+export interface TeamItem{
+    id: string;
+    name : string;
+    resources : ResourceItem[];
+}
