@@ -13,28 +13,29 @@ import { Provider } from 'react-redux';
 import store from './redux/store/store';
 import ResourceListPage from "./redux/features/resource_list/resource_list_page";
 import TeamBuilderPage from "./redux/features/team_builder/team_build_page";
+import SnackbarComponent  from "./redux/components/snackbar_component.tsx";
 // import Root from "src/routes/root";
 // import ErrorPage from "src/pages/error-page";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>,
-    errorElement : <ErrorPage/>,
-    children : [
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
       {
         path: "searchPageHome",
-        element : <SearchPageHome></SearchPageHome>
+        element: <SearchPageHome></SearchPageHome>
       },
       {
         path: "resourceList",
-        element : <ResourceListPage></ResourceListPage>
+        element: <ResourceListPage></ResourceListPage>
       },
       {
         path: "teamBuilder",
-        element : <TeamBuilderPage></TeamBuilderPage>
+        element: <TeamBuilderPage></TeamBuilderPage>
       }
-      
+
     ]
   },
 ]);
@@ -42,8 +43,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      
+        <RouterProvider router={router} />
+      <SnackbarComponent/>
     </Provider>
-    
   </React.StrictMode>
 );

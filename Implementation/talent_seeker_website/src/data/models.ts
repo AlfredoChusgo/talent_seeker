@@ -8,6 +8,13 @@ export enum SkillLevel
     Expert,         // Mastery or expert level
 }
 
+export enum SnackbarSeverity
+{
+    Success = "success",
+    Error = "error",
+    Warning = "warning",
+    Info = "info",
+}
 
 export interface ResourceItem{
     id: string;
