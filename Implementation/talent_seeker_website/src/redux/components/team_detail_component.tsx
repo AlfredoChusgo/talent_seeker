@@ -1,24 +1,17 @@
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import CardActions from '@mui/material/CardActions';
 import { ResourceItem } from '../../data/models';
 import { TeamDetailComponentProps } from '../../data/component_props';
-import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import { IconButton, ListItemButton } from '@mui/material';
+import { IconButton } from '@mui/material';
+import store, { RootState, useAppDispatch } from '../store/store';
+import { removeResourceFromTeam } from '../features/team_detail/team_detail_slice';
 
 export default function TeamDetailComponent({ team }: TeamDetailComponentProps) {
 
@@ -27,7 +20,9 @@ export default function TeamDetailComponent({ team }: TeamDetailComponentProps) 
             <List sx={{ width: '90%', bgcolor: 'background.paper' }}>
                 <ListItem alignItems="center" secondaryAction={
                     <IconButton edge="end" aria-label="comments">
-                        <DeleteForeverIcon />
+                        <DeleteForeverIcon onClick ={()=>{
+                            store.dispatch(removeResourceFromTeam({teamId: team.id, resourceId: resource.id}));
+                        }}/>
                     </IconButton>
                 }>
                     <ListItemAvatar>

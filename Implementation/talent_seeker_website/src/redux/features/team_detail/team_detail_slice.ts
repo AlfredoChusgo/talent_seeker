@@ -1,7 +1,7 @@
 import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TeamItem } from '../../../data/models';
-
+import { teamsRepository } from '../../../data/repositories/in_memory_repositories';
 
 interface TeamDetailState {
   teamDetail: TeamItem;
@@ -17,10 +17,20 @@ const initialState: TeamDetailState = {
 
 export const fetchTeamDetail = createAsyncThunk<TeamItem, { teamId: string }>('teamDetail/fetchTeam', async ({ teamId }) => {
   try {
-    const response = await axios.get("fake_data/teams_data.json");
-    const teams : TeamItem[] = response.data;
+    const teamResponse = await teamsRepository.getById(teamId);
+    return teamResponse;
+  } catch (error) {
+    throw error;
+  }
+});
 
-    return teams.filter(team=> team.id == teamId)[0];
+export const removeResourceFromTeam = createAsyncThunk<TeamItem, { resourceId: string, teamId: string }>('teamDetail/removeResourceFromTeam', async ({ resourceId, teamId }) => {
+  try {
+    const teamResponse = await teamsRepository.getById(teamId);
+    let resourcesUpdated = [...teamResponse.resources.filter(resource => resource.id != resourceId)];
+    let teamUpdated : TeamItem = {...teamResponse , resources: resourcesUpdated};
+    await teamsRepository.update(teamUpdated);
+    return await teamsRepository.getById(teamId);
   } catch (error) {
     throw error;
   }
@@ -42,6 +52,18 @@ const teamDetailSlice = createSlice({
         state.teamDetail = action.payload;
       })
       .addCase(fetchTeamDetail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'An error occurred.';
+      });
+
+    builder.addCase(removeResourceFromTeam.pending, (state) => {
+      state.loading = true;
+    })
+      .addCase(removeResourceFromTeam.fulfilled, (state, action) => {
+        state.loading = false;
+        state.teamDetail = action.payload;
+      })
+      .addCase(removeResourceFromTeam.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'An error occurred.';
       });
