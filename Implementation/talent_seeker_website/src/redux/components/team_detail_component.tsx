@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import { IconButton } from '@mui/material';
-import store, { RootState, useAppDispatch } from '../store/store';
+import store from '../store/store';
 import { removeResourceFromTeam } from '../features/team_detail/team_detail_slice';
 
 export default function TeamDetailComponent({ team }: TeamDetailComponentProps) {

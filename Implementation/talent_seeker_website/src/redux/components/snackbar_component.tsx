@@ -23,6 +23,7 @@ const SnackbarComponent: React.FC = () => {
       open={snackbarState.open}
       autoHideDuration={3000}
       onClose={handleClose}
+      anchorOrigin={{vertical: 'bottom',horizontal: 'center'}}
     >
       <Alert onClose={handleClose} severity={snackbarState.severity} sx={{ width: '100%' }}>
         {snackbarState.message}
