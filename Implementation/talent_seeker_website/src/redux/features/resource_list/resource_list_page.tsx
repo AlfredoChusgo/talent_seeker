@@ -7,6 +7,7 @@ import { fetchAllResourceItems } from './resource_list_slice';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ResourceListComponent from '../../components/resourcec_list_component';
+import { Paper } from '@mui/material';
 
 
 export default function ResourceListPage() {
@@ -18,9 +19,11 @@ export default function ResourceListPage() {
     }, [dispatch]);
 
     return <Box sx={{ flexGrow: 1 }}>
-        <Grid container direction="column" spacing={0} alignItems="center"
-            justifyContent="center" >
-            <ResourceListComponent resourcesItems={resourceList}/>
-        </Grid>
+        <Paper elevation={2}>
+            <Grid container direction="column" spacing={0} alignItems="center"
+                justifyContent="center" >
+                <ResourceListComponent resourcesItems={resourceList} />
+            </Grid>
+        </Paper>
     </Box>;
 }

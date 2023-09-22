@@ -22,39 +22,9 @@ import { IconButton, ListItemButton } from '@mui/material';
 
 export default function TeamDetailComponent({ team }: TeamDetailComponentProps) {
 
-    // const buildPersonCard = (resource: ResourceItem) => {
-    //     return (
-    //         <Grid item xs={12}>
-    //             <Paper>
-    //                 <Card >
-    //                     <Stack direction="row" spacing={1} >                            
-    //                         <Box >
-    //                             <CardContent >
-    //                             <Avatar>{resource.name[0]}{resource.lastName[0]}</Avatar>
-    //                                 <Typography component="div" variant="h6">
-    //                                     {resource.name} {resource.lastName}
-    //                                 </Typography>
-    //                                 <Typography variant="subtitle1" color="text.secondary" component="div">
-    //                                     {resource.role.name}
-    //                                 </Typography>
-    //                             </CardContent>
-    //                             <CardActions>
-    //                                 <Button size="small" variant="text" startIcon={<DeleteForeverIcon />}>
-    //                                 </Button>
-    //                             </CardActions>
-    //                         </Box>
-    //                     </Stack>
-
-
-    //                 </Card>
-    //             </Paper>
-    //         </Grid>
-    //     );
-    // }
-
     const buildPersonCard = (resource: ResourceItem) => {
         return (
-            <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+            <List sx={{ width: '90%', bgcolor: 'background.paper' }}>
                 <ListItem alignItems="center" secondaryAction={
                     <IconButton edge="end" aria-label="comments">
                         <DeleteForeverIcon />

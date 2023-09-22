@@ -7,7 +7,7 @@ import { fetchAllResourceItems } from '../resource_list/resource_list_slice';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ResourceListComponent from '../../components/resourcec_list_component';
-import {  AutocompleteChangeReason, IconButton } from '@mui/material';
+import {  AutocompleteChangeReason, IconButton, Paper } from '@mui/material';
 import { SearchHomeItem, SearchItem } from '../../../data/models';
 import SearchResourceComponent from '../../components/search_resource_component';
 import { applyFilters } from '../resource_list/resource_list_slice';
@@ -64,8 +64,9 @@ export default function TeamBuilderPage() {
     const { teamDetail } = useSelector((state: RootState) => state.teamDetail);
     //endTeam
     return <Box sx={{ flexGrow:  0}}>
-        <Grid container direction="row" spacing={1} >
+        <Grid container direction="row" spacing={3} >
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}  >
+                <Paper  elevation={1}>
                 <Grid container direction="column" spacing={1}
                     justifyContent="center" >
                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
@@ -81,8 +82,10 @@ export default function TeamBuilderPage() {
                     </Grid>
                     <ResourceListComponent resourcesItems={resourceList} />
                 </Grid>
+                </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
+                <Paper elevation={3}>
                 <Grid container direction="column" spacing={1}
                     justifyContent="center" >
                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
@@ -100,6 +103,7 @@ export default function TeamBuilderPage() {
                     </Grid>
                     <TeamDetailComponent team={teamDetail} />
                 </Grid>
+                </Paper>
             </Grid>
 
         </Grid>

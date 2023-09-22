@@ -27,7 +27,7 @@ export default function ResourceListComponent( {resourcesItems } : ResourceListC
 
     const buildPersonCard = (resource: ResourceItem) => {
         return (
-            <Grid item xs={2}>
+            <Grid item xs={6} sm={6}  md={4} lg={4}  sx={{ width: '100%'}}>
                 <Paper>
                     <Card >
                         <Stack direction="row" spacing={1} >                            
