@@ -7,8 +7,8 @@ import { fetchAllResourceItems } from '../resource_list/resource_list_slice';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ResourceListComponent from '../../components/resourcec_list_component';
-import {  AutocompleteChangeReason, IconButton, Paper } from '@mui/material';
-import { SearchHomeItem, SearchItem } from '../../../data/models';
+import { AutocompleteChangeReason, Button, IconButton, Paper } from '@mui/material';
+import { SearchHomeItem, SearchItem, SnackbarSeverity } from '../../../data/models';
 import SearchResourceComponent from '../../components/search_resource_component';
 import { applyFilters } from '../resource_list/resource_list_slice';
 import { fetchItems } from '../search_home/search_home_slice';
@@ -17,6 +17,7 @@ import { fetchTeamItems } from '../search_team/search_team_slice';
 import TeamDetailComponent from '../../components/team_detail_component';
 import { fetchTeamDetail } from '../team_detail/team_detail_slice';
 
+import { showSnackbar } from '../global_snackbar/global_snackbar_slice';
 
 export default function TeamBuilderPage() {
     const dispatch = useAppDispatch;
@@ -28,34 +29,34 @@ export default function TeamBuilderPage() {
 
 
     const [selectedValues, setSelectedValues] = useState<SearchHomeItem[]>([]);
-  
-    const handleAutocompleteChange = (event: any, newValue: SearchHomeItem[]) => {
-      setSelectedValues(newValue);
 
-      const rolesIds = newValue.filter(e=>e.objectType === "role").map(e=>e.id);
-      const resourcesIds = newValue.filter(e=>e.objectType === "resource").map(e=>e.id);
-      const skillsIds = newValue.filter(e=>e.objectType === "skill").map(e=>e.id);
-  
-      const filters = {
-        resourceIds : resourcesIds,
-        roleIds : rolesIds,
-        skillIds : skillsIds
-      }
-      store.dispatch(applyFilters(filters));
-      store.dispatch(fetchAllResourceItems());
+    const handleAutocompleteChange = (event: any, newValue: SearchHomeItem[]) => {
+        setSelectedValues(newValue);
+
+        const rolesIds = newValue.filter(e => e.objectType === "role").map(e => e.id);
+        const resourcesIds = newValue.filter(e => e.objectType === "resource").map(e => e.id);
+        const skillsIds = newValue.filter(e => e.objectType === "skill").map(e => e.id);
+
+        const filters = {
+            resourceIds: resourcesIds,
+            roleIds: rolesIds,
+            skillIds: skillsIds
+        }
+        store.dispatch(applyFilters(filters));
+        store.dispatch(fetchAllResourceItems());
     };
-    
+
     //const dispatch = useAppDispatch;
     const { items, loading, error } = useSelector((state: RootState) => state.searchHome);
-  
+
     useEffect(() => {
-      store.dispatch(fetchItems());
-      store.dispatch(fetchTeamItems());
-    }, [dispatch]);  
+        store.dispatch(fetchItems());
+        store.dispatch(fetchTeamItems());
+    }, [dispatch]);
 
 
     //SearchTeam
-    const [seletedTeam, setSeletedTeam] = useState<SearchItem | null >(null);
+    const [seletedTeam, setSeletedTeam] = useState<SearchItem | null>(null);
     const { teams } = useSelector((state: RootState) => state.searchTeam);
     //endSearchTeam
 
@@ -63,46 +64,65 @@ export default function TeamBuilderPage() {
     // const [seletedTeam, setSeletedTeam] = useState<SearchItem | null >(null);
     const { teamDetail } = useSelector((state: RootState) => state.teamDetail);
     //endTeam
-    return <Box sx={{ flexGrow:  0}}>
+
+    //addResourceToTeam
+    function handleOnClickInfo(resourceId:string): void{
+        store.dispatch(showSnackbar({message:`Clicked Info ${resourceId}`,severity:SnackbarSeverity.Warning}));
+    }
+
+    function handleOnClickAddResource(resourceId:string): void{
+        store.dispatch(showSnackbar({message:`Clicked Added ${resourceId}`,severity:SnackbarSeverity.Warning}));
+
+    }
+
+    //endAddResourceToTeam
+    return <Box sx={{ flexGrow: 0 }}>
         <Grid container direction="row" spacing={3} >
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}  >
-                <Paper  elevation={1}>
-                <Grid container direction="column" spacing={1}
-                    justifyContent="center" >
-                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                        <SearchResourceComponent searchItems={items} selectedValues={selectedValues}
-                            searchButtonConfiguration={{
+                <Paper elevation={1}>
+                    <Grid container direction="column" spacing={1}
+                        justifyContent="center" >
+                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <SearchResourceComponent searchItems={items} selectedValues={selectedValues}
+                                searchButtonConfiguration={{
+                                    isEnabled: false,
+                                    searchButtonComponent: <IconButton
+                                    >
+                                    </IconButton>
+                                }}
+                                handleAutoCompleteChange={handleAutocompleteChange}
+                            />
+                        </Grid>
+                        <ResourceListComponent resourcesItems={resourceList} addButtonConfiguration={{
+                            isEnabled: true,
+                            action : handleOnClickAddResource,
+                        }}
+                            infoButtonConfiguration={{
                                 isEnabled: true,
-                                searchButtonComponent: <IconButton
-                                >
-                                </IconButton>
-                            }}
-                            handleAutoCompleteChange={handleAutocompleteChange}
-                        />
+                                action : handleOnClickInfo ,
+                            }} />
                     </Grid>
-                    <ResourceListComponent resourcesItems={resourceList} />
-                </Grid>
                 </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
                 <Paper elevation={3}>
-                <Grid container direction="column" spacing={1}
-                    justifyContent="center" >
-                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                        <SearchTeamComponent 
-                        searchItems={teams} 
-                        selectedValue={seletedTeam} 
-                        handleAutoCompleteChange={function (event: any, value: SearchItem | null, reason: AutocompleteChangeReason): void {
-                            setSeletedTeam(value);
+                    <Grid container direction="column" spacing={1}
+                        justifyContent="center" >
+                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <SearchTeamComponent
+                                searchItems={teams}
+                                selectedValue={seletedTeam}
+                                handleAutoCompleteChange={function (event: any, value: SearchItem | null, reason: AutocompleteChangeReason): void {
+                                    setSeletedTeam(value);
 
-                            if(value !=null){
-                                store.dispatch(fetchTeamDetail({teamId: value.id}));
-                            }
-                            
-                        } }/>
+                                    if (value != null) {
+                                        store.dispatch(fetchTeamDetail({ teamId: value.id }));
+                                    }
+
+                                }} />
+                        </Grid>
+                        <TeamDetailComponent team={teamDetail} />
                     </Grid>
-                    <TeamDetailComponent team={teamDetail} />
-                </Grid>
                 </Paper>
             </Grid>
 

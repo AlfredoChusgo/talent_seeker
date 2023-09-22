@@ -1,7 +1,7 @@
 import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { SnackbarSeverity, TeamItem } from '../../../data/models';
-import { teamsRepository } from '../../../data/repositories/in_memory_repositories';
+import { resourcesRepository, teamsRepository } from '../../../data/repositories/in_memory_repositories';
 import { useContext } from 'react';
 import { showSnackbar } from '../global_snackbar/global_snackbar_slice.ts';
 
@@ -33,6 +33,36 @@ export const removeResourceFromTeam = createAsyncThunk<TeamItem, { resourceId: s
     let teamUpdated : TeamItem = {...teamResponse , resources: resourcesUpdated};
     await teamsRepository.update(teamUpdated);
     thunkAPI.dispatch(showSnackbar({message:"Resource removed", severity: SnackbarSeverity.Error,}));
+    return await teamsRepository.getById(teamId);
+  } catch (error) {
+    throw error;
+  }
+});
+
+export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string, teamId: string }>('teamDetail/addResourceToTeam', async ({ resourceId, teamId },thunkAPI) => {
+  try {
+    const teamResponse = await teamsRepository.getById(teamId);
+    const isResourcecInTeam = teamResponse.resources.some(resource=> resource.id === resourceId);
+
+    if(isResourcecInTeam){
+      const errorMessage = "Resource is already in the team";
+      thunkAPI.dispatch(showSnackbar({message:errorMessage, severity: SnackbarSeverity.Error,}));  
+      throw new Error(errorMessage);            
+    }
+
+    const resourceResponse = await resourcesRepository.getById(resourceId);
+    if(!resourceResponse){
+      const errorMessage = "Resource does not exist";
+      thunkAPI.dispatch(showSnackbar({message:errorMessage, severity: SnackbarSeverity.Error,}));  
+      throw new Error(errorMessage);
+    }
+
+    let resourcesUpdated = [...teamResponse.resources,resourceResponse ];
+    let teamUpdated : TeamItem = {...teamResponse , resources: resourcesUpdated};
+    await teamsRepository.update(teamUpdated);
+
+    thunkAPI.dispatch(showSnackbar({message:"Resource added to the team", severity: SnackbarSeverity.Success,}));
+
     return await teamsRepository.getById(teamId);
   } catch (error) {
     throw error;

@@ -3,6 +3,8 @@ import { ResourceItem, SearchHomeItem, SearchItem, TeamItem } from "./models";
 
 export interface ResourceListComponentProps{
     resourcesItems : ResourceItem[];
+    infoButtonConfiguration : ResourceInfoButtonConfiguration;
+    addButtonConfiguration : AddResourceToTeamButtonConfiguration;
 }
 
 export interface SearchResourceComponentProps {
@@ -15,6 +17,16 @@ export interface SearchResourceComponentProps {
 export interface SearchButtonConfiguration {
     isEnabled : boolean;
     searchButtonComponent : React.ReactNode;
+}
+
+export interface ResourceInfoButtonConfiguration {
+    isEnabled : boolean;    
+    action : (resourceId:string)=>void;
+}
+
+export interface AddResourceToTeamButtonConfiguration {
+    isEnabled : boolean;    
+    action : (resourceId:string)=>void;
 }
 
 export interface SearchTeamComponentProps {
