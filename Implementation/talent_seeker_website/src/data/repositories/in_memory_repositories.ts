@@ -130,6 +130,9 @@ export class InMemoryTeamRepository implements ITeamRepository {
 
     async delete(itemId: string): Promise<void> {
         await this.load();
+        const index = this.teams.findIndex(t => t.id === itemId);
+        if (index === -1) throw new Error('Team not found');
+
         this.teams = this.teams.filter(t => t.id !== itemId);
     }
 }

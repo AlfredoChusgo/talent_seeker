@@ -3,6 +3,8 @@
 import { Button, Card, CardActions, CardContent, CardHeader, Chip, Container, Grid, Stack, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TeamDetailComponentProps } from '../../data/component_props';
+import store from '../store/store';
+import { removeTeam } from '../features/team_detail/team_detail_slice';
 
 export default function TeamInfoSmallComponent({ team }: TeamDetailComponentProps) {
 
@@ -31,7 +33,9 @@ export default function TeamInfoSmallComponent({ team }: TeamDetailComponentProp
                 </Typography>
             </CardContent>
             <CardActions >
-                <Button variant="outlined" color="primary">
+                <Button variant="outlined" color="primary" onClick={()=>{
+                    store.dispatch(removeTeam({teamId: team.id}));
+                }}>
                     <DeleteIcon />
                 </Button>
             </CardActions>
