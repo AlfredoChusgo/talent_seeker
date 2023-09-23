@@ -14,7 +14,7 @@ import { applyFilters } from '../resource_list/resource_list_slice';
 import { fetchItems } from '../search_home/search_home_slice';
 import SearchTeamComponent from '../../components/search_team_component';
 import { fetchTeamItems } from '../search_team/search_team_slice';
-import TeamDetailComponent from '../../components/team_detail_component';
+import TeamResourcesComponent from '../../components/team_resources_component';
 import { addResourceToTeam, fetchTeamDetail } from '../team_detail/team_detail_slice';
 
 import { showSnackbar } from '../global_snackbar/global_snackbar_slice';
@@ -121,12 +121,10 @@ export default function TeamBuilderPage() {
 
                                 }} />
                         </Grid>
-                        <TeamDetailComponent team={teamDetail} />
+                        <TeamResourcesComponent team={teamDetail} />
                     </Grid>
                 </Paper>
             </Grid>
-
         </Grid>
-
     </Box>;
 }

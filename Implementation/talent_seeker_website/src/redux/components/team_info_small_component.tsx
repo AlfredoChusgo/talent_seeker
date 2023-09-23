@@ -1,6 +1,6 @@
 
 
-import { Button, Card, CardActions, CardContent, CardHeader, Chip, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardHeader, Chip, Container, Grid, Stack, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TeamDetailComponentProps } from '../../data/component_props';
 import store from '../store/store';
@@ -20,7 +20,7 @@ export default function TeamInfoSmallComponent({ team }: TeamDetailComponentProp
         return <Chip label={skill} color="primary" variant="outlined"></Chip>
     });
 
-    return <Container>
+    const teamInfo = <Container>
         <Card elevation={1}>
             <CardHeader title={titleText} subheader={subHeaderText} />
             <CardContent>
@@ -33,12 +33,26 @@ export default function TeamInfoSmallComponent({ team }: TeamDetailComponentProp
                 </Typography>
             </CardContent>
             <CardActions >
-                <Button variant="outlined" color="primary" onClick={()=>{
-                    store.dispatch(removeTeam({teamId: team.id}));
+                <Button variant="outlined" color="primary" onClick={() => {
+                    store.dispatch(removeTeam({ teamId: team.id }));
                 }}>
                     <DeleteIcon />
                 </Button>
             </CardActions>
         </Card>
     </Container>;
+    const nothingToShow = <Container>
+        <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            minHeight="calc(100vh - 64px)" 
+        >
+            <Typography variant="h6" align="center">
+                Please select a team
+            </Typography>
+        </Box>
+    </Container>;
+
+    return team.id === "" ? nothingToShow : teamInfo;
 }

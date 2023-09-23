@@ -3,6 +3,8 @@ import { SnackbarSeverity, TeamItem } from '../../../data/models';
 import { resourcesRepository, teamsRepository } from '../../../data/repositories/in_memory_repositories';
 import { showSnackbar } from '../global_snackbar/global_snackbar_slice.ts';
 import { ErrorSharp } from '@mui/icons-material';
+import { fetchItems } from '../search_home/search_home_slice.ts';
+import { fetchTeamItems } from '../search_team/search_team_slice.ts';
 
 interface TeamDetailState {
   teamDetail: TeamItem;
@@ -78,6 +80,7 @@ export const removeTeam = createAsyncThunk<void, { teamId: string }>('teamDetail
   try {
     await teamsRepository.delete(teamId);
     thunkAPI.dispatch(showSnackbar({ message: "Team removed", severity: SnackbarSeverity.Info, }));
+    thunkAPI.dispatch(fetchTeamItems());
   } catch (error: any) {
     const errorMessage = error ? error.message : "An error occurred";
     thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
@@ -102,6 +105,7 @@ const teamDetailSlice = createSlice({
       .addCase(fetchTeamDetail.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'An error occurred.';
+        state.teamDetail = initialState.teamDetail;
       });
 
     builder.addCase(removeResourceFromTeam.pending, (state) => {

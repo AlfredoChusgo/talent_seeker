@@ -13,7 +13,7 @@ import { Container, IconButton } from '@mui/material';
 import store from '../store/store';
 import { removeResourceFromTeam } from '../features/team_detail/team_detail_slice';
 
-export default function TeamDetailComponent({ team }: TeamDetailComponentProps) {
+export default function TeamResourcesComponent({ team }: TeamDetailComponentProps) {
 
     const buildPersonCard = (resource: ResourceItem) => {
         return (
