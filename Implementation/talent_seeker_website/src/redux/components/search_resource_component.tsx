@@ -1,6 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { SearchResourceComponentProps } from '../../data/component_props';
+import i18next from 'i18next';
 
 export default function SearchResourceComponent({searchItems,selectedValues,searchButtonConfiguration,handleAutoCompleteChange } : SearchResourceComponentProps) {
 
@@ -18,7 +19,7 @@ export default function SearchResourceComponent({searchItems,selectedValues,sear
         value={selectedValues}
         renderInput={(params) => (
           <div style={{ display: 'flex' }}>
-            <TextField {...params} label="Search Resource..." />
+            <TextField {...params} label={i18next.t('resources.searchResource')} />
              {searchButtonConfiguration.isEnabled && (
                 searchButtonConfiguration.searchButtonComponent
             )}

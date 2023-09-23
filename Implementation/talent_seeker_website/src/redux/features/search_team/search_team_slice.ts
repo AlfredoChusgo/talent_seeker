@@ -1,6 +1,7 @@
 import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit';
 import {  SearchItem } from '../../../data/models';
 import { searchRepository } from '../../../data/repositories/in_memory_repositories';
+import i18next from 'i18next';
 
 interface SearchTeamState {
   teams: SearchItem[];
@@ -16,7 +17,6 @@ const initialState: SearchTeamState = {
 
 export const fetchTeamItems = createAsyncThunk<SearchItem[]>('searchTeam/fetchItems', async ():Promise<SearchItem[]> => {
     try {
-      //const response = await axios.get("fake_data/search_teams_data.json");
       const response = await searchRepository.getAllTeams();
       return response;
     } catch (error) {
@@ -40,7 +40,7 @@ const searchTeamSlice = createSlice({
       })
       .addCase(fetchTeamItems.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred.';
+        state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
       });
   }
 });

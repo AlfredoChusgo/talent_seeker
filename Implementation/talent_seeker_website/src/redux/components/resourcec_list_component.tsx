@@ -1,7 +1,3 @@
-
-// import store, { RootState, useAppDispatch } from '../../store/store';
-// import { fetchAllResourceItems } from './resource_list_slice';
-
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -17,13 +13,10 @@ import { getSkillLevelString } from '../../helpers/enum_helper';
 import { ResourceListComponentProps } from '../../data/component_props';
 import InfoIcon from '@mui/icons-material/Info';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-//import { getSkillLevelString } from '../../../helpers/enum_helper';
-//import { ResourceItem } from '../../../data/models';
+import i18next from 'i18next';
 
 
 export default function ResourceListComponent( {resourcesItems ,addButtonConfiguration ,infoButtonConfiguration} : ResourceListComponentProps) {
-    //const dispatch = useAppDispatch;
-    //const { resourceList, loading, error } = useSelector((state: RootState) => state.resourceList);
 
     const buildPersonCard = (resource: ResourceItem) => {
 
@@ -108,7 +101,7 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
         return (
             <Grid container justifyContent="center" alignItems="center" direction="column" spacing={0}>
               <Grid item xs={10}>
-                <Typography variant="h5">No results to display</Typography>
+                <Typography variant="h5">{i18next.t("common.noResults")}</Typography>
               </Grid>
             </Grid>
           );

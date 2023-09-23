@@ -12,6 +12,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import { Container, IconButton } from '@mui/material';
 import store from '../store/store';
 import { removeResourceFromTeam } from '../features/team_detail/team_detail_slice';
+import i18next from 'i18next';
 
 export default function TeamResourcesComponent({ team }: TeamDetailComponentProps) {
 
@@ -50,7 +51,8 @@ export default function TeamResourcesComponent({ team }: TeamDetailComponentProp
     if (team.resources.length > 0) {
         return (<Container>
             <Typography variant="h6" color="textSecondary">
-                Team Members
+                
+                {i18next.t('teams.teamMembers')}
             </Typography>
             {resourceItemsUI}
         </Container>);
@@ -59,7 +61,7 @@ export default function TeamResourcesComponent({ team }: TeamDetailComponentProp
         return (
             <Grid container justifyContent="center" alignItems="center" direction="column" spacing={0}>
                 <Grid item xs={10}>
-                    <Typography variant="h5">No results to display</Typography>
+                    <Typography variant="h5">{i18next.t('common.noResults')}</Typography>
                 </Grid>
             </Grid>
         );

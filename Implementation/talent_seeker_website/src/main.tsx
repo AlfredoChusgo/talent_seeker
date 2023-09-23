@@ -13,10 +13,9 @@ import { Provider } from 'react-redux';
 import store from './redux/store/store';
 import ResourceListPage from "./redux/features/resource_list/resource_list_page";
 import TeamBuilderPage from "./redux/features/team_builder/team_build_page";
-import SnackbarComponent  from "./redux/components/snackbar_component.tsx";
+import SnackbarComponent from "./redux/components/snackbar_component.tsx";
 import TeamsPage from "./redux/features/teams/teams_page.tsx";
-// import Root from "src/routes/root";
-// import ErrorPage from "src/pages/error-page";
+import './languajes/languaje_config.ts';
 
 const router = createBrowserRouter([
   {
@@ -45,12 +44,13 @@ const router = createBrowserRouter([
   },
 ]);
 
+
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Provider store={store}>
-      
+      <Provider store={store}>
         <RouterProvider router={router} />
-      <SnackbarComponent/>
-    </Provider>
+        <SnackbarComponent />
+      </Provider>
   </React.StrictMode>
 );

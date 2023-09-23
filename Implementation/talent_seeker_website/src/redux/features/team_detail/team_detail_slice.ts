@@ -5,6 +5,7 @@ import { showSnackbar } from '../global_snackbar/global_snackbar_slice.ts';
 import { ErrorSharp } from '@mui/icons-material';
 import { fetchItems } from '../search_home/search_home_slice.ts';
 import { fetchTeamItems } from '../search_team/search_team_slice.ts';
+import i18next from 'i18next';
 
 interface TeamDetailState {
   teamDetail: TeamItem;
@@ -33,7 +34,7 @@ export const removeResourceFromTeam = createAsyncThunk<TeamItem, { resourceId: s
     let resourcesUpdated = [...teamResponse.resources.filter(resource => resource.id != resourceId)];
     let teamUpdated: TeamItem = { ...teamResponse, resources: resourcesUpdated };
     await teamsRepository.update(teamUpdated);
-    thunkAPI.dispatch(showSnackbar({ message: "Resource removed", severity: SnackbarSeverity.Error, }));
+    thunkAPI.dispatch(showSnackbar({ message: i18next.t('resources.resourceRemoved'), severity: SnackbarSeverity.Error, }));
     return await teamsRepository.getById(teamId);
   } catch (error) {
     throw error;
@@ -43,7 +44,7 @@ export const removeResourceFromTeam = createAsyncThunk<TeamItem, { resourceId: s
 export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string, teamId: string }>('teamDetail/addResourceToTeam', async ({ resourceId, teamId }, thunkAPI) => {
   try {
     if (!teamId) {
-      const errorMessage = "Please select a team first";
+      const errorMessage = i18next.t('teams.selectATeamFirst');
       thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
       throw new Error(errorMessage);
     }
@@ -59,7 +60,7 @@ export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string
 
     const resourceResponse = await resourcesRepository.getById(resourceId);
     if (!resourceResponse) {
-      const errorMessage = "Resource does not exist";
+      const errorMessage = i18next.t('teams.resourceAlreadyInTeam');
       thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
       throw new Error(errorMessage);
     }
@@ -68,7 +69,7 @@ export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string
     let teamUpdated: TeamItem = { ...teamResponse, resources: resourcesUpdated };
     await teamsRepository.update(teamUpdated);
 
-    thunkAPI.dispatch(showSnackbar({ message: "Resource added to the team", severity: SnackbarSeverity.Success, }));
+    thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.resourceAddedToTeam'), severity: SnackbarSeverity.Success, }));
 
     return await teamsRepository.getById(teamId);
   } catch (error) {
@@ -79,10 +80,10 @@ export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string
 export const removeTeam = createAsyncThunk<void, { teamId: string }>('teamDetail/removeTeam', async ({ teamId }, thunkAPI) => {
   try {
     await teamsRepository.delete(teamId);
-    thunkAPI.dispatch(showSnackbar({ message: "Team removed", severity: SnackbarSeverity.Info, }));
+    thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.teamRemoved'), severity: SnackbarSeverity.Info, }));
     thunkAPI.dispatch(fetchTeamItems());
   } catch (error: any) {
-    const errorMessage = error ? error.message : "An error occurred";
+    const errorMessage = error ? error.message : i18next.t('error.common.anErrorOcurred');
     thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
     throw error;
   }
@@ -104,7 +105,7 @@ const teamDetailSlice = createSlice({
       })
       .addCase(fetchTeamDetail.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred.';
+        state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
         state.teamDetail = initialState.teamDetail;
       });
 
@@ -118,7 +119,7 @@ const teamDetailSlice = createSlice({
       })
       .addCase(removeResourceFromTeam.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred.';
+        state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
       });
 
     builder.addCase(addResourceToTeam.pending, (state) => {
@@ -131,7 +132,7 @@ const teamDetailSlice = createSlice({
       })
       .addCase(addResourceToTeam.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred.';
+        state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
       });
 
     builder.addCase(removeTeam.pending, (state) => {
@@ -143,7 +144,7 @@ const teamDetailSlice = createSlice({
       })
       .addCase(removeTeam.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred.';
+        state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
       });
   }
 });

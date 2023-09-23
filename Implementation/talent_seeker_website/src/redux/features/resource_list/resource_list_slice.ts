@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { ResourceItem, SearchResourceFilterQuery } from '../../../data/models';
 import { resourcesRepository } from '../../../data/repositories/in_memory_repositories';
+import i18next from 'i18next';
 
 interface ResourceListState {
   resourceList: ResourceItem[];
@@ -74,7 +75,7 @@ const resourceListSlice = createSlice({
       })
       .addCase(fetchAllResourceItems.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred.';
+        state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
       });
   }
 });

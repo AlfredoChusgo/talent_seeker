@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { TeamDetailComponentProps } from '../../data/component_props';
 import store from '../store/store';
 import { removeTeam } from '../features/team_detail/team_detail_slice';
+import i18next from 'i18next';
 
 export default function TeamInfoSmallComponent({ team }: TeamDetailComponentProps) {
 
@@ -49,7 +50,7 @@ export default function TeamInfoSmallComponent({ team }: TeamDetailComponentProp
             minHeight="calc(100vh - 64px)" 
         >
             <Typography variant="h6" align="center">
-                Please select a team
+                {i18next.t('')}
             </Typography>
         </Box>
     </Container>;

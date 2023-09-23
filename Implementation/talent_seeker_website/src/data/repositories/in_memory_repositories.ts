@@ -265,3 +265,7 @@ export class InMemorySearchRepository implements ISearchRepository {
 export const resourcesRepository : InMemoryResourceRepository = InMemoryResourceRepository.getInstance();
 export const teamsRepository : InMemoryTeamRepository = InMemoryTeamRepository.getInstance();
 export const searchRepository : ISearchRepository = new InMemorySearchRepository(resourcesRepository,teamsRepository);
+function useIntl() {
+    throw new Error("Function not implemented.");
+}
+

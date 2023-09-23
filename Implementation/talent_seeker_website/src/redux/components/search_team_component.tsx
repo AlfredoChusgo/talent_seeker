@@ -1,6 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { SearchTeamComponentProps } from '../../data/component_props';
+import i18next from 'i18next';
 
 export default function SearchTeamComponent({searchItems,selectedValue,handleAutoCompleteChange } : SearchTeamComponentProps) {
 
@@ -19,7 +20,7 @@ export default function SearchTeamComponent({searchItems,selectedValue,handleAut
         value={selectedValue}
         renderInput={(params) => (
           <div style={{ display: 'flex' }}>
-            <TextField {...params} label="Search Team..." />
+            <TextField {...params} label={i18next.t("teams.searchTeam")} />
           </div>
         )}
       />

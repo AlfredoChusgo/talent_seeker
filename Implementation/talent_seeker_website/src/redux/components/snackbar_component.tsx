@@ -5,8 +5,6 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { RootState } from '../store/store';
 import { hideSnackbar } from '../features/global_snackbar/global_snackbar_slice';
-//import { SnackbarSeverity } from './path-to-snackbarSlice';
-//import { hideSnackbar } from './path-to-snackbarSlice';
 
 const SnackbarComponent: React.FC = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,7 @@
 import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit';
 import { PromiseState, SearchHomeItem } from '../../../data/models';
 import { searchRepository } from '../../../data/repositories/in_memory_repositories';
+import i18next from 'i18next';
 interface SearchHomeState {
   items: SearchHomeItem[];
   loading : PromiseState;
@@ -15,7 +16,6 @@ const initialState: SearchHomeState = {
 
 export const fetchItems = createAsyncThunk('searchHome/fetchItems', async () => {
     try {
-      // const response = await axios.get("fake_data/search_home_data.json");
       const response = await searchRepository.getAllResources();
       return response;
     } catch (error) {
@@ -39,7 +39,7 @@ const searchHomeSlice = createSlice({
       })
       .addCase(fetchItems.rejected, (state, action) => {
         state.loading = PromiseState.FAILED;
-        state.error = action.error.message || 'An error occurred.';
+        state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
       });
   }
 });
