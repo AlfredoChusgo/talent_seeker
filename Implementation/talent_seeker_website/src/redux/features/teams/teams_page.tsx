@@ -18,6 +18,8 @@ import TeamInfoSmallComponent from '../../components/team_info_small_component';
 import AddIcon from '@mui/icons-material/Add';
 import { AddTeamDialog } from '../../dialogs/add_team_dialog';
 import { SettingsInputComponentOutlined } from '@mui/icons-material';
+import i18next from 'i18next';
+import { showAddTeamDialog } from '../global_dialog/global_dialog_slice';
 export default function TeamsPage() {
     const dispatch = useAppDispatch;
 
@@ -50,24 +52,15 @@ export default function TeamsPage() {
                         justifyContent="center" >
                         <Button color="primary" aria-label="add" onClick= { ()=>{
                             // store.dispatch();
-                            setOpenDialog(true);
+                            //setOpenDialog(true);
+                            store.dispatch(showAddTeamDialog());
                         }}>
                             <Typography>
-                                Agregar Equipo
+                                {i18next.t('teams.addTeam')}
                             <AddIcon />
                             </Typography>
 
                         </Button>
-                        <AddTeamDialog
-                                selectedValue={dialogTeamName}
-                                setSelectedValue={setDialogTeamName}
-                                open={openDialog}
-                                setOpen={setOpenDialog}
-                                onSave={()=>{
-                                    setDialogTeamName("");
-                                    store.dispatch(addTeam({teamName: dialogTeamName}));
-                                }}
-                            />
                         <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
                             <SearchTeamComponent
                                 searchItems={teams}

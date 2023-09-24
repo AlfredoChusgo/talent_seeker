@@ -109,6 +109,26 @@ export const addTeam = createAsyncThunk<TeamItem , {teamName: string}>('teamDeta
   }
 });
 
+export const editTeam = createAsyncThunk<TeamItem , {teamName: string}>('teamDetail/ediTeam', async ( {teamName} , thunkAPI) => {
+  try {
+
+    const newTeam : TeamItem = {
+      id: uuidv4(),
+      name : teamName,
+      resources: []
+    };
+    await teamsRepository.create(newTeam);
+
+    thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.teamCreated'), severity: SnackbarSeverity.Success }));
+    thunkAPI.dispatch(fetchTeamItems());
+    return await teamsRepository.getById(newTeam.id);    
+  } catch (error: any) {
+    const errorMessage = error ? error.message : i18next.t('error.common.anErrorOcurred');
+    thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
+    throw error;
+  }
+});
+
 const teamDetailSlice = createSlice({
   name: 'teamDetail',
   initialState,

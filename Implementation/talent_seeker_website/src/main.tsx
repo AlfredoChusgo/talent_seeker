@@ -16,6 +16,7 @@ import TeamBuilderPage from "./redux/features/team_builder/team_build_page";
 import SnackbarComponent from "./redux/components/snackbar_component.tsx";
 import TeamsPage from "./redux/features/teams/teams_page.tsx";
 import './languajes/languaje_config.ts';
+import { DialogComponent } from "./redux/dialogs/base_dialog.tsx";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Provider store={store}>
         <RouterProvider router={router} />
         <SnackbarComponent />
+        <DialogComponent/>
       </Provider>
   </React.StrictMode>
 );

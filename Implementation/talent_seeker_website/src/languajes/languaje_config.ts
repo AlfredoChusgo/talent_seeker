@@ -19,7 +19,8 @@ i18next.use(initReactI18next).init({
         },
         common: {
           noResults: "Sorry, no results to display at the moment...",
-          create: "Create"
+          create: "Create",
+          cancel: "Cancel"
         },
         teams: {
           searchTeam: "Search for a team...",
@@ -32,6 +33,7 @@ i18next.use(initReactI18next).init({
           teamCreated : "Team successfully created",
           createNewTeam : "Create new Team",
           labelNewTeamName : "New Team Name",
+          addTeam : " Add Team",
         },
         error: {
           common: {
