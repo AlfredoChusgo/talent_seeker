@@ -16,10 +16,10 @@ import { addTeam, fetchTeamDetail } from '../team_detail/team_detail_slice';
 
 import TeamInfoSmallComponent from '../../components/team_info_small_component';
 import AddIcon from '@mui/icons-material/Add';
-import { AddTeamDialog } from '../../dialogs/add_team_dialog';
+import { AddEditTeamDialog } from '../../dialogs/add_edit_team_dialog';
 import { SettingsInputComponentOutlined } from '@mui/icons-material';
 import i18next from 'i18next';
-import { showAddTeamDialog } from '../global_dialog/global_dialog_slice';
+import { teamDialog, updateAddEditTeamDialogConfig } from '../global_dialog/global_dialog_slice';
 export default function TeamsPage() {
     const dispatch = useAppDispatch;
 
@@ -38,8 +38,8 @@ export default function TeamsPage() {
     // const [seletedTeam, setSeletedTeam] = useState<SearchItem | null >(null);
     const { teamDetail } = useSelector((state: RootState) => state.teamDetail);
     //endTeam
-    
-    const [openDialog,setOpenDialog] = useState(false);
+
+    const [openDialog, setOpenDialog] = useState(false);
 
     const [dialogTeamName, setDialogTeamName] = useState<string>("");
 
@@ -50,14 +50,16 @@ export default function TeamsPage() {
 
                     <Grid container direction="column" spacing={1}
                         justifyContent="center" >
-                        <Button color="primary" aria-label="add" onClick= { ()=>{
-                            // store.dispatch();
-                            //setOpenDialog(true);
-                            store.dispatch(showAddTeamDialog());
+                        <Button color="primary" aria-label="add" onClick={() => {
+                            store.dispatch(updateAddEditTeamDialogConfig({
+                                isAdd: true,
+                                show: true,
+                                teamItem: { id: "", name: "", resources: [] }
+                            }));
                         }}>
                             <Typography>
                                 {i18next.t('teams.addTeam')}
-                            <AddIcon />
+                                <AddIcon />
                             </Typography>
 
                         </Button>

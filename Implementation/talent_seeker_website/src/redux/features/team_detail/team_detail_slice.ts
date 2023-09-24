@@ -109,19 +109,14 @@ export const addTeam = createAsyncThunk<TeamItem , {teamName: string}>('teamDeta
   }
 });
 
-export const editTeam = createAsyncThunk<TeamItem , {teamName: string}>('teamDetail/ediTeam', async ( {teamName} , thunkAPI) => {
+export const editTeam = createAsyncThunk<TeamItem , {teamItemUpdated: TeamItem}>('teamDetail/editTeam', async ( {teamItemUpdated} , thunkAPI) => {
   try {
 
-    const newTeam : TeamItem = {
-      id: uuidv4(),
-      name : teamName,
-      resources: []
-    };
-    await teamsRepository.create(newTeam);
+    await teamsRepository.update(teamItemUpdated);
 
-    thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.teamCreated'), severity: SnackbarSeverity.Success }));
+    thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.teamUpdated'), severity: SnackbarSeverity.Success }));
     thunkAPI.dispatch(fetchTeamItems());
-    return await teamsRepository.getById(newTeam.id);    
+    return await teamsRepository.getById(teamItemUpdated.id);
   } catch (error: any) {
     const errorMessage = error ? error.message : i18next.t('error.common.anErrorOcurred');
     thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
@@ -195,6 +190,18 @@ const teamDetailSlice = createSlice({
         state.teamDetail = action.payload;
       })
       .addCase(addTeam.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
+      });
+
+    builder.addCase(editTeam.pending, (state) => {
+      state.loading = true;
+    })
+      .addCase(editTeam.fulfilled, (state, action) => {
+        state.loading = false;
+        state.teamDetail = action.payload;
+      })
+      .addCase(editTeam.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
       });

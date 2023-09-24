@@ -1,9 +1,9 @@
-import { AddTeamDialog } from './add_team_dialog';
+import { AddEditTeamDialog } from './add_edit_team_dialog';
 
 export function DialogComponent() {
 
   return (
-    <AddTeamDialog></AddTeamDialog>
+    <AddEditTeamDialog></AddEditTeamDialog>
  
   );
 }

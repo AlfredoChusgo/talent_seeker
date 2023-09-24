@@ -1,25 +1,40 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TeamItem } from '../../../data/models';
 
-type SnackbarState = {
-  showAddTeamDialog: boolean;
+type DialogState = {
+  addEditTeamDialogConfig: AddEditTeamDialogConfig
 };
 
-const initialState: SnackbarState = {
-  showAddTeamDialog: false,
+interface AddEditTeamDialogConfig
+{
+  isAdd: boolean
+  show: boolean,
+  teamItem: TeamItem
+}
+
+
+
+const initialState: DialogState = {
+  //showAddTeamDialog: false,
+  addEditTeamDialogConfig: {
+    isAdd: false,
+    show: false,
+    teamItem: { id: "", name: "", resources: [] }
+  }
 };
 
 const dialogSlice = createSlice({
   name: 'dialog',
   initialState,
   reducers: {
-    showAddTeamDialog: (state, action: PayloadAction<void>) => {
-        state.showAddTeamDialog = true;
+    updateAddEditTeamDialogConfig: (state, action: PayloadAction<AddEditTeamDialogConfig>) => {
+      state.addEditTeamDialogConfig = action.payload;
     },
-    hideAddTeamDialog: (state) => {
-        state.showAddTeamDialog = false;
+    teamDialog: (state, action: PayloadAction<{show:boolean}>) => {      
+      state.addEditTeamDialogConfig.show = action.payload.show;
     },
   },
 });
 
-export const { showAddTeamDialog, hideAddTeamDialog } = dialogSlice.actions;
+export const { updateAddEditTeamDialogConfig,teamDialog } = dialogSlice.actions;
 export default dialogSlice.reducer;

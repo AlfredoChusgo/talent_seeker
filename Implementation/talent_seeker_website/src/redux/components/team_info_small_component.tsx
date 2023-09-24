@@ -7,6 +7,7 @@ import { TeamDetailComponentProps } from '../../data/component_props';
 import store from '../store/store';
 import { removeTeam } from '../features/team_detail/team_detail_slice';
 import i18next from 'i18next';
+import { updateAddEditTeamDialogConfig } from '../features/global_dialog/global_dialog_slice';
 
 export default function TeamInfoSmallComponent({ team }: TeamDetailComponentProps) {
 
@@ -42,7 +43,11 @@ export default function TeamInfoSmallComponent({ team }: TeamDetailComponentProp
                 </Button>
 
                 <Button variant="outlined" color="primary" onClick={() => {
-                    store.dispatch(removeTeam({ teamId: team.id }));
+                    store.dispatch(updateAddEditTeamDialogConfig({
+                        isAdd: false,
+                        show: true,
+                        teamItem: team
+                    }));
                 }}>
                     <EditIcon />
                 </Button>

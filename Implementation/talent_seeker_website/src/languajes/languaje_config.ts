@@ -20,6 +20,7 @@ i18next.use(initReactI18next).init({
         common: {
           noResults: "Sorry, no results to display at the moment...",
           create: "Create",
+          edit: "Edit",
           cancel: "Cancel"
         },
         teams: {
@@ -31,9 +32,11 @@ i18next.use(initReactI18next).init({
           resourceAddedToTeam: "Resource successfully added to the team",
           teamRemoved: "The team has been removed",
           teamCreated : "Team successfully created",
+          teamUpdated : "Team successfully updated",
           createNewTeam : "Create new Team",
           labelNewTeamName : "New Team Name",
           addTeam : " Add Team",
+          editTeam : " Edit Team",
         },
         error: {
           common: {
