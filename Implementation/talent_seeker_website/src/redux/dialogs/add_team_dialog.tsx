@@ -1,98 +1,47 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import PersonIcon from '@mui/icons-material/Person';
-import AddIcon from '@mui/icons-material/Add';
-import Typography from '@mui/material/Typography';
-import { blue } from '@mui/material/colors';
+import CloseIcon from '@mui/icons-material/Close';
+import i18next from 'i18next';
+import { DialogActions, DialogContent, IconButton, TextField } from '@mui/material';
+import { AddTeamDialogProps } from '../../data/component_props';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+export function AddTeamDialog(props: AddTeamDialogProps) {
+  const { setOpen, onSave: onClose, selectedValue, setSelectedValue, open } = props;
 
-export interface AddTeamDialogProps {
-  open: boolean;
-  selectedValue: string;
-  onClose: (value: string) => void;
-}
-
-function AddTeamDialog(props: AddTeamDialogProps) {
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
+  const handleSave = () => {
+    setOpen(false);
     onClose(selectedValue);
   };
 
-  const handleListItemClick = (value: string) => {
-    onClose(value);
-  };
-
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Create new Team</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        {emails.map((email) => (
-          <ListItem disableGutters key={email}>
-            <ListItemButton onClick={() => handleListItemClick(email)}>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                  <PersonIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={email} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-        <ListItem disableGutters>
-          <ListItemButton
-            autoFocus
-            onClick={() => handleListItemClick('addAccount')}
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add account" />
-          </ListItemButton>
-        </ListItem>
-      </List>
+    // <Dialog onClose={handleSave} open={open}>
+    <Dialog  open={open}>
+      <DialogTitle>{i18next.t('teams.createNewTeam')}</DialogTitle>
+      <IconButton
+          aria-label="close"
+          onClick={()=>{
+            setOpen(false);
+          }}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+        <TextField id="outlined-basic" label={i18next.t('teams.labelNewTeamName')} variant="outlined"
+        value={selectedValue} onChange={(e)=> setSelectedValue(e.target.value)}
+         />
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleSave}>
+            {i18next.t('common.create')}
+          </Button>
+        </DialogActions>
     </Dialog>
-  );
-}
-
-export default function SimpleDialogDemo() {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (value: string) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
-
-  return (
-    <div>
-      <Typography variant="subtitle1" component="div">
-        Selected: {selectedValue}
-      </Typography>
-      <br />
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open simple dialog
-      </Button>
-      <AddTeamDialog
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-      />
-    </div>
   );
 }

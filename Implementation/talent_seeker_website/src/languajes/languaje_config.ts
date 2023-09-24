@@ -18,7 +18,8 @@ i18next.use(initReactI18next).init({
           resourceRemoved: "Resource has been removed."
         },
         common: {
-          noResults: "Sorry, no results to display at the moment..."
+          noResults: "Sorry, no results to display at the moment...",
+          create: "Create"
         },
         teams: {
           searchTeam: "Search for a team...",
@@ -27,7 +28,10 @@ i18next.use(initReactI18next).init({
           selectATeamFirst: "Please select a team first",
           resourceAlreadyInTeam: "This resource is already a part of the team",
           resourceAddedToTeam: "Resource successfully added to the team",
-          teamRemoved: "The team has been removed"
+          teamRemoved: "The team has been removed",
+          teamCreated : "Team successfully created",
+          createNewTeam : "Create new Team",
+          labelNewTeamName : "New Team Name",
         },
         error: {
           common: {

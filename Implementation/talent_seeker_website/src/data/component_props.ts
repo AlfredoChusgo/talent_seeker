@@ -38,3 +38,12 @@ export interface SearchTeamComponentProps {
 export interface TeamDetailComponentProps{
     team : TeamItem;
 }
+
+export interface AddTeamDialogProps {
+    open: boolean;
+    setOpen : (value:boolean)=> void;
+    selectedValue: string;
+    setSelectedValue : (newValue : string) => void; 
+    onSave: (value: string) => void;
+  }
+  
