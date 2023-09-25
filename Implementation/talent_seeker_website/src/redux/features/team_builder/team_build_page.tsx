@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import ResourceListComponent from '../../components/resourcec_list_component';
 import { AutocompleteChangeReason, Button, IconButton, Paper } from '@mui/material';
-import { SearchHomeItem, SearchItem, SnackbarSeverity } from '../../../data/models';
+import { ResourceItem, SearchHomeItem, SearchItem, SnackbarSeverity } from '../../../data/models';
 import SearchResourceComponent from '../../components/search_resource_component';
 import { applyFilters } from '../resource_list/resource_list_slice';
 import { fetchItems } from '../search_home/search_home_slice';
@@ -16,13 +16,13 @@ import SearchTeamComponent from '../../components/search_team_component';
 import { fetchTeamItems } from '../search_team/search_team_slice';
 import TeamResourcesComponent from '../../components/team_resources_component';
 import { addResourceToTeam, fetchTeamDetail } from '../team_detail/team_detail_slice';
-
-import { showSnackbar } from '../global_snackbar/global_snackbar_slice';
+import { useNavigate } from 'react-router-dom';
+import { selectResource } from '../resource_detail/resource_detail_slice';
 
 export default function TeamBuilderPage() {
     const dispatch = useAppDispatch;
     const { resourceList } = useSelector((state: RootState) => state.resourceList);
-
+    const navigate = useNavigate();
     useEffect(() => {
         store.dispatch(fetchAllResourceItems());
     }, [dispatch]);
@@ -66,8 +66,9 @@ export default function TeamBuilderPage() {
     //endTeam
 
     //addResourceToTeam
-    function handleOnClickInfo(resourceId: string): void {
-        store.dispatch(showSnackbar({ message: `Clicked Info ${resourceId}`, severity: SnackbarSeverity.Warning }));
+    function handleOnClickInfo(resource: ResourceItem): void {
+        store.dispatch(selectResource(resource));
+        navigate("/resourceDetail");
 
     }
 
@@ -76,10 +77,10 @@ export default function TeamBuilderPage() {
     }
 
     //endAddResourceToTeam
-    return   <Grid container spacing={2} >
-                <Grid  xs={12} sm={6}  >
+    return   <Grid container spacing={1} style={{padding:'16px'}}>
+                <Grid  xs={12} sm={8}  >
                     <Paper elevation={1}>
-                        <Grid container direction="column" columnSpacing={1} rowSpacing={2}
+                        <Grid container direction="column" 
                             justifyContent="center" >
                             <Grid  xs>
                                 <SearchResourceComponent searchItems={items} selectedValues={selectedValues}
@@ -103,9 +104,9 @@ export default function TeamBuilderPage() {
                         </Grid>
                     </Paper>
                 </Grid>
-                <Grid xs={12} sm>
+                <Grid xs={12} sm={4}>
                     <Paper elevation={3}>
-                        <Grid container direction="column" spacing={1}
+                        <Grid container direction="column" spacing={0}
                             justifyContent="center" >
                             <Grid xs>
                                 <SearchTeamComponent

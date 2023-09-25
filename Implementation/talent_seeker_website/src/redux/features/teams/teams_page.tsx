@@ -41,7 +41,7 @@ export default function TeamsPage() {
     const [dialogTeamName, setDialogTeamName] = useState<string>("");
 
     return <Box sx={{ flexGrow: 0.5 }}>
-        <Grid container direction="row" spacing={1} >
+        <Grid container direction="row" spacing={1} style={{padding:'16px'}}>
             <Grid xs={12} sm={6}>
                 <Paper elevation={3}>
 

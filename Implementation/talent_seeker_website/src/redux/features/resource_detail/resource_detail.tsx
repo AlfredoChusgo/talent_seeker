@@ -15,46 +15,6 @@ export interface SkillSliderProps {
 
 export default function ResourceDetail() {
     const {resource} = useSelector((state:RootState)=> state.resourceDetail);
-    // const resource: ResourceItem = {
-    //     "id": "ff5151b5-3466-4bf6-a68d-5da8f1e63ffe",
-    //     "name": "Myrl",
-    //     "lastName": "Grant",
-    //     "birthDate": new Date(),
-    //     "occupation": "Future Program Producer",
-    //     "location": "Cocos (Keeling) Islands",
-    //     "biography": "ear advocate, designer",
-    //     "role": {
-    //         "id": "74635442",
-    //         "name": "Product Owner"
-    //     },
-    //     "skills": [
-    //         {
-    //             "id": "9",
-    //             "name": "Python",
-    //             "skillLevel": 3
-    //         },
-    //         {
-    //             "id": "10",
-    //             "name": "Java",
-    //             "skillLevel": 4
-    //         },
-    //         {
-    //             "id": "16",
-    //             "name": "Django",
-    //             "skillLevel": 2
-    //         },
-    //         {
-    //             "id": "11",
-    //             "name": "ASP.NET",
-    //             "skillLevel": 1
-    //         },
-    //         {
-    //             "id": "6",
-    //             "name": "HTML",
-    //             "skillLevel": 0
-    //         }
-    //     ]
-    // };
 
     const skillSliders = resource.skills.map(skill => {
         return <Card>

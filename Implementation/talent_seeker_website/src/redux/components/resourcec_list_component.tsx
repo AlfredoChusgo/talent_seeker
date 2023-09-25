@@ -21,8 +21,6 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
     const buildPersonCard = (resource: ResourceItem) => {
 
         return (
-            // <Grid sx={{ padding: '16px' }}xs={6} sm={3}  md={2} lg={2}key={resource.id}>
-            // <Grid sx={{ padding: '16px' }}xs={6} sm={3} key={resource.id}>
             <Grid  xs={6} sm={3} key={resource.id}>
                 <Paper >
                     <Card >
