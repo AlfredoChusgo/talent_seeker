@@ -54,7 +54,7 @@ export default function ResourceListPage() {
     return <Grid xs  style={{padding:"16px"}}>
         <Paper elevation={1}>
             <Grid container direction="column"
-                justifyContent="center" >
+                justifyContent="center"  spacing={1}>
                 <Grid xs>
                     <SearchResourceComponent searchItems={items} selectedValues={selectedValues}
                         searchButtonConfiguration={{

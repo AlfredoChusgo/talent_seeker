@@ -4,6 +4,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { useState } from "react";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
+import i18next from "i18next";
 
 export interface ResourceDetailProps {
     resource: ResourceItem;
@@ -17,19 +18,21 @@ export default function ResourceDetail() {
     const {resource} = useSelector((state:RootState)=> state.resourceDetail);
 
     const skillSliders = resource.skills.map(skill => {
-        return <Card>
-            <CardContent>
+        return <Grid xs style={{padding:'8px'}}>
+            <Card >
+            <CardContent >
                 <Typography variant="body2" color="text.secondary" >
                     {skill.name}
                 </Typography>
                 <SkillSlider skill={skill} />
             </CardContent>
         </Card>
+        </Grid>
     });
     const component = (
         <Grid container direction="row" xs>
             <Grid sm={6} direction="column" spacing={2}>
-                <Grid>
+                <Grid style={{padding:'8px'}}>
                     <Card >
                         <CardContent>
                             <Avatar >{resource.name[0]}{resource.lastName[0]}</Avatar>
@@ -42,19 +45,18 @@ export default function ResourceDetail() {
                             <Typography variant="body2" color="text.secondary" component="div">
                                 {resource.occupation}
                                 {resource.location}
-                                {/* {resource.birthDate.toDateString()} */}
                             </Typography>
                         </CardContent>
                     </Card>
                 </Grid>
                 <Grid>
-                    <Divider /> {/* Insert Divider */}
+                    <Divider /> 
                 </Grid>
-                <Grid >
+                <Grid style={{padding:'8px'}}>
                     <Card>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" >
-                                Biography
+                            <Typography gutterBottom variant="h5" >                                
+                                {i18next.t('common.biography')}
                             </Typography>
 
                             <Typography variant="body2" color="text.secondary" >
@@ -64,11 +66,11 @@ export default function ResourceDetail() {
                     </Card>
                 </Grid>
             </Grid>
-            <Grid sm={6} >
-                <Card>
-                    <CardContent>
+            <Grid sm={6} style={{padding:'8px'}}>
+                <Card >
+                    <CardContent >
                         <Typography gutterBottom variant="h5" >
-                            Skills
+                        {i18next.t('common.skills')}
                         </Typography>
 
                         {skillSliders}

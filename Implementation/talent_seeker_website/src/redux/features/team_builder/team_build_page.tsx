@@ -77,7 +77,7 @@ export default function TeamBuilderPage() {
     }
 
     //endAddResourceToTeam
-    return   <Grid container spacing={1} style={{padding:'16px'}}>
+    return   <Grid container spacing={1} style={{padding:'16px'}} xs>
                 <Grid  xs={12} sm={8}  >
                     <Paper elevation={1}>
                         <Grid container direction="column" 

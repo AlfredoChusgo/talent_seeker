@@ -21,7 +21,9 @@ i18next.use(initReactI18next).init({
           noResults: "Sorry, no results to display at the moment...",
           create: "Create",
           edit: "Edit",
-          cancel: "Cancel"
+          cancel: "Cancel",
+          skills: "Skills",
+          biography: "Biography"
         },
         teams: {
           searchTeam: "Search for a team...",
