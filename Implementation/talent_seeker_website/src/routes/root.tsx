@@ -8,6 +8,9 @@ import Button from '@mui/material/Button';
 import { Link, Outlet } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import { useEffect } from 'react';
+import store, { useAppDispatch } from '../redux/store/store';
+import { fetchItems } from '../redux/features/search_home/search_home_slice';
 
 //import MenuIcon from '@mui/icons-material/Menu';
 
@@ -17,6 +20,11 @@ const pages = ['searchPageHome', 'resourceList', 'teamBuilder', 'Teams'];
 function ButtonAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const dispatch = useAppDispatch;
+  useEffect(() => {
+    store.dispatch(fetchItems());
+  }, [dispatch]);
+  
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);

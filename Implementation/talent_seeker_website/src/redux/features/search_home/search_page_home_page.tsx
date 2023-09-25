@@ -19,12 +19,9 @@ export default function Grouped() {
     setSelectedValues(newValue);
   };
   
-  const dispatch = useAppDispatch;
+  
   const { items, loading, error } = useSelector((state: RootState) => state.searchHome);
 
-  useEffect(() => {
-    store.dispatch(fetchItems());
-  }, [dispatch]);
 
   function handleSearch(event: any): void {
     const rolesIds = selectedValues.filter(e=>e.objectType === "role").map(e=>e.id);
