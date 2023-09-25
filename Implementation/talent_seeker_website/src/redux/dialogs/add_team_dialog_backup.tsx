@@ -15,7 +15,6 @@ export function AddTeamDialog(props: AddTeamDialogProps) {
   };
 
   return (
-    // <Dialog onClose={handleSave} open={open}>
     <Dialog  open={open}>
       <DialogTitle>{i18next.t('teams.createNewTeam')}</DialogTitle>
       <IconButton

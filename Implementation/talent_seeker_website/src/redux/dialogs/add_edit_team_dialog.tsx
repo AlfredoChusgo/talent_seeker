@@ -4,7 +4,6 @@ import Dialog from '@mui/material/Dialog';
 import CloseIcon from '@mui/icons-material/Close';
 import i18next from 'i18next';
 import { DialogActions, DialogContent, IconButton, TextField } from '@mui/material';
-import { useState } from 'react';
 import store, { RootState } from '../store/store';
 import { addTeam, editTeam } from '../features/team_detail/team_detail_slice';
 import { useSelector } from 'react-redux';

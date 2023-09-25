@@ -6,7 +6,7 @@ import { fetchAllResourceItems } from '../resource_list/resource_list_slice';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-import ResourceListComponent from '../../components/resourcec_list_component';
+import ResourceListComponent from '../../components/resource_list_component';
 import { AutocompleteChangeReason, Button, IconButton, Paper } from '@mui/material';
 import { ResourceItem, SearchHomeItem, SearchItem, SnackbarSeverity } from '../../../data/models';
 import SearchResourceComponent from '../../components/search_resource_component';

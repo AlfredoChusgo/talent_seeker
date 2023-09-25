@@ -6,12 +6,13 @@ import { applyFilters, fetchAllResourceItems } from './resource_list_slice';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-import ResourceListComponent from '../../components/resourcec_list_component';
+import ResourceListComponent from '../../components/resource_list_component';
 import { IconButton, Paper } from '@mui/material';
 import { ResourceItem, SearchHomeItem } from '../../../data/models';
 import { selectResource } from '../resource_detail/resource_detail_slice';
 import { useNavigate } from 'react-router-dom';
 import SearchResourceComponent from '../../components/search_resource_component';
+import { dispatchShowResourceDetailDialog } from '../global_dialog/global_dialog_slice';
 
 export default function ResourceListPage() {
     const dispatch = useAppDispatch;
@@ -46,7 +47,7 @@ export default function ResourceListPage() {
     //addResourceToTeam
     function handleOnClickInfo(resource: ResourceItem): void {
         store.dispatch(selectResource(resource));
-        navigate("/resourceDetail");
+        store.dispatch(dispatchShowResourceDetailDialog({show:true}));
 
     }
 

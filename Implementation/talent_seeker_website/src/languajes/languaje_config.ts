@@ -15,7 +15,8 @@ i18next.use(initReactI18next).init({
       translation: {
         resources: {
           searchResource: "Search for a resource...",
-          resourceRemoved: "Resource has been removed."
+          resourceRemoved: "Resource has been removed.",
+          resourceDetail: "Resource detail"
         },
         common: {
           noResults: "Sorry, no results to display at the moment...",
@@ -23,7 +24,8 @@ i18next.use(initReactI18next).init({
           edit: "Edit",
           cancel: "Cancel",
           skills: "Skills",
-          biography: "Biography"
+          biography: "Biography",
+          okay:"Okay"
         },
         teams: {
           searchTeam: "Search for a team...",

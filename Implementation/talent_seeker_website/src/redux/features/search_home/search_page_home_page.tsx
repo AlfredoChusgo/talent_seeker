@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import store, { RootState, useAppDispatch } from '../../store/store';
 import { fetchItems } from './search_home_slice';
 import {applyFilters} from '../resource_list/resource_list_slice';
-import { Grid, IconButton } from '@mui/material';
+import {  IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchHomeItem } from '../../../data/models';
 import { useNavigate } from 'react-router-dom';
 import SearchResourceComponent from '../../components/search_resource_component';
-
+import Grid from '@mui/material/Unstable_Grid2';
 export default function Grouped() {
 
   const [selectedValues, setSelectedValues] = useState<SearchHomeItem[]>([]);

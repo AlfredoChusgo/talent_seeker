@@ -1,20 +1,19 @@
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Divider, Slider, Stack, Typography } from "@mui/material";
-import { ResourceItem, SkillItem, SkillLevel } from "../../../data/models";
+import { Avatar, Card, CardContent, Divider, Slider, Typography } from "@mui/material";
+
 import Grid from '@mui/material/Unstable_Grid2';
 import { useState } from "react";
-import { RootState } from "../../store/store";
+
 import { useSelector } from "react-redux";
 import i18next from "i18next";
+import { SkillItem, SkillLevel } from "../../data/models";
+import { RootState } from "../store/store";
 
-export interface ResourceDetailProps {
-    resource: ResourceItem;
-}
 
 export interface SkillSliderProps {
     skill: SkillItem;
 }
 
-export default function ResourceDetail() {
+export default function ResourceDetailComponent() {
     const {resource} = useSelector((state:RootState)=> state.resourceDetail);
 
     const skillSliders = resource.skills.map(skill => {

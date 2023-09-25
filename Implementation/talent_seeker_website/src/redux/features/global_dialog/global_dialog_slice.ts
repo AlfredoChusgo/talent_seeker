@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TeamItem } from '../../../data/models';
 
 type DialogState = {
-  addEditTeamDialogConfig: AddEditTeamDialogConfig
+  addEditTeamDialogConfig: AddEditTeamDialogConfig,
+  showResourceDetailDialog: boolean
 };
 
-interface AddEditTeamDialogConfig
-{
+interface AddEditTeamDialogConfig {
   isAdd: boolean
   show: boolean,
   teamItem: TeamItem
@@ -20,7 +20,8 @@ const initialState: DialogState = {
     isAdd: false,
     show: false,
     teamItem: { id: "", name: "", resources: [] }
-  }
+  },
+  showResourceDetailDialog: false
 };
 
 const dialogSlice = createSlice({
@@ -30,11 +31,14 @@ const dialogSlice = createSlice({
     updateAddEditTeamDialogConfig: (state, action: PayloadAction<AddEditTeamDialogConfig>) => {
       state.addEditTeamDialogConfig = action.payload;
     },
-    teamDialog: (state, action: PayloadAction<{show:boolean}>) => {      
+    teamDialog: (state, action: PayloadAction<{ show: boolean }>) => {
       state.addEditTeamDialogConfig.show = action.payload.show;
     },
+    dispatchShowResourceDetailDialog: (state, action: PayloadAction<{ show: boolean }>) => {
+      state.showResourceDetailDialog = action.payload.show;
+    }
   },
 });
 
-export const { updateAddEditTeamDialogConfig,teamDialog } = dialogSlice.actions;
+export const { updateAddEditTeamDialogConfig, teamDialog, dispatchShowResourceDetailDialog } = dialogSlice.actions;
 export default dialogSlice.reducer;

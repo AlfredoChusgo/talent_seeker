@@ -11,7 +11,7 @@ import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 //import MenuIcon from '@mui/icons-material/Menu';
 
-const pages = ['searchPageHome', 'resourceList', 'teamBuilder', 'Teams','resourceDetail'];
+const pages = ['searchPageHome', 'resourceList', 'teamBuilder', 'Teams'];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ButtonAppBar() {

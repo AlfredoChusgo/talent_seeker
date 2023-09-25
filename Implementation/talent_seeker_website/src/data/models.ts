@@ -20,7 +20,7 @@ export interface ResourceItem{
     id: string;
     name : string;
     lastName : string ;
-    birthDate: Date;
+    birthDate: string;
     occupation : string;
     location : string;
     biography : string;
