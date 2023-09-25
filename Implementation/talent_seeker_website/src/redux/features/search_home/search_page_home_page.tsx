@@ -41,7 +41,7 @@ export default function Grouped() {
   }
 
   return (
-    <Grid item xs={12} sm={6} md={8} lg={8} xl={8}>
+    <Grid xs>
       <SearchResourceComponent searchItems={items} selectedValues={selectedValues}
         searchButtonConfiguration={{
           isEnabled: true,

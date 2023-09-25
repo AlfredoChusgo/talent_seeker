@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -60,7 +60,7 @@ export default function TeamResourcesComponent({ team }: TeamDetailComponentProp
     else {
         return (
             <Grid container justifyContent="center" alignItems="center" direction="column" spacing={0}>
-                <Grid item xs={10}>
+                <Grid xs={10}>
                     <Typography variant="h5">{i18next.t('common.noResults')}</Typography>
                 </Grid>
             </Grid>

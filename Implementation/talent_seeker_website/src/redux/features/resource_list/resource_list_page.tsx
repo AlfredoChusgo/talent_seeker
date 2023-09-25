@@ -5,7 +5,7 @@ import store, { RootState, useAppDispatch } from '../../store/store';
 import { fetchAllResourceItems } from './resource_list_slice';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import ResourceListComponent from '../../components/resourcec_list_component';
 import { Paper } from '@mui/material';
 import { showSnackbar } from '../global_snackbar/global_snackbar_slice';
@@ -25,10 +25,10 @@ export default function ResourceListPage() {
         
     }
 
-    return <Box sx={{ flexGrow: 1 }}>
+    return <Box sx={{ flexGrow: 0}}>
         <Paper elevation={2}>
             <Grid container direction="column" spacing={0} alignItems="center"
-                justifyContent="center" >
+                justifyContent="center"  sx={{ padding: '16px' }} >
                 <ResourceListComponent resourcesItems={resourceList} infoButtonConfiguration={{isEnabled:true , action : handleOnClickInfo }}
                 addButtonConfiguration={{isEnabled : false , action : ()=>{} }} />
             </Grid>

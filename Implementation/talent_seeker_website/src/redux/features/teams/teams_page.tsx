@@ -5,7 +5,7 @@ import store, { RootState, useAppDispatch } from '../../store/store';
 import { fetchAllResourceItems } from '../resource_list/resource_list_slice';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import { AutocompleteChangeReason, Button, Fab, Paper, Typography } from '@mui/material';
 import { SearchItem } from '../../../data/models';
 import { fetchItems } from '../search_home/search_home_slice';
@@ -44,8 +44,8 @@ export default function TeamsPage() {
     const [dialogTeamName, setDialogTeamName] = useState<string>("");
 
     return <Box sx={{ flexGrow: 0.5 }}>
-        <Grid container direction="row" spacing={3} >
-            <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
+        <Grid container direction="row" spacing={1} >
+            <Grid xs={12} sm={6}>
                 <Paper elevation={3}>
 
                     <Grid container direction="column" spacing={1}
@@ -63,7 +63,7 @@ export default function TeamsPage() {
                             </Typography>
 
                         </Button>
-                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                        <Grid xs>
                             <SearchTeamComponent
                                 searchItems={teams}
                                 selectedValue={seletedTeam}
@@ -79,7 +79,7 @@ export default function TeamsPage() {
 
             </Grid>
 
-            <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Grid xs={12} sm={6}>
                 <TeamInfoSmallComponent team={teamDetail} />
             </Grid>
         </Grid>

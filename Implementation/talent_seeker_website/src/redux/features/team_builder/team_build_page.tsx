@@ -5,7 +5,7 @@ import store, { RootState, useAppDispatch } from '../../store/store';
 import { fetchAllResourceItems } from '../resource_list/resource_list_slice';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import ResourceListComponent from '../../components/resourcec_list_component';
 import { AutocompleteChangeReason, Button, IconButton, Paper } from '@mui/material';
 import { SearchHomeItem, SearchItem, SnackbarSeverity } from '../../../data/models';
@@ -66,65 +66,63 @@ export default function TeamBuilderPage() {
     //endTeam
 
     //addResourceToTeam
-    function handleOnClickInfo(resourceId:string): void{
-        store.dispatch(showSnackbar({message:`Clicked Info ${resourceId}`,severity:SnackbarSeverity.Warning}));
-        
+    function handleOnClickInfo(resourceId: string): void {
+        store.dispatch(showSnackbar({ message: `Clicked Info ${resourceId}`, severity: SnackbarSeverity.Warning }));
+
     }
 
-    function handleOnClickAddResource(resourceId:string): void{
-        store.dispatch(addResourceToTeam({resourceId:resourceId,teamId:seletedTeam?.id ?? ""}));
+    function handleOnClickAddResource(resourceId: string): void {
+        store.dispatch(addResourceToTeam({ resourceId: resourceId, teamId: seletedTeam?.id ?? "" }));
     }
 
     //endAddResourceToTeam
-    return <Box sx={{ flexGrow: 0 }}>
-        <Grid container direction="row" spacing={3} >
-            <Grid item xs={12} sm={6} md={6} lg={6} xl={6}  >
-                <Paper elevation={1}>
-                    <Grid container direction="column" spacing={1}
-                        justifyContent="center" >
-                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                            <SearchResourceComponent searchItems={items} selectedValues={selectedValues}
-                                searchButtonConfiguration={{
-                                    isEnabled: false,
-                                    searchButtonComponent: <IconButton
-                                    >
-                                    </IconButton>
-                                }}
-                                handleAutoCompleteChange={handleAutocompleteChange}
-                            />
-                        </Grid>
-                        <ResourceListComponent resourcesItems={resourceList} addButtonConfiguration={{
-                            isEnabled: true,
-                            action : handleOnClickAddResource,
-                        }}
-                            infoButtonConfiguration={{
+    return   <Grid container spacing={2} >
+                <Grid  xs={12} sm={6}  >
+                    <Paper elevation={1}>
+                        <Grid container direction="column" columnSpacing={1} rowSpacing={2}
+                            justifyContent="center" >
+                            <Grid  xs>
+                                <SearchResourceComponent searchItems={items} selectedValues={selectedValues}
+                                    searchButtonConfiguration={{
+                                        isEnabled: false,
+                                        searchButtonComponent: <IconButton
+                                        >
+                                        </IconButton>
+                                    }}
+                                    handleAutoCompleteChange={handleAutocompleteChange}
+                                />
+                            </Grid>
+                            <ResourceListComponent resourcesItems={resourceList} addButtonConfiguration={{
                                 isEnabled: true,
-                                action : handleOnClickInfo ,
-                            }} />
-                    </Grid>
-                </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-                <Paper elevation={3}>
-                    <Grid container direction="column" spacing={1}
-                        justifyContent="center" >
-                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                            <SearchTeamComponent
-                                searchItems={teams}
-                                selectedValue={seletedTeam}
-                                handleAutoCompleteChange={function (event: any, value: SearchItem | null, reason: AutocompleteChangeReason): void {
-                                    setSeletedTeam(value);
-
-                                    if (value != null) {
-                                        store.dispatch(fetchTeamDetail({ teamId: value.id }));
-                                    }
-
+                                action: handleOnClickAddResource,
+                            }}
+                                infoButtonConfiguration={{
+                                    isEnabled: true,
+                                    action: handleOnClickInfo,
                                 }} />
                         </Grid>
-                        <TeamResourcesComponent team={teamDetail} />
-                    </Grid>
-                </Paper>
-            </Grid>
-        </Grid>
-    </Box>;
+                    </Paper>
+                </Grid>
+                <Grid xs={12} sm>
+                    <Paper elevation={3}>
+                        <Grid container direction="column" spacing={1}
+                            justifyContent="center" >
+                            <Grid xs>
+                                <SearchTeamComponent
+                                    searchItems={teams}
+                                    selectedValue={seletedTeam}
+                                    handleAutoCompleteChange={function (event: any, value: SearchItem | null, reason: AutocompleteChangeReason): void {
+                                        setSeletedTeam(value);
+
+                                        if (value != null) {
+                                            store.dispatch(fetchTeamDetail({ teamId: value.id }));
+                                        }
+
+                                    }} />
+                            </Grid>
+                            <TeamResourcesComponent team={teamDetail} />
+                        </Grid>
+                    </Paper>
+                </Grid>
+            </Grid>;
 }

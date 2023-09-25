@@ -108,20 +108,24 @@ function ButtonAppBar() {
 export default function Root() {
   return (
     <>
-      <div className="App">
+      <div className="App" >
         <ButtonAppBar></ButtonAppBar>
+        <Container
+          maxWidth="md"
+          style={{
+            minHeight: 'calc(100vh - 64px)', // Subtract app bar height (64px)
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Grid container 
+>
+            <Outlet />
+          </Grid>
+        </Container>
 
-        <Grid container alignItems="center"
-          justifyContent="center"
-          style={{ minHeight: 'calc(100vh - 64px)' }}>
-          {/* <Grid item>
-            <Paper>
-              
-              <Outlet />
-            </Paper>
-          </Grid> */}
-          <Outlet />
-        </Grid>
 
 
       </div>

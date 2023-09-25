@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -21,8 +21,10 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
     const buildPersonCard = (resource: ResourceItem) => {
 
         return (
-            <Grid item xs={6} sm={6}  md={4} lg={4}  sx={{ width: '100%'}}>
-                <Paper>
+            // <Grid sx={{ padding: '16px' }}xs={6} sm={3}  md={2} lg={2}key={resource.id}>
+            // <Grid sx={{ padding: '16px' }}xs={6} sm={3} key={resource.id}>
+            <Grid  xs={6} sm={3} key={resource.id}>
+                <Paper >
                     <Card >
                         <Stack direction="row" spacing={1} >                            
                             <Box >
@@ -56,11 +58,11 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
         );
     }
 
-    const buildSkillsCards = ({ skills }: ResourceItem) => {
+    const buildSkillsCards = ({ skills ,id}: ResourceItem) => {
         const skillsCards = skills.map(skill => {
 
             return (
-                <Grid item  >
+                <Grid key={skill.id} >
                     <Paper elevation={1}>
                         <Card sx={{ display: 'flex' }}>
 
@@ -77,8 +79,8 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
                 </Grid>
             );
         });
-        return <Grid item xs={8}>
-            <Grid container direction={"row"} spacing={2}>
+        return <Grid  xs={6} sm={9} >
+            <Grid container direction={"row"} spacing={1}>
                 {skillsCards}
             </Grid>
         </Grid>;
@@ -86,7 +88,7 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
 
     const resourceItemsUI = resourcesItems.map((e: ResourceItem) => {
         return (
-            <Grid container spacing={2}>
+            <Grid  container spacing={2} key={e.id}>
                 {buildPersonCard(e)}
                 {buildSkillsCards(e)}
             </Grid>
@@ -95,12 +97,14 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
     });
 
     if(resourcesItems.length > 0){
-        return resourceItemsUI;
+        return <Grid >
+            {resourceItemsUI}
+        </Grid>;
     }
     else{
         return (
-            <Grid container justifyContent="center" alignItems="center" direction="column" spacing={0}>
-              <Grid item xs={10}>
+            <Grid container justifyContent="center" alignItems="center" direction="column" spacing={2}>
+              <Grid xs>
                 <Typography variant="h5">{i18next.t("common.noResults")}</Typography>
               </Grid>
             </Grid>
