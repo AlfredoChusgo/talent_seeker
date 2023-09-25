@@ -39,7 +39,7 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
                                 </CardContent>
                                 <CardActions>
                                     {infoButtonConfiguration.isEnabled && <Button size="small" variant="text" onClick={() => {
-                                        infoButtonConfiguration.action(resource.id);
+                                        infoButtonConfiguration.action(resource);
                                     }} startIcon={<InfoIcon />}>
                                     </Button>}
                                     {addButtonConfiguration.isEnabled && <Button size="small" variant="text" onClick={() => {

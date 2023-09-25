@@ -21,7 +21,7 @@ export interface SearchButtonConfiguration {
 
 export interface ResourceInfoButtonConfiguration {
     isEnabled : boolean;    
-    action : (resourceId:string)=>void;
+    action : (resourceId:ResourceItem)=>void;
 }
 
 export interface AddResourceToTeamButtonConfiguration {

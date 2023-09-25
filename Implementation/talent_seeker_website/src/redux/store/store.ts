@@ -6,6 +6,7 @@ import searchTeamReducer from '../features/search_team/search_team_slice';
 import teamDetailReducer from '../features/team_detail/team_detail_slice';
 import snackbarReducer from '../features/global_snackbar/global_snackbar_slice.ts';
 import dialogReducer from '../features/global_dialog/global_dialog_slice.ts';
+import resourceDetailReducer from '../features/resource_detail/resource_detail_slice.tsx';
 import { useDispatch } from 'react-redux'
 const store = configureStore({
   reducer: {
@@ -14,7 +15,8 @@ const store = configureStore({
     searchTeam : searchTeamReducer,
     teamDetail : teamDetailReducer,
     snackbar : snackbarReducer,
-    dialog: dialogReducer
+    dialog: dialogReducer,
+    resourceDetail: resourceDetailReducer
   },
 });
 

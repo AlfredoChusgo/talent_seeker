@@ -1,11 +1,11 @@
 export enum SkillLevel
 {
-    Novice,         // Basic knowledge, limited experience
-    Beginner,       // Limited proficiency, still learning
-    Intermediate,   // Moderate proficiency, some experience
-    Proficient,     // Competent, good understanding
-    Advanced,       // High proficiency, extensive experience
-    Expert,         // Mastery or expert level
+    Novice,         
+    Beginner,       
+    Intermediate,   
+    Proficient,     
+    Advanced,      
+    Expert,         
 }
 
 export enum SnackbarSeverity
