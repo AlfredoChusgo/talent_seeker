@@ -205,7 +205,7 @@ const generateFakeResourceItems = () => {
     birthDate : faker.date.between({ from: '1980-01-01T00:00:00.000Z', to: '2005-01-01T00:00:00.000Z' }),
     occupation : faker.person.jobTitle(),
     location : faker.location.country(),
-    biography : faker.person.bio(),
+    biography : faker.lorem.paragraphs(5),
     role : role,
     skills : skills,
   };
