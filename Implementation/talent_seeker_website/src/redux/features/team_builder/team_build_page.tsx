@@ -18,6 +18,7 @@ import TeamResourcesComponent from '../../components/team_resources_component';
 import { addResourceToTeam, fetchTeamDetail } from '../team_detail/team_detail_slice';
 import { useNavigate } from 'react-router-dom';
 import { selectResource } from '../resource_detail/resource_detail_slice';
+import { dispatchShowResourceDetailDialog } from '../global_dialog/global_dialog_slice';
 
 export default function TeamBuilderPage() {
     const dispatch = useAppDispatch;
@@ -68,7 +69,7 @@ export default function TeamBuilderPage() {
     //addResourceToTeam
     function handleOnClickInfo(resource: ResourceItem): void {
         store.dispatch(selectResource(resource));
-        navigate("/resourceDetail");
+        store.dispatch(dispatchShowResourceDetailDialog({show:true}));
 
     }
 
