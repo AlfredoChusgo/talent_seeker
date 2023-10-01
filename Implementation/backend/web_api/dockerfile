@@ -1,0 +1,18 @@
+# Use an official MongoDB image as the base image
+FROM mongo:latest
+
+# Optionally, specify the working directory (it's /data by default for MongoDB)
+# WORKDIR /data
+
+# Optionally, expose the default MongoDB port (27017)
+# EXPOSE 27017
+
+# Optionally, provide environment variables if needed
+ENV MONGO_INITDB_ROOT_USERNAME=myuser
+ENV MONGO_INITDB_ROOT_PASSWORD=mypassword
+
+# Optionally, copy custom configuration files, if any
+# COPY mongod.conf /etc/mongod.conf
+
+# Optionally, you can specify additional startup commands
+# CMD ["mongod"]
