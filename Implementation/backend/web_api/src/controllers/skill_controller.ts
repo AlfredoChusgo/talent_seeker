@@ -21,7 +21,7 @@ export class SkillController {
         }
 
         const createModel = await SkillModel.create(req.body);
-        const response = ResponseHelper.createResponseSuccess("Skill created successfuly", createModel);
+        const response = ResponseHelper.createResponseSuccess("Skill created successfuly", createModel.toObject());
         return res.json(response);
     }
 
