@@ -5,7 +5,14 @@ import { ApiResponse, ErrorResponse } from "../data_layer/web_api_response";
 import { ResponseHelper } from "../helpers/response_helper";
 import { Validators } from "../validators/validators";
 
-class SkillController {
+export class SkillController {
+
+    public static async getAll(req: Request, res: Response) {                
+
+        const models = await SkillModel.find({});
+        const response = ResponseHelper.createResponseSuccess("", models);
+        return res.json(response);
+    }
 
     public static async create(req: Request, res: Response) {
         const errors = Validators.ValidateCreateSkill(req);

@@ -67,3 +67,4 @@ router.delete('/:id', async (req, res) => {
     }
 });
 exports.default = router;
+//# sourceMappingURL=skill_routes.js.map

@@ -10,3 +10,4 @@ var SkillLevel;
     SkillLevel[SkillLevel["Advanced"] = 4] = "Advanced";
     SkillLevel[SkillLevel["Expert"] = 5] = "Expert";
 })(SkillLevel = exports.SkillLevel || (exports.SkillLevel = {}));
+//# sourceMappingURL=models.js.map

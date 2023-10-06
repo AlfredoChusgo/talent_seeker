@@ -26,17 +26,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const moongose_config_1 = require("./data_layer/databases/moongose_config");
 const dotenv = __importStar(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 //import { SkillRepository } from './SkillRepository';
 dotenv.config(); // Load environment variables from .env file
-const skill_routes_1 = __importDefault(require("./controllers/skill_routes"));
 const skill_repository_1 = require("./data_layer/repositories/skill_repository");
-const app = (0, express_1.default)();
-const port = process.env.PORT || 3000;
-const skillRepo = new skill_repository_1.SkillRepository();
-// Use the skills router for '/skills' routes
-app.use('/skills', skill_routes_1.default);
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+const skill_routes_1 = __importDefault(require("./controllers/skill_routes"));
+const server = (0, express_1.default)();
+async function startServer() {
+    const port = process.env.PORT || 3000;
+    const skillRepo = new skill_repository_1.SkillRepository();
+    const mongodbUri = "mongodb://localhost:27017";
+    await (0, moongose_config_1.connectDB)(mongodbUri);
+    // Use the skills router for '/skills' routes
+    //server.use('/skills', skillsRoutes);
+    server.use('/api', skill_routes_1.default);
+    server.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
+}
+startServer();
+//# sourceMappingURL=main.js.map

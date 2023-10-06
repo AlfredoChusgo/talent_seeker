@@ -7,7 +7,7 @@ class SkillRepository {
     }
     async create(skill) {
         const createdSkill = await schemas_1.SkillModel.create(skill);
-        return createdSkill.toObject();
+        return createdSkill;
     }
     async findById(skillId) {
         const skill = await schemas_1.SkillModel.findById(skillId).lean();
@@ -26,3 +26,4 @@ class SkillRepository {
     }
 }
 exports.SkillRepository = SkillRepository;
+//# sourceMappingURL=skill_repository.js.map
