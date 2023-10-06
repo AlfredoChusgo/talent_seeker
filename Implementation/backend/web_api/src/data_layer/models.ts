@@ -8,7 +8,7 @@ export enum SkillLevel
     Expert,         
 }
 
-export interface Resource extends Document{
+export interface Resource{
     name : string;
     lastName : string ;
     birthDate: string;
@@ -19,16 +19,16 @@ export interface Resource extends Document{
     skills: Skill[]
 }
 
-export interface Role extends Document{    
+export interface Role{    
     name : string;    
 }
 
-export interface Skill extends Document{ 
+export interface Skill{ 
     name : string;
     skillLevel : SkillLevel
 }
 
-export interface Team extends Document{    
+export interface Team{    
     name : string;
     resources : Resource[];
 }
