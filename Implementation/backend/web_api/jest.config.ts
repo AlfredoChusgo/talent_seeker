@@ -21,6 +21,11 @@ const config: Config = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
+
+  testEnvironmentOptions: {
+    // Set the timeout value in milliseconds (e.g., 10000 for 10 seconds)
+    timeout: 10000,
+  },
 };
 
 export default config;

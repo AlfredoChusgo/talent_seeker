@@ -17,7 +17,8 @@ const server = express();
 export function createServer(): Express {
   const server: Express = express();
   const skillRepo: SkillRepository = new SkillRepository();
-  
+
+  server.use(express.json());
   // Use the skills router for '/skills' routes
   server.use('/api', router); // Replace '/api' with your desired API base path
   
