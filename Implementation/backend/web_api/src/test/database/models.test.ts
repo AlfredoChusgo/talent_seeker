@@ -1,4 +1,4 @@
-import { SkillRepository } from "../../data_layer/repositories/skill_repository";
+//import { SkillRepository } from "../../data_layer/repositories/skill_repository";
 import mongoose from 'mongoose';
 import { ResourceModel, RoleModel, SkillModel, TeamModel } from "../../data_layer/schemas";
 import { Resource } from "../../data_layer/models";
@@ -115,7 +115,7 @@ describe('Mongoose model test', () => {
 
 
 describe('SkillRepository', () => {
-  let skillRepo: SkillRepository;
+  //let skillRepo: SkillRepository;
 
 
 

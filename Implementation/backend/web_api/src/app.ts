@@ -7,8 +7,8 @@ import { Express } from 'express';
 //import { SkillRepository } from './SkillRepository';
 dotenv.config(); // Load environment variables from .env file
 
-import skillsRoutes from './controllers/skill_routes';
-import { SkillRepository } from './data_layer/repositories/skill_repository';
+//import skillsRoutes from './controllers/skill_routes';
+//import { SkillRepository } from './data_layer/repositories/skill_repository';
 import { router } from './routes/api';
 //import router from './controllers/skill_routes';
 
@@ -16,7 +16,7 @@ const server = express();
 
 export function createServer(): Express {
   const server: Express = express();
-  const skillRepo: SkillRepository = new SkillRepository();
+  //const skillRepo: SkillRepository = new SkillRepository();
 
   server.use(express.json());
   // Use the skills router for '/skills' routes
