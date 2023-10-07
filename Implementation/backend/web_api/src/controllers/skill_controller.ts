@@ -15,7 +15,7 @@ export class SkillController {
     }
 
     public static async create(req: Request, res: Response) {
-        const errors = Validators.ValidateCreateSkill(req);
+        const errors = Validators.Skill.CreateRequest(req);
         if (errors.length > 0) {
             return res.json(ResponseHelper.createErrorResponse(errors));
         }
@@ -26,7 +26,7 @@ export class SkillController {
     }
 
     public static async update(req: Request, res: Response) {
-        const errors = Validators.ValidateUpdateSkill(req);
+        const errors = Validators.Skill.UpdateRequest(req);
         if (errors.length > 0) {
             return res.json(ResponseHelper.createErrorResponse(errors));
         }
@@ -39,7 +39,7 @@ export class SkillController {
     }
 
     public static async findById(req: Request, res: Response) {
-        const errors = Validators.ValidateIdSkill(req);
+        const errors = Validators.Skill.IdRequest(req);
         if (errors.length > 0) {
             return res.json(ResponseHelper.createErrorResponse(errors));
         }
@@ -61,7 +61,7 @@ export class SkillController {
     }
 
     public static async delete(req: Request, res: Response) {
-        const errors = Validators.ValidateIdSkill(req);
+        const errors = Validators.Skill.IdRequest(req);
         if (errors.length > 0) {
             return res.json(ResponseHelper.createErrorResponse(errors));
         }

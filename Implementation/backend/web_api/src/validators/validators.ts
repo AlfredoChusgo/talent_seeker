@@ -1,53 +1,93 @@
 import { z, ZodError } from 'zod';
-import { SkillCreateCommand, SkillUpdateCommand } from '../data_layer/commands';
+import { RoleCreateCommand, RoleUpdateCommand, SkillCreateCommand, SkillUpdateCommand } from '../data_layer/commands';
 import { Request } from 'express';
 import { SkillLevel } from '../data_layer/models';
 import mongoose from 'mongoose';
 
 export class Validators {
-    static  idValidator= z.string().refine((id) => mongoose.Types.ObjectId.isValid(id), {
+    static idValidator = z.string().refine((id) => mongoose.Types.ObjectId.isValid(id), {
         message: 'Invalid Id',
-      });
+    });
 
-    public static ValidateCreateSkill(req: Request): string[] {
+    static Skill = class {
+        public static CreateRequest(req: Request): string[] {
 
-        return Validators.validate(() => {
-            const command = req.body as SkillCreateCommand;
+            return Validators.validate(() => {
+                const command = req.body as SkillCreateCommand;
 
-            const schema = z.object({
-                name: z.string().min(1, 'Name must not be empty'),
-                skillLevel: z.nativeEnum(SkillLevel),
+                const schema = z.object({
+                    name: z.string().min(1, 'Name must not be empty'),
+                    skillLevel: z.nativeEnum(SkillLevel),
+                });
+                schema.parse(command);
             });
-            schema.parse(command);
-        });
+        }
+
+        public static UpdateRequest(req: Request): string[] {
+
+            return Validators.validate(() => {
+                const command = req.body as SkillUpdateCommand;
+                command.id = req.params.id;
+
+                const schema = z.object({
+                    id: Validators.idValidator,
+                    name: z.string().min(1, 'Name must not be empty'),
+                    skillLevel: z.nativeEnum(SkillLevel),
+                });
+                schema.parse(command);
+            });
+        }
+
+        public static IdRequest(req: Request): string[] {
+            return Validators.ValidateId(req);
+        }
     }
 
-    public static ValidateUpdateSkill(req: Request): string[] {
+    static Role = class{
+        public static CreateRequest(req: Request): string[] {
+
+            return Validators.validate(() => {
+                const command = req.body as RoleCreateCommand;
+
+                const schema = z.object({
+                    name: z.string().min(1, 'Name must not be empty'),
+                });
+                schema.parse(command);
+            });
+        }
+
+        public static UpdateRequest(req: Request): string[] {
+
+            return Validators.validate(() => {
+                const command = req.body as RoleUpdateCommand;
+                command.id = req.params.id;
+
+                const schema = z.object({
+                    id: Validators.idValidator,
+                    name: z.string().min(1, 'Name must not be empty'),
+                });
+                schema.parse(command);
+            });
+        }
+
+        public static IdRequest(req: Request): string[] {
+            return Validators.ValidateId(req);
+        }
+    }
+
+    public static ValidateId(req: Request): string[] {
 
         return Validators.validate(() => {
-            const command = req.body as SkillUpdateCommand;
-            command.id = req.params.id;
+            const { id } = req.params;
 
             const schema = z.object({
                 id: Validators.idValidator,
-                name: z.string().min(1, 'Name must not be empty'),
-                skillLevel: z.nativeEnum(SkillLevel),
             });
-            schema.parse(command);
+            schema.parse({ id });
         });
     }
 
-    public static ValidateIdSkill(req: Request): string[] {
 
-        return Validators.validate(() => {
-            const {id} = req.params ;
-
-            const schema = z.object({
-                id: Validators.idValidator,
-            });
-            schema.parse({id});
-        });
-    }
 
     public static validate(callback: () => void): string[] {
         try {

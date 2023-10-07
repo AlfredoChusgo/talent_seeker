@@ -1,4 +1,4 @@
-import { SkillCreateCommand, SkillUpdateCommand } from "../../data_layer/commands";
+import { RoleCreateCommand, SkillCreateCommand, SkillUpdateCommand } from "../../data_layer/commands";
 import { faker } from '@faker-js/faker';
 import { SkillLevel } from "../../data_layer/models";
 
@@ -8,6 +8,12 @@ export class RequestControllerHelper {
         return {
             name: faker.company.name(),
             skillLevel: faker.helpers.enumValue(SkillLevel)
+        };
+    }
+
+    public static getRoleCreateRequestBody(): RoleCreateCommand {
+        return {
+            name: faker.person.jobType(),
         };
     }
 

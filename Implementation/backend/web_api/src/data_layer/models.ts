@@ -19,7 +19,7 @@ export interface Resource{
     skills: Skill[]
 }
 
-export interface Role{    
+export interface Role{
     name : string;    
 }
 

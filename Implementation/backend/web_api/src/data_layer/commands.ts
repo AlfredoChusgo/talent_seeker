@@ -10,3 +10,12 @@ export interface SkillUpdateCommand{
     name : string;
     skillLevel : SkillLevel;
 }
+
+export interface RoleCreateCommand{
+    name : string;
+}
+
+export interface RoleUpdateCommand{
+    id:string;
+    name : string;
+}
