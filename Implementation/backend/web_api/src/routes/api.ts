@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {SkillController} from '../controllers/skill_controller';
 import { RoleController } from "../controllers/role_controller";
+import { ResourceController } from "../controllers/resource_controller";
 
 
 export const router : Router = Router();
@@ -16,4 +17,10 @@ router.post("/roles",RoleController.create);
 router.get("/roles/:id",RoleController.findById);
 router.put("/roles/:id",RoleController.update);
 router.delete("/roles/:id",RoleController.delete);
+
+router.get("/resources",ResourceController.getAll);
+router.post("/resources",ResourceController.create);
+router.get("/resources/:id",ResourceController.findById);
+router.put("/resources/:id",ResourceController.update);
+router.delete("/resources/:id",ResourceController.delete);
 

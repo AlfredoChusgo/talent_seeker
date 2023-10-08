@@ -1,5 +1,5 @@
 import { z, ZodError } from 'zod';
-import { RoleCreateCommand, RoleUpdateCommand, SkillCreateCommand, SkillUpdateCommand } from '../data_layer/commands';
+import { ResourceCreateCommand, ResourceUpdateCommand, RoleCreateCommand, RoleUpdateCommand, SkillCreateCommand, SkillUpdateCommand } from '../data_layer/commands';
 import { Request } from 'express';
 import { SkillLevel } from '../data_layer/models';
 import mongoose from 'mongoose';
@@ -7,6 +7,18 @@ import mongoose from 'mongoose';
 export class Validators {
     static idValidator = z.string().refine((id) => mongoose.Types.ObjectId.isValid(id), {
         message: 'Invalid Id',
+    });
+
+    static optionalIdValidator = z.string().optional().refine((id) => id ? mongoose.Types.ObjectId.isValid(id) : true , {
+        message: 'Invalid Id',
+    });
+
+    // Define a custom schema for ISO 8601 date strings
+    static isoDateStringSchema = z.string().refine((value) => {
+        const dateObject = new Date(value);
+        return !isNaN(dateObject.getTime());
+    }, {
+        message: 'Invalid ISO 8601 date format',
     });
 
     static Skill = class {
@@ -43,7 +55,7 @@ export class Validators {
         }
     }
 
-    static Role = class{
+    static Role = class {
         public static CreateRequest(req: Request): string[] {
 
             return Validators.validate(() => {
@@ -75,6 +87,49 @@ export class Validators {
         }
     }
 
+    static Resource = class {
+        public static CreateRequest(req: Request): string[] {
+
+            return Validators.validate(() => {
+                const command = req.body as ResourceCreateCommand;
+
+                const schema = z.object({
+                    name: z.string().min(1, 'Name must not be empty'),
+                    lastName: z.string().min(3, 'Should be at least 3 characters long'),
+                    birthDate: Validators.isoDateStringSchema,
+                    occupation: z.string().min(3, 'Should be at least 3 characters long'),
+                    locality: z.string().min(3, 'Should be at least 3 characters long'),
+                    biography: z.string().min(10, 'Should be at least 3 characters long'),
+                    role : Validators.optionalIdValidator,
+                    skills : z.array(Validators.idValidator).default([])
+                });
+                schema.parse(command);
+            });
+        }
+
+        public static UpdateRequest(req: Request): string[] {
+
+            return Validators.validate(() => {
+                const command = req.body as ResourceUpdateCommand;
+                command.id = req.params.id;
+
+                const schema = z.object({
+                    id: Validators.idValidator,
+                    name: z.string().min(1, 'Name must not be empty'),
+                    lastName: z.string().min(3, 'Should be at least 3 characters long'),
+                    birthDate: Validators.isoDateStringSchema,
+                    occupation: z.string().min(3, 'Should be at least 3 characters long'),
+                    locality: z.string().min(3, 'Should be at least 3 characters long'),
+                    biography: z.string().min(10, 'Should be at least 3 characters long'),
+                });
+                schema.parse(command);
+            });
+        }
+
+        public static IdRequest(req: Request): string[] {
+            return Validators.ValidateId(req);
+        }
+    }
     public static ValidateId(req: Request): string[] {
 
         return Validators.validate(() => {
