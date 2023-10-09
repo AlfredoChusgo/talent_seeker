@@ -40,4 +40,19 @@ export class ObjectCreatorHelper {
         }
     }
 
+    static Team = class {
+        static async Create(app: Express, teamCount: number, resourcesByTeamCount: number) {
+            const teams = [];
+            for (let index = 0; index < teamCount; index++) {
+                const resources: any = await ObjectCreatorHelper.Resource.Create(app,resourcesByTeamCount);
+                const resourceIds = resources.map((resource: any) => resource._id);
+
+                const req = RequestControllerHelper.getTeamCreateRequestBody( [...resourceIds]);
+                const response = await request(app).post("/api/teams").send(req);
+                teams.push(response.body.data);
+            }
+            return teams;
+        }
+    }
+
 }

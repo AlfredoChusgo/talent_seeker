@@ -1,6 +1,11 @@
 import mongoose, { Schema, Document, Types } from 'mongoose';
 import { Resource, Role, Skill, SkillLevel, Team } from './models';
 
+export interface TeamDocument extends Document {
+  name: string;
+  resources: Types.ObjectId[];
+}
+
 export interface RoleDocument extends Document {
   name: string;
 }
@@ -51,23 +56,21 @@ const resourceSchema = new Schema<ResourceDocument>({
   occupation: String,
   locality: String,
   biography: String,
-  role: { type: Schema.Types.ObjectId, ref: 'RoleDocument', default: null }, // Reference the Role schema
-  skills: [{ type: Schema.Types.ObjectId, ref: 'SkillDocument' }], // Reference an array of Skills
+  role: { type: Schema.Types.ObjectId, ref: 'Role', default: null }, // Reference the Role schema
+  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }], // Reference an array of Skills
 });
 
 // Define the Team schema
-const teamSchema = new Schema({
+const teamSchema = new Schema<TeamDocument>({
   name: String,
-  resources: [resourceSchema], // Reference an array of Resources
+  resources: [{ type: Schema.Types.ObjectId, ref: 'Resource' }]// Reference an array of Resources
 });
-
-
 
 // Create and export the models based on the schemas
 export const SkillModel = mongoose.model<SkillDocument>('Skill', skillSchema);
 export const RoleModel = mongoose.model<RoleDocument>('Role', roleSchema);
 export const ResourceModel = mongoose.model<ResourceDocument>('Resource', resourceSchema);
-export const TeamModel = mongoose.model<Team>('Team', teamSchema);
+export const TeamModel = mongoose.model<TeamDocument>('Team', teamSchema);
 
 
 export default {

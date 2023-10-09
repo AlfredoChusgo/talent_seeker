@@ -2,7 +2,7 @@ import { RoleCreateCommand, SkillCreateCommand, SkillUpdateCommand } from "../..
 import { faker } from '@faker-js/faker';
 import { SkillLevel } from "../../data_layer/models";
 import mongoose from "mongoose";
-import { ResourceDocument } from "../../data_layer/schemas";
+import { ResourceDocument, TeamDocument } from "../../data_layer/schemas";
 
 export class RequestControllerHelper {
 
@@ -34,6 +34,16 @@ export class RequestControllerHelper {
 
         const resource: ResourceDocument = resourceData as ResourceDocument;
         return resource;
+    }
+
+    public static getTeamCreateRequestBody(resourceIds: string[]): TeamDocument {
+        const teamData: Partial<TeamDocument> = {
+            name: faker.company.name(),
+            resources: resourceIds.map(teamId => new mongoose.Types.ObjectId(teamId))
+        };
+
+        const team: TeamDocument = teamData as TeamDocument;
+        return team;
     }
 
 

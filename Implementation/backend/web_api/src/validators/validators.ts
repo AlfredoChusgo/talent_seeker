@@ -121,6 +121,42 @@ export class Validators {
                     occupation: z.string().min(3, 'Should be at least 3 characters long'),
                     locality: z.string().min(3, 'Should be at least 3 characters long'),
                     biography: z.string().min(10, 'Should be at least 3 characters long'),
+                    role : Validators.optionalIdValidator,
+                    skills : z.array(Validators.idValidator).default([])
+                });
+                schema.parse(command);
+            });
+        }
+
+        public static IdRequest(req: Request): string[] {
+            return Validators.ValidateId(req);
+        }
+    }
+
+    static Team = class {
+        public static CreateRequest(req: Request): string[] {
+
+            return Validators.validate(() => {
+                const command = req.body as ResourceCreateCommand;
+
+                const schema = z.object({
+                    name: z.string().min(1, 'Name must not be empty'),
+                    resources : z.array(Validators.idValidator).default([])
+                });
+                schema.parse(command);
+            });
+        }
+
+        public static UpdateRequest(req: Request): string[] {
+
+            return Validators.validate(() => {
+                const command = req.body as ResourceUpdateCommand;
+                command.id = req.params.id;
+
+                const schema = z.object({
+                    id: Validators.idValidator,
+                    name: z.string().min(1, 'Name must not be empty'),
+                    skills : z.array(Validators.idValidator).default([])
                 });
                 schema.parse(command);
             });

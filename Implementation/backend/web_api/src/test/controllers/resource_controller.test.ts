@@ -17,7 +17,7 @@ describe('ResourceController', () => {
         it('should fetch all the resources', async () => {
             const count = 20;
             const resources = await ObjectCreatorHelper.Resource.Create(app, count);
-            const response = await request(app).get("/api/skills").send();
+            const response = await request(app).get("/api/resources").send();
 
             expect(response).not.toBeNull();
             expect(response.status).toBe(200);

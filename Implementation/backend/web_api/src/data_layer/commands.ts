@@ -42,3 +42,9 @@ export interface ResourceUpdateCommand{
     roleId: string;
     skillIds: string[];
 }
+
+
+export interface TeamCreateCommand{
+    name : string;
+    resources : string[];
+}
