@@ -3,11 +3,14 @@ import { connectDB } from '../../data_layer/databases/moongose_config';
 import request from 'supertest';
 import { RequestControllerHelper } from '../test_helpers/request_controller_helper';
 import { ObjectCreatorHelper } from '../test_helpers/object_creator_helper';
+import { DatabaseHelper } from '../test_helpers/database_helper';
 
 describe('ResourceController', () => {
     let app = createServer();
     beforeAll(async () => {
         await connectDB("mongodb://localhost:27017");
+        await DatabaseHelper.EmptyDatabase();
+    
     });
     afterEach(() => {
         jest.restoreAllMocks();

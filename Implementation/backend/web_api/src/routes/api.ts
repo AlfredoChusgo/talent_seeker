@@ -3,6 +3,7 @@ import {SkillController} from '../controllers/skill_controller';
 import { RoleController } from "../controllers/role_controller";
 import { ResourceController } from "../controllers/resource_controller";
 import { TeamController } from "../controllers/team_controller";
+import { SearchController } from "../controllers/search_controller";
 
 
 export const router : Router = Router();
@@ -31,3 +32,5 @@ router.get("/teams/:id",TeamController.findById);
 router.put("/teams/:id",TeamController.update);
 router.delete("/teams/:id",TeamController.delete);
 
+router.get("/getSearchItems",SearchController.getSearchItems);
+router.get("/getTeamsSearchItems",SearchController.getTeamsSearchItems);

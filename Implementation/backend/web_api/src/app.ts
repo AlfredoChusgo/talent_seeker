@@ -10,6 +10,7 @@ dotenv.config(); // Load environment variables from .env file
 //import skillsRoutes from './controllers/skill_routes';
 //import { SkillRepository } from './data_layer/repositories/skill_repository';
 import { router } from './routes/api';
+import errorHandler from './helpers/error_handler_helper';
 //import router from './controllers/skill_routes';
 
 const server = express();
@@ -21,7 +22,7 @@ export function createServer(): Express {
   server.use(express.json());
   // Use the skills router for '/skills' routes
   server.use('/api', router); // Replace '/api' with your desired API base path
-  
+  server.use(errorHandler);
   return server;
 }
 
