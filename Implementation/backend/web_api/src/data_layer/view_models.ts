@@ -1,5 +1,5 @@
 export interface SearchItem {
-    id: string;
+    _id: string;
     displayName : string;
     objectType: string;
 }

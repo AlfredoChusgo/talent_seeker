@@ -13,7 +13,7 @@ export class SearchController {
 
         skills.forEach(skill => {
             result.push({
-                id: skill._id,
+                _id: skill._id,
                 displayName: `${skill.name}`,
                 objectType: 'skill',
             });
@@ -21,7 +21,7 @@ export class SearchController {
 
         roles.forEach(role => {
             result.push({
-                id: role._id,
+                _id: role._id,
                 displayName: `${role.name}`,
                 objectType: 'role',
             });
@@ -29,7 +29,7 @@ export class SearchController {
 
         resources.forEach(resource => {
             result.push({
-                id: resource._id,
+                _id: resource._id,
                 displayName: `${resource.name}`,
                 objectType: 'resource',
             });
@@ -45,7 +45,7 @@ export class SearchController {
 
         teams.forEach(team => {
             result.push({
-                id: team._id,
+                _id: team._id,
                 displayName: `${team.name}`,
                 objectType: 'team',
             });
