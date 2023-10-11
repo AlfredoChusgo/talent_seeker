@@ -1,11 +1,11 @@
-export enum SkillLevel
-{
-    Novice,         
-    Beginner,       
-    Intermediate,   
-    Proficient,     
-    Advanced,      
-    Expert,         
+export enum SkillLevel {
+    Undefined= 'Undefined',
+    Novice = 'Novice',
+    Beginner = 'Beginner',
+    Intermediate = 'Intermediate',
+    Proficient = 'Proficient',
+    Advanced = 'Advanced',
+    Expert = 'Expert',
 }
 
 export enum SnackbarSeverity

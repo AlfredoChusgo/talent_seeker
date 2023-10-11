@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import {appConfig} from "./config/config_helper.ts";
 
 import "./index.css";
 import ErrorPage from "./pages/error_page";
@@ -17,6 +18,7 @@ import SnackbarComponent from "./redux/components/snackbar_component.tsx";
 import TeamsPage from "./redux/features/teams/teams_page.tsx";
 import './languajes/languaje_config.ts';
 import { DialogComponent } from "./redux/dialogs/dialog_component.tsx";
+
 
 const router = createBrowserRouter([
   {

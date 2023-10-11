@@ -1,13 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SkillLevel = void 0;
+// export enum SkillLevel
+// {
+//     Novice,         
+//     Beginner,       
+//     Intermediate,   
+//     Proficient,     
+//     Advanced,      
+//     Expert,         
+// }
 var SkillLevel;
 (function (SkillLevel) {
-    SkillLevel[SkillLevel["Novice"] = 0] = "Novice";
-    SkillLevel[SkillLevel["Beginner"] = 1] = "Beginner";
-    SkillLevel[SkillLevel["Intermediate"] = 2] = "Intermediate";
-    SkillLevel[SkillLevel["Proficient"] = 3] = "Proficient";
-    SkillLevel[SkillLevel["Advanced"] = 4] = "Advanced";
-    SkillLevel[SkillLevel["Expert"] = 5] = "Expert";
+    SkillLevel["Novice"] = "Novice";
+    SkillLevel["Beginner"] = "Beginner";
+    SkillLevel["Intermediate"] = "Intermediate";
+    SkillLevel["Proficient"] = "Proficient";
+    SkillLevel["Advanced"] = "Advanced";
+    SkillLevel["Expert"] = "Expert";
 })(SkillLevel = exports.SkillLevel || (exports.SkillLevel = {}));
 //# sourceMappingURL=models.js.map

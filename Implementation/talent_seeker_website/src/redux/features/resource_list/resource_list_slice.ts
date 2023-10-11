@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { ResourceItem, SearchResourceFilterQuery } from '../../../data/models';
-import { resourcesRepository } from '../../../data/repositories/in_memory_repositories';
+import respositories  from '../../../data/repositories/main_repo';
 import i18next from 'i18next';
 
 interface ResourceListState {
@@ -24,7 +24,7 @@ const initialState: ResourceListState = {
 export const fetchAllResourceItems = createAsyncThunk<ResourceItem[]>('resourcesList/fetchResourceItems', async ()   => {
   try {
     //const response = await axios.get("fake_data/resources_data.json");
-    const response = await resourcesRepository.getAll();
+    const response = await respositories.resourcesRepository.getAll();
     return response;
   } catch (error) {
     throw error;

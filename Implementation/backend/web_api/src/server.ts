@@ -3,9 +3,10 @@ import app, { createServer, startServer } from "./app";
 const server = createServer();
 const port:number = +(process.env.PORT ?? 3000);
 
-startServer(server, port,"")
+startServer(server, port,"mongodb://localhost:27017")
   .then(() => {
     // Server started successfully
+    console.log(`Server is running on port ${port}`);
   })
   .catch((error) => {
     console.error('Failed to start server:', error);

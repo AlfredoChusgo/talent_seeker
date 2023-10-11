@@ -1,39 +1,39 @@
-import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { PromiseState, SearchHomeItem } from '../../../data/models';
-import { searchRepository } from '../../../data/repositories/in_memory_repositories';
 import i18next from 'i18next';
+import repositories  from '../../../data/repositories/main_repo';
 interface SearchHomeState {
   items: SearchHomeItem[];
-  loading : PromiseState;
-  error : string;
+  loading: PromiseState;
+  error: string;
 }
 
 const initialState: SearchHomeState = {
-    items: [],
-    loading: PromiseState.IDLE,
-    error : "",
+  items: [],
+  loading: PromiseState.IDLE,
+  error: "",
 };
 
 export const fetchItems = createAsyncThunk('searchHome/fetchItems', async () => {
-    try {
-      const response = await searchRepository.getAllResources();
-      return response;
-    } catch (error) {
-      throw error;
-    }
-  });
-  
+  try {
+    const response = await repositories.searchRepository.getAllResources();
+    return response;
+  } catch (error) {
+    throw error;
+  }
+});
+
 const searchHomeSlice = createSlice({
   name: 'searchHome',
   initialState,
-  reducers: 
+  reducers:
   {
   },
-  extraReducers : (builder)=>{
+  extraReducers: (builder) => {
     builder.addCase(fetchItems.pending, (state) => {
-        state.loading = PromiseState.PENDING;
-      })
-      .addCase(fetchItems.fulfilled, (state,action) => {
+      state.loading = PromiseState.PENDING;
+    })
+      .addCase(fetchItems.fulfilled, (state, action) => {
         state.loading = PromiseState.SUCCEDED;
         state.items = action.payload;
       })

@@ -4,11 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode development",
-    "pro": "vite --mode development",
+    "dev": "vite",
     "build": "tsc && vite build",
-    "build:development": "NODE_ENV=development tsc && vite build",
-    "build:production": "NODE_ENV=production tsc && vite build",
+    "build:development": "dotenv -e config/.env.development tsc && vite build",
+    "build:production": "dotenv -e config/.env.production tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -19,6 +18,7 @@
     "@mui/material": "^5.14.9",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.0",
+    "dotenv": "^16.3.1",
     "i18next": "^23.5.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

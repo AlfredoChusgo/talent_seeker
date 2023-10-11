@@ -1,6 +1,6 @@
 import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit';
 import {  SearchItem } from '../../../data/models';
-import { searchRepository } from '../../../data/repositories/in_memory_repositories';
+import repositories  from '../../../data/repositories/main_repo';
 import i18next from 'i18next';
 
 interface SearchTeamState {
@@ -17,7 +17,7 @@ const initialState: SearchTeamState = {
 
 export const fetchTeamItems = createAsyncThunk<SearchItem[]>('searchTeam/fetchItems', async ():Promise<SearchItem[]> => {
     try {
-      const response = await searchRepository.getAllTeams();
+      const response = await repositories.searchRepository.getAllTeams();
       return response;
     } catch (error) {
       throw error;

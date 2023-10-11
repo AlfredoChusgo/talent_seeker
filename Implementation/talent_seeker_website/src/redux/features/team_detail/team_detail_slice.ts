@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { SnackbarSeverity, TeamItem } from '../../../data/models';
-import { resourcesRepository, teamsRepository } from '../../../data/repositories/in_memory_repositories';
+import repositories  from '../../../data/repositories/main_repo';
 import { showSnackbar } from '../global_snackbar/global_snackbar_slice.ts';
-import { ErrorSharp } from '@mui/icons-material';
-import { fetchItems } from '../search_home/search_home_slice.ts';
 import { fetchTeamItems } from '../search_team/search_team_slice.ts';
 import i18next from 'i18next';
 import {v4 as uuidv4} from 'uuid';
@@ -21,7 +19,7 @@ const initialState: TeamDetailState = {
 
 export const fetchTeamDetail = createAsyncThunk<TeamItem, { teamId: string }>('teamDetail/fetchTeam', async ({ teamId }) => {
   try {
-    const teamResponse = await teamsRepository.getById(teamId);
+    const teamResponse = await repositories.teamsRepository.getById(teamId);
     return teamResponse;
   } catch (error) {
     throw error;
@@ -30,12 +28,12 @@ export const fetchTeamDetail = createAsyncThunk<TeamItem, { teamId: string }>('t
 
 export const removeResourceFromTeam = createAsyncThunk<TeamItem, { resourceId: string, teamId: string }>('teamDetail/removeResourceFromTeam', async ({ resourceId, teamId }, thunkAPI) => {
   try {
-    const teamResponse = await teamsRepository.getById(teamId);
+    const teamResponse = await repositories.teamsRepository.getById(teamId);
     let resourcesUpdated = [...teamResponse.resources.filter(resource => resource.id != resourceId)];
     let teamUpdated: TeamItem = { ...teamResponse, resources: resourcesUpdated };
-    await teamsRepository.update(teamUpdated);
+    await repositories.teamsRepository.update(teamUpdated);
     thunkAPI.dispatch(showSnackbar({ message: i18next.t('resources.resourceRemoved'), severity: SnackbarSeverity.Error, }));
-    return await teamsRepository.getById(teamId);
+    return await repositories.teamsRepository.getById(teamId);
   } catch (error) {
     throw error;
   }
@@ -49,7 +47,7 @@ export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string
       throw new Error(errorMessage);
     }
 
-    const teamResponse = await teamsRepository.getById(teamId);
+    const teamResponse = await repositories.teamsRepository.getById(teamId);
     const isResourcecInTeam = teamResponse.resources.some(resource => resource.id === resourceId);
 
     if (isResourcecInTeam) {
@@ -58,7 +56,7 @@ export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string
       throw new Error(errorMessage);
     }
 
-    const resourceResponse = await resourcesRepository.getById(resourceId);
+    const resourceResponse = await repositories.resourcesRepository.getById(resourceId);
     if (!resourceResponse) {
       const errorMessage = i18next.t('teams.resourceAlreadyInTeam');
       thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
@@ -67,11 +65,11 @@ export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string
 
     let resourcesUpdated = [...teamResponse.resources, resourceResponse];
     let teamUpdated: TeamItem = { ...teamResponse, resources: resourcesUpdated };
-    await teamsRepository.update(teamUpdated);
+    await repositories.teamsRepository.update(teamUpdated);
 
     thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.resourceAddedToTeam'), severity: SnackbarSeverity.Success, }));
 
-    return await teamsRepository.getById(teamId);
+    return await repositories.teamsRepository.getById(teamId);
   } catch (error) {
     throw error;
   }
@@ -79,7 +77,7 @@ export const addResourceToTeam = createAsyncThunk<TeamItem, { resourceId: string
 
 export const removeTeam = createAsyncThunk<void, { teamId: string }>('teamDetail/removeTeam', async ({ teamId }, thunkAPI) => {
   try {
-    await teamsRepository.delete(teamId);
+    await repositories.teamsRepository.delete(teamId);
     thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.teamRemoved'), severity: SnackbarSeverity.Info, }));
     thunkAPI.dispatch(fetchTeamItems());
   } catch (error: any) {
@@ -97,11 +95,11 @@ export const addTeam = createAsyncThunk<TeamItem , {teamName: string}>('teamDeta
       name : teamName,
       resources: []
     };
-    await teamsRepository.create(newTeam);
+    await repositories.teamsRepository.create(newTeam);
 
     thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.teamCreated'), severity: SnackbarSeverity.Success }));
     thunkAPI.dispatch(fetchTeamItems());
-    return await teamsRepository.getById(newTeam.id);    
+    return await repositories.teamsRepository.getById(newTeam.id);    
   } catch (error: any) {
     const errorMessage = error ? error.message : i18next.t('error.common.anErrorOcurred');
     thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
@@ -112,11 +110,11 @@ export const addTeam = createAsyncThunk<TeamItem , {teamName: string}>('teamDeta
 export const editTeam = createAsyncThunk<TeamItem , {teamItemUpdated: TeamItem}>('teamDetail/editTeam', async ( {teamItemUpdated} , thunkAPI) => {
   try {
 
-    await teamsRepository.update(teamItemUpdated);
+    await repositories.teamsRepository.update(teamItemUpdated);
 
     thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.teamUpdated'), severity: SnackbarSeverity.Success }));
     thunkAPI.dispatch(fetchTeamItems());
-    return await teamsRepository.getById(teamItemUpdated.id);
+    return await repositories.teamsRepository.getById(teamItemUpdated.id);
   } catch (error: any) {
     const errorMessage = error ? error.message : i18next.t('error.common.anErrorOcurred');
     thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
