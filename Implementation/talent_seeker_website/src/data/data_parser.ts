@@ -52,7 +52,7 @@ export class DataParser{
                 lastName : data.lastName ?? "",
                 birthDate: data.birthDate ?? "",
                 occupation: data.occupation ?? "",
-                location : data.location ?? "",
+                locality : data.location ?? "",
                 biography : data.biography ?? "",
                 role : DataParser.Role.fromWebApiObject(data.role) ?? { id:"",name:""},
                 skills : DataParser.Skill.fromWebApi(data.skills) ?? []
@@ -61,14 +61,14 @@ export class DataParser{
     };
 
     static Team = class {
-        static fromWebApi(data:any):TeamItem[]{
+        static fromWebApiArray(data:any):TeamItem[]{
             return  data.map((team:any)=> this.fromWebApiObject(team));
         }
         static fromWebApiObject(data:any):TeamItem{
             return  {
                 id: data._id ?? "",
                 name: data.name ?? "",
-                resources : data.resources.map((resource:any)=>(DataParser.Resource.fromWebApiArray(resource))) ?? []
+                resources : DataParser.Resource.fromWebApiArray(data.resources) ?? []
             };
         }
     };

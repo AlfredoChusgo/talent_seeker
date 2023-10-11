@@ -13,7 +13,7 @@ const initialState : ResourceDetailState = {
         lastName: "",
         birthDate: "",
         occupation: "",
-        location: "",
+        locality: "",
         biography: "",
         role: {
             id: "",

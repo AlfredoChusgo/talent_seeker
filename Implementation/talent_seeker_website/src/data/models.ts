@@ -22,7 +22,7 @@ export interface ResourceItem{
     lastName : string ;
     birthDate: string;
     occupation : string;
-    location : string;
+    locality : string;
     biography : string;
     role: RoleItem;
     skills: SkillItem[]

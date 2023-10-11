@@ -7,7 +7,20 @@ export class TeamController {
 
     public static async getAll(req: Request, res: Response) {
 
-        const models = await TeamModel.find({});
+        const models = await TeamModel.find({}).populate({
+            path: 'resources',
+            model: 'Resources',
+            populate: [
+                {
+                    path: 'role',
+                    model: 'Role'
+                },
+                {
+                    path: 'skills',
+                    model: 'Skills'
+                }
+            ]
+          });
         const response = ResponseHelper.createResponseSuccess("", models);
         return res.json(response);
     }
@@ -50,7 +63,20 @@ export class TeamController {
         }
 
         const { id } = req.params;
-        const model = await TeamModel.findById(id);
+        const model = await TeamModel.findById(id).populate({
+            path: 'resources',
+            model: 'Resource',
+            populate: [
+                {
+                    path: 'role',
+                    model: 'Role'
+                },
+                {
+                    path: 'skills',
+                    model: 'Skill'
+                }
+            ]
+          });
         if (!model) {
             return ResponseHelper.createErrorResponse([`No document found with the specified ID:${id}`]);
         }

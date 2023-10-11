@@ -22,9 +22,8 @@ export class WebApiResourceRepository implements IResourceRepository {
 
 
     async getAll(): Promise<ResourceItem[]> {
-        const response = await axios.get(`${WebApiResourceRepository.baseUrl}/api/resources`);
-        
         try {
+            const response = await axios.get(`${WebApiResourceRepository.baseUrl}/api/resources`);
             if(response.data.success){
                 return DataParser.Resource.fromWebApiArray(response.data.data);
             }
@@ -35,52 +34,48 @@ export class WebApiResourceRepository implements IResourceRepository {
     }
 
     async getById(id: string): Promise<ResourceItem> {
-        
-
-        // const resource = this.resources.find(r => r.id === id);
-        // if (!resource) throw new Error('Resource not found');
-        // return resource;
-        return {
-            biography:"",
-            birthDate:"",
-            id:"",
-            lastName:"",
-            location:"",
-            name:"",
-            occupation:"",
-            role: {
-                id:"",
-                name:""
-            },
-            skills:[]
-        };
+    
+        try {
+            const response = await axios.get(`${WebApiResourceRepository.baseUrl}/api/resources/${id}`);            
+            console.log(response.data);
+            return response.data;
+          } catch (error) {
+            console.error('There was an error!', error);
+            throw error;
+          }
     }
 
     async create(item: ResourceItem): Promise<void> {
-        
-
-        //this.resources.push(item);
+        try {
+            const response = await axios.post(`${WebApiResourceRepository.baseUrl}/api/resources`,item);            
+            console.log(response.data);
+        } catch (error) {
+            console.error('There was an error!', error);
+        }
     }
 
     async update(item: ResourceItem): Promise<void> {
         
-
-        // const index = this.resources.findIndex(r => r.id === item.id);
-        // if (index === -1) throw new Error('Resource not found');
-        // this.resources[index] = item;
+        try {
+            const response = await axios.put(`${WebApiResourceRepository.baseUrl}/api/resources/${item.id}`,item);
+            console.log(response.data);
+        } catch (error) {
+            console.error('There was an error!', error);
+        }
     }
 
     async delete(itemId: string): Promise<void> {
-        
-        //this.resources = this.resources.filter(r => r.id !== itemId);
+        try {
+            const response = await axios.delete(`${WebApiResourceRepository.baseUrl}/api/resources/${itemId}`);
+            console.log(response.data);
+        } catch (error) {
+            console.error('There was an error!', error);
+        }
     }
 }
 
 export class WebApiTeamRepository implements ITeamRepository {
-
-    private teams: TeamItem[] = [];
-    private isLoaded: boolean = false;
-
+    private static baseUrl : string = appConfig.backendWebApiUrl;
     private static instance : WebApiTeamRepository;
 
     private constructor() {
@@ -94,54 +89,67 @@ export class WebApiTeamRepository implements ITeamRepository {
         return WebApiTeamRepository.instance;
     }
 
-    private async loadResources(): Promise<void> {
 
+    async getAll(): Promise<TeamItem[]> {
         try {
-            const response = await axios.get("fake_data/teams_data.json");
-            this.teams = response.data;
-            this.isLoaded = true;
+            const response = await axios.get(`${WebApiTeamRepository.baseUrl}/api/teams`);
+            if(response.data.success){
+                return DataParser.Team.fromWebApiArray(response.data.data);
+            }
+            throw Error(response.data.errors);
         } catch (error) {
             throw error;
         }
     }
 
-    private async load(): Promise<void> {
-        if (!this.isLoaded) {
-            await this.loadResources();
-        }
-    }
-
-
-    async getAll(): Promise<TeamItem[]> {
-        
-        return this.teams;
-    }
-
     async getById(id: string): Promise<TeamItem> {
-        
-        const team = this.teams.find(t => t.id === id);
-        if (!team) throw new Error('Team not found');
-        return team;
+        try {
+            const response = await axios.get(`${WebApiTeamRepository.baseUrl}/api/teams/${id}`);
+            if(response.data.success){
+                return DataParser.Team.fromWebApiObject(response.data.data);
+            }
+            throw Error(response.data.errors);
+        } catch (error) {
+            throw error;
+        }
     }
 
     async create(item: TeamItem): Promise<void> {
         
-        this.teams.push(item);
+        try {
+            const response = await axios.post(`${WebApiTeamRepository.baseUrl}/api/teams`,item);
+            if(!response.data.success){                
+                throw Error(response.data.errors);
+            }
+            
+        } catch (error) {
+            throw error;
+        }
     }
 
     async update(item: TeamItem): Promise<void> {
-        
-        const index = this.teams.findIndex(t => t.id === item.id);
-        if (index === -1) throw new Error('Team not found');
-        this.teams[index] = item;
+        try {
+            const response = await axios.put(`${WebApiTeamRepository.baseUrl}/api/teams/${item.id}`,item);
+            if(!response.data.success){                
+                throw Error(response.data.errors);
+            }
+            console.log(response.data);
+        } catch (error) {
+            console.error('There was an error!', error);
+            throw error;
+        }
     }
 
     async delete(itemId: string): Promise<void> {
-        
-        const index = this.teams.findIndex(t => t.id === itemId);
-        if (index === -1) throw new Error('Team not found');
-
-        this.teams = this.teams.filter(t => t.id !== itemId);
+        try {
+            const response = await axios.delete(`${WebApiTeamRepository.baseUrl}/api/resources/${itemId}`);
+            if(!response.data.success){                
+                throw Error(response.data.errors);
+            }
+            console.log(response.data);
+        } catch (error) {
+            console.error('There was an error!', error);
+        }
     }
 }
 

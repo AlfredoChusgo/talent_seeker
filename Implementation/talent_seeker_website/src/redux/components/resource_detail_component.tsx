@@ -43,7 +43,7 @@ export default function ResourceDetailComponent() {
                             </Typography>
                             <Typography variant="body2" color="text.secondary" component="div">
                                 {resource.occupation}
-                                {resource.location}
+                                {resource.locality}
                             </Typography>
                         </CardContent>
                     </Card>
