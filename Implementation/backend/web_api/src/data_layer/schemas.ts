@@ -63,7 +63,7 @@ const resourceSchema = new Schema<ResourceDocument>({
 // Define the Team schema
 const teamSchema = new Schema<TeamDocument>({
   name: String,
-  resources: [{ type: Schema.Types.ObjectId, ref: 'Resource' }]// Reference an array of Resources
+  resources: [{ type: Schema.Types.ObjectId, ref: 'Resource' ,default:[]}]// Reference an array of Resources
 });
 
 // Create and export the models based on the schemas

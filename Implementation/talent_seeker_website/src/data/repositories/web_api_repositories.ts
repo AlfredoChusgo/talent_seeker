@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ResourceItem, SearchItem, TeamItem } from "../models";
+import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand } from "../models";
 import { IResourceRepository, ISearchRepository, ITeamRepository } from "./interfaces";
 import {appConfig} from '../../config/config_helper';
 import { DataParser } from "../data_parser";
@@ -37,8 +37,10 @@ export class WebApiResourceRepository implements IResourceRepository {
     
         try {
             const response = await axios.get(`${WebApiResourceRepository.baseUrl}/api/resources/${id}`);            
-            console.log(response.data);
-            return response.data;
+            if(response.data.success){
+                return DataParser.Resource.fromWebApiObject(response.data.data);
+            }
+            throw Error(response.data.errors);
           } catch (error) {
             console.error('There was an error!', error);
             throw error;
@@ -114,14 +116,15 @@ export class WebApiTeamRepository implements ITeamRepository {
         }
     }
 
-    async create(item: TeamItem): Promise<void> {
+    async create(item: TeamCreateCommand): Promise<TeamItem> {
         
         try {
+            //const teamCreateCommand = DataParser.Team.toTeamWebApiUpdate(item);
             const response = await axios.post(`${WebApiTeamRepository.baseUrl}/api/teams`,item);
             if(!response.data.success){                
-                throw Error(response.data.errors);
+                throw Error(response.data.errors);                
             }
-            
+            return DataParser.Team.fromWebApiObject(response.data.data);
         } catch (error) {
             throw error;
         }
@@ -129,7 +132,8 @@ export class WebApiTeamRepository implements ITeamRepository {
 
     async update(item: TeamItem): Promise<void> {
         try {
-            const response = await axios.put(`${WebApiTeamRepository.baseUrl}/api/teams/${item.id}`,item);
+            const teamUpdateCommand = DataParser.Team.toTeamWebApiUpdate(item);
+            const response = await axios.put(`${WebApiTeamRepository.baseUrl}/api/teams/${item.id}`,teamUpdateCommand);
             if(!response.data.success){                
                 throw Error(response.data.errors);
             }
@@ -142,13 +146,14 @@ export class WebApiTeamRepository implements ITeamRepository {
 
     async delete(itemId: string): Promise<void> {
         try {
-            const response = await axios.delete(`${WebApiTeamRepository.baseUrl}/api/resources/${itemId}`);
+            const response = await axios.delete(`${WebApiTeamRepository.baseUrl}/api/teams/${itemId}`);
             if(!response.data.success){                
                 throw Error(response.data.errors);
             }
             console.log(response.data);
         } catch (error) {
             console.error('There was an error!', error);
+            throw error;
         }
     }
 }

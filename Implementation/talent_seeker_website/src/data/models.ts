@@ -69,3 +69,15 @@ export interface TeamItem{
     name : string;
     resources : ResourceItem[];
 }
+
+///web api 
+
+export interface TeamCreateCommand{
+    name : string;
+    resources : string[];
+}
+export interface TeamUpdateCommand{
+    id:string;
+    name : string;
+    resources : string[];
+}

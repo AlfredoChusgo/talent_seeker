@@ -20,7 +20,7 @@ export class TeamController {
                     model: 'Skills'
                 }
             ]
-          });
+        });
         const response = ResponseHelper.createResponseSuccess("", models);
         return res.json(response);
     }
@@ -48,12 +48,17 @@ export class TeamController {
         const { id } = req.params;
         const command = {
             name: req.body.name,
-            resources : req.body.resources,
+            resources: req.body.resources,
         };
-        const updateModel = await TeamModel.findOneAndUpdate({ _id: id }, command, { new: true });
+        try {
+            const updateModel = await TeamModel.findOneAndUpdate({ _id: id }, command, { new: true });
+            const response = ResponseHelper.createResponseSuccess("Team updated successfuly", updateModel);
+            return res.json(response);
+        } catch (error) {
+            throw error
+        }
 
-        const response = ResponseHelper.createResponseSuccess("Team updated successfuly", updateModel);
-        return res.json(response);
+
     }
 
     public static async findById(req: Request, res: Response) {
@@ -76,7 +81,7 @@ export class TeamController {
                     model: 'Skill'
                 }
             ]
-          });
+        });
         if (!model) {
             return ResponseHelper.createErrorResponse([`No document found with the specified ID:${id}`]);
         }

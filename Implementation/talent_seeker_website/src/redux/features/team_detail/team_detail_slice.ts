@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { SnackbarSeverity, TeamItem } from '../../../data/models';
+import { SnackbarSeverity, TeamCreateCommand, TeamItem } from '../../../data/models';
 import repositories  from '../../../data/repositories/main_repo';
 import { showSnackbar } from '../global_snackbar/global_snackbar_slice.ts';
 import { fetchTeamItems } from '../search_team/search_team_slice.ts';
 import i18next from 'i18next';
 import {v4 as uuidv4} from 'uuid';
+import { DataParser } from '../../../data/data_parser.ts';
 interface TeamDetailState {
   teamDetail: TeamItem;
   loading: boolean;
@@ -90,16 +91,15 @@ export const removeTeam = createAsyncThunk<void, { teamId: string }>('teamDetail
 export const addTeam = createAsyncThunk<TeamItem , {teamName: string}>('teamDetail/addTeam', async ( {teamName} , thunkAPI) => {
   try {
 
-    const newTeam : TeamItem = {
-      id: uuidv4(),
+    const newTeam : TeamCreateCommand = {
       name : teamName,
       resources: []
     };
-    await repositories.teamsRepository.create(newTeam);
+    const createdItem = await repositories.teamsRepository.create(newTeam);
 
     thunkAPI.dispatch(showSnackbar({ message: i18next.t('teams.teamCreated'), severity: SnackbarSeverity.Success }));
     thunkAPI.dispatch(fetchTeamItems());
-    return await repositories.teamsRepository.getById(newTeam.id);    
+    return await repositories.teamsRepository.getById(createdItem.id);
   } catch (error: any) {
     const errorMessage = error ? error.message : i18next.t('error.common.anErrorOcurred');
     thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));

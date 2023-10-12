@@ -1,4 +1,4 @@
-import { ResourceItem, SearchItem, TeamItem } from "../models";
+import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand } from "../models";
 
 export interface IResourceRepository{
     getAll(): Promise<ResourceItem[]>;
@@ -17,7 +17,7 @@ export interface ITeamRepository{
 
     getById(id : string): Promise<TeamItem>;
 
-    create(item : TeamItem) : Promise<void>;
+    create(item : TeamCreateCommand) : Promise<TeamItem>;
 
     update(item : TeamItem) : Promise<void>;
 

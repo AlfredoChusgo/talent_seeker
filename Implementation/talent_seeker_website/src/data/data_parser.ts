@@ -1,4 +1,4 @@
-import { ResourceItem, RoleItem, SearchItem, SkillItem, SkillLevel, TeamItem } from "./models";
+import { ResourceItem, RoleItem, SearchItem, SkillItem, SkillLevel, TeamCreateCommand, TeamItem, TeamUpdateCommand } from "./models";
 
 
 export class DataParser{
@@ -71,6 +71,24 @@ export class DataParser{
                 resources : DataParser.Resource.fromWebApiArray(data.resources) ?? []
             };
         }
+
+
+        static toTeamWebApiCreate(data:TeamItem) : TeamCreateCommand{
+            return {
+                name: data.name,
+                resources : data.resources.map((e:ResourceItem)=> e.id)
+            }
+        }
+
+        static toTeamWebApiUpdate(data:TeamItem) : TeamUpdateCommand{
+            return {
+                id:data.id,
+                name: data.name,
+                resources : data.resources.map((e:ResourceItem)=> e.id)
+            }
+        }
+
+
     };
 
     static SearchItem = class {
