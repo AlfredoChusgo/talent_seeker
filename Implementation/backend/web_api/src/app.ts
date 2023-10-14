@@ -5,7 +5,7 @@ import express from 'express';
 import { Express } from 'express';
 import cors from 'cors';
 //import { SkillRepository } from './SkillRepository';
-dotenv.config(); // Load environment variables from .env file
+
 
 //import skillsRoutes from './controllers/skill_routes';
 //import { SkillRepository } from './data_layer/repositories/skill_repository';

@@ -58,7 +58,7 @@ const resourceSchema = new mongoose_1.Schema({
 // Define the Team schema
 const teamSchema = new mongoose_1.Schema({
     name: String,
-    resources: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Resource' }] // Reference an array of Resources
+    resources: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Resource', default: [] }] // Reference an array of Resources
 });
 // Create and export the models based on the schemas
 exports.SkillModel = mongoose_1.default.model('Skill', skillSchema);

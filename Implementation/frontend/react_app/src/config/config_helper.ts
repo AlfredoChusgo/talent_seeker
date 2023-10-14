@@ -11,6 +11,8 @@ export const appConfig: AppConfig = {
   debug: parseBoolean(import.meta.env.VITE_APP_DEBUG, false)
 }
 
+console.log(appConfig);
+
 
 function parseBoolean(value: string | boolean | undefined, defaultValue: boolean = false): boolean {
   if (typeof value === 'boolean') {

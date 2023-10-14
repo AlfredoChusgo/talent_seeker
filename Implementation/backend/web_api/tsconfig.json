@@ -4,13 +4,12 @@
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
-    "strict": true,
-    
-    //"exclude": ["node_modules"]
+    "strict": true,    
     "esModuleInterop": true ,//need to understand this
     "sourceMap":true,
     
   },
+  "exclude": ["node_modules","src/test/**/*"],
   "include": ["src/**/*.ts"]
 }
 
