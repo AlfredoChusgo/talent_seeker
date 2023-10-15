@@ -1,6 +1,4 @@
-import { MongoClient } from 'mongodb';
 import { connectDB } from './data_layer/databases/moongose_config';
-import * as dotenv from 'dotenv';
 import express from 'express';
 import { Express } from 'express';
 import cors from 'cors';
@@ -21,7 +19,7 @@ export function createServer(): Express {
 
   //cors 
   const corsOptions = {
-    origin: 'http://127.0.0.1:5173', // Replace with the actual origin of your React app
+    origin: 'http://webapi:3000', // Replace with the actual origin of your React app
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: false, // Allow cookies and credentials to be sent
   };

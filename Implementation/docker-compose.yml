@@ -26,7 +26,7 @@ services:
     ports:
       - '8080:80'           # Map the container's port to host port
     environment:
-      - VITE_APP_BACKEND_WEB_API_URL=http://webapi:3000
+      - BACKEND_WEB_API_URL=http://webapi:3000
       - VITE_APP_DEBUG=TRUE
     depends_on:
       - webapi

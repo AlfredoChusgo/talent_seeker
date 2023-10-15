@@ -1,3 +1,4 @@
+import  {defineConfig}  from 'vite';
 
 interface AppConfig {
   isProduction: boolean,
@@ -7,12 +8,12 @@ interface AppConfig {
 
 export const appConfig: AppConfig = {
   isProduction: parseBoolean(import.meta.env.PROD, false),
-  backendWebApiUrl: import.meta.env.VITE_APP_BACKEND_WEB_API_URL?.toString() ?? "",
+  backendWebApiUrl: import.meta.env.VITE_APP_BACKEND_WEB_API_URL?.toString() ?? "test",
+  // backendWebApiUrl: window.BACKEND_WEB_API_URL ?? "test",
+  // backendWebApiUrl: BACKEND_WEB_API_URL ?? "test",
   debug: parseBoolean(import.meta.env.VITE_APP_DEBUG, false)
 }
-
-console.log(appConfig);
-
+// console.log(`EnvVariablesReactApp : ${JSON.stringify(env)}`);
 
 function parseBoolean(value: string | boolean | undefined, defaultValue: boolean = false): boolean {
   if (typeof value === 'boolean') {
