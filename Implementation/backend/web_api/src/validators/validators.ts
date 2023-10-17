@@ -13,6 +13,11 @@ export class Validators {
         message: 'Invalid Id',
     });
 
+    static skillValidator = z.object({
+        skill : Validators.idValidator,
+        skillLevel: z.nativeEnum(SkillLevel),
+    });
+
     // Define a custom schema for ISO 8601 date strings
     static isoDateStringSchema = z.string().refine((value) => {
         const dateObject = new Date(value);
@@ -29,7 +34,7 @@ export class Validators {
 
                 const schema = z.object({
                     name: z.string().min(1, 'Name must not be empty'),
-                    skillLevel: z.nativeEnum(SkillLevel),
+                    // skillLevel: z.nativeEnum(SkillLevel),
                 });
                 schema.parse(command);
             });
@@ -44,7 +49,7 @@ export class Validators {
                 const schema = z.object({
                     id: Validators.idValidator,
                     name: z.string().min(1, 'Name must not be empty'),
-                    skillLevel: z.nativeEnum(SkillLevel),
+                    // skillLevel: z.nativeEnum(SkillLevel),
                 });
                 schema.parse(command);
             });
@@ -101,7 +106,8 @@ export class Validators {
                     locality: z.string().min(3, 'Should be at least 3 characters long'),
                     biography: z.string().min(10, 'Should be at least 3 characters long'),
                     role : Validators.optionalIdValidator,
-                    skills : z.array(Validators.idValidator).default([])
+                    // skills : z.array(Validators.idValidator).default([])
+                    skills : z.array(Validators.skillValidator).default([])
                 });
                 schema.parse(command);
             });
@@ -122,7 +128,8 @@ export class Validators {
                     locality: z.string().min(3, 'Should be at least 3 characters long'),
                     biography: z.string().min(10, 'Should be at least 3 characters long'),
                     role : Validators.optionalIdValidator,
-                    skills : z.array(Validators.idValidator).default([])
+                    // skills : z.array(Validators.idValidator).default([])                    
+                    skills : z.array(Validators.skillValidator).default([])
                 });
                 schema.parse(command);
             });

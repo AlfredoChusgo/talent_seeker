@@ -24,6 +24,18 @@ export interface ITeamRepository{
     delete(itemId : string) : Promise<void>;
 }
 
+export interface ISkillRepository{
+    getAll(): Promise<TeamItem[]>;
+
+    getById(id : string): Promise<TeamItem>;
+
+    create(item : TeamCreateCommand) : Promise<TeamItem>;
+
+    update(item : TeamItem) : Promise<void>;
+
+    delete(itemId : string) : Promise<void>;
+}
+
 export interface ISearchRepository {
     getAllResources(): Promise<SearchItem[]>;
     getAllTeams(): Promise<SearchItem[]>;

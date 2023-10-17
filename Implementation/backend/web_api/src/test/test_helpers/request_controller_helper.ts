@@ -9,7 +9,6 @@ export class RequestControllerHelper {
     public static getSkillCreateRequestBody(): SkillCreateCommand {
         return {
             name: faker.company.name(),
-            skillLevel: faker.helpers.enumValue(SkillLevel)
         };
     }
 
@@ -29,7 +28,11 @@ export class RequestControllerHelper {
             locality: faker.location.country(),
             biography: faker.lorem.paragraphs(5),
             role: role,
-            skills: skillIds.map(skillId => new mongoose.Types.ObjectId(skillId))
+            // skills: skillIds.map(skillId => new mongoose.Types.ObjectId(skillId))
+            skills: skillIds.map(skillId => ({
+                skill: new mongoose.Types.ObjectId(skillId),
+                skillLevel: faker.helpers.enumValue(SkillLevel)
+            }))
         };
 
         const resource: ResourceDocument = resourceData as ResourceDocument;

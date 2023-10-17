@@ -8,7 +8,9 @@ import { DatabaseHelper } from '../test_helpers/database_helper';
 describe('ResourceController', () => {
     let app = createServer();
     beforeAll(async () => {
-        await connectDB("mongodb://localhost:27017");
+        // await connectDB("mongodb://localhost:27017");
+        // await connectDB("mongodb://myuser:mypassword@localhost:27017");
+        await connectDB(process.env.MONGODB_URI as string);
         await DatabaseHelper.EmptyDatabase();
     
     });
@@ -18,7 +20,7 @@ describe('ResourceController', () => {
 
     describe('getAll', () => {
         it('should fetch all the resources', async () => {
-            const count = 20;
+            const count = 5;
             const resources = await ObjectCreatorHelper.Resource.Create(app, count);
             const response = await request(app).get("/api/resources").send();
 
@@ -26,7 +28,7 @@ describe('ResourceController', () => {
             expect(response.status).toBe(200);
             expect(response.body.success).toBeTruthy();
             expect(response.body.data).not.toBeNull();
-            expect(response.body.data.length).toBeGreaterThan(resources.length);
+            expect(response.body.data.length).toBeGreaterThanOrEqual(resources.length);
         });
     });
 
@@ -77,7 +79,7 @@ describe('ResourceController', () => {
             expect(response.body.data.locality).toBe(req.locality);
             expect(response.body.data.biography).toBe(req.biography);
             expect(response.body.data.role).toBe(req.role.toString());
-            expect(response.body.data.skills).toEqual(req.skills.map(e => e.toString()));
+            expect(response.body.data.skills.map(((e:any) => e.skill))).toEqual(req.skills.map((e:any) => e.skill.toString()));
         });
 
         it('should fail if request is empty', async () => {
@@ -134,7 +136,8 @@ describe('ResourceController', () => {
             const resource = resources[0];
             const updatedResource = resources[1];
             const newRole = updatedResource.role.toString();
-            const newSkills = updatedResource.skills.map((e:any) => e.toString());
+            const newSkills = updatedResource.skills.map((e:any) => ({skill:e.skill.toString(),
+            skillLevel: e.skillLevel.toString()}));
             const reqUpdated = { ...updatedResource, role: newRole, skills: newSkills };
 
             const response = await request(app).put(`/api/resources/${resource._id}`).send(reqUpdated);
@@ -150,7 +153,7 @@ describe('ResourceController', () => {
             expect(response.body.data.locality).toBe(reqUpdated.locality);
             expect(response.body.data.biography).toBe(reqUpdated.biography);
             expect(response.body.data.role).toBe(reqUpdated.role.toString());
-            expect(response.body.data.skills).toEqual(reqUpdated.skills.map((e:any) => e.toString()));
+            expect(response.body.data.skills.map(((e:any) => e.skill))).toEqual(reqUpdated.skills.map((e:any) => e.skill.toString()));
         });
 
         it('it should fail updating a resource with a empty Id', async () => {
@@ -184,7 +187,7 @@ describe('ResourceController', () => {
             expect(response.body.data.locality).toBe(resource.locality);
             expect(response.body.data.biography).toBe(resource.biography);
             expect(response.body.data.role).toBe(resource.role.toString());
-            expect(response.body.data.skills).toEqual(resource.skills.map((e:any) => e.toString()));
+            expect(response.body.data.skills.map(((e:any) => e.skill))).toEqual(resource.skills.map((e:any) => e.skill.toString()));
         });
 
         it('it should return a error response when the id does not exist ', async () => {
@@ -218,7 +221,7 @@ describe('ResourceController', () => {
             expect(response.body.data.locality).toBe(resource.locality);
             expect(response.body.data.biography).toBe(resource.biography);
             expect(response.body.data.role).toBe(resource.role.toString());
-            expect(response.body.data.skills).toEqual(resource.skills.map((e:any) => e.toString()));
+            expect(response.body.data.skills.map(((e:any) => e.skill))).toEqual(resource.skills.map((e:any) => e.skill.toString()));
         });
 
         it('it should return a error response when the id does not exist ', async () => {

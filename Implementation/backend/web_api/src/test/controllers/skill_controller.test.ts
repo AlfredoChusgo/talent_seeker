@@ -7,7 +7,8 @@ import { DatabaseHelper } from '../test_helpers/database_helper';
 describe('SkillController', () => {
     let app = createServer();
     beforeAll(async () => {
-        await connectDB("mongodb://localhost:27017");
+        // await connectDB("mongodb://localhost:27017");
+        await connectDB(process.env.MONGODB_URI as string);
         await DatabaseHelper.EmptyDatabase();
     });
     afterEach(() => {
@@ -68,7 +69,7 @@ describe('SkillController', () => {
         it('should fail if skill have a wrong value', async () => {
 
             const req = RequestControllerHelper.getSkillCreateRequestBody() as any;
-            req.skillLevel = 10;
+            req.name = "";
 
             const response = await request(app).post("/api/skills").send(req);
 
@@ -93,7 +94,7 @@ describe('SkillController', () => {
             expect(response.body.success).toBeTruthy();
             expect(response.body.data._id).toBe(modelId);
             expect(response.body.data.name).toBe(reqUpdated.name);
-            expect(response.body.data.skillLevel).toBe(`${reqUpdated.skillLevel}`);
+            // expect(response.body.data.skillLevel).toBe(`${reqUpdated.skillLevel}`);
         });
 
         it('it should fail updating a skill with a empty Id', async () => {
@@ -121,7 +122,6 @@ describe('SkillController', () => {
             expect(response.body.success).toBeTruthy();
             expect(response.body.data._id).toBe(modelId);
             expect(response.body.data.name).toBe(req.name);            
-            expect(response.body.data.skillLevel).toBe(`${req.skillLevel}`);
         });
 
         it('it should return a error response when the id does not exist ', async () => {
@@ -150,7 +150,6 @@ describe('SkillController', () => {
             expect(response.body.success).toBeTruthy();
             expect(response.body.data._id).toBe(modelId);
             expect(response.body.data.name).toBe(req.name);            
-            expect(response.body.data.skillLevel).toBe(`${req.skillLevel}`);
         });
 
         it('it should return a error response when the id does not exist ', async () => {

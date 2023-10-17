@@ -14,7 +14,7 @@ export class ObjectCreatorHelper {
 
     static Skill = class {
         static async Create(app: Express, count: number) {
-            const skills = [];
+            const skills:any[] = [];
             for (let index = 0; index < count; index++) {
                 const req = RequestControllerHelper.getSkillCreateRequestBody();
                 const response = await request(app).post("/api/skills").send(req);
@@ -26,7 +26,7 @@ export class ObjectCreatorHelper {
 
     static Resource = class {
         static async Create(app: Express, count: number) {
-            const resources = [];
+            const resources:any[] = [];
             for (let index = 0; index < count; index++) {
                 const role: any = await ObjectCreatorHelper.Role.Create(app);
                 const skills: any = await ObjectCreatorHelper.Skill.Create(app, 5);
@@ -42,7 +42,7 @@ export class ObjectCreatorHelper {
 
     static Team = class {
         static async Create(app: Express, teamCount: number, resourcesByTeamCount: number) {
-            const teams = [];
+            const teams :any[]= [];
             for (let index = 0; index < teamCount; index++) {
                 const resources: any = await ObjectCreatorHelper.Resource.Create(app,resourcesByTeamCount);
                 const resourceIds = resources.map((resource: any) => resource._id);

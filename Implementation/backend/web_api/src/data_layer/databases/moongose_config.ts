@@ -4,13 +4,11 @@ import mongoose from 'mongoose';
 //const mongodbUri = process.env.MONGODB_URI as string || "mongodb://myuser:mypassword@localhost:27017";
 //const mongodbUri = process.env.MONGODB_URI as string || "mongodb://localhost:27017";
 export async function connectDB(mongodbUri:string) {
-  //const mongodbUri = "mongodb://localhost:27017";
-
-  await mongoose.connect(mongodbUri);
-
-  const db = mongoose.connection;
-
   try {
+    await mongoose.connect(mongodbUri);
+
+    const db = mongoose.connection;
+
     db.on('error', (err) => {
       console.error('MongoDB connection error:', err);
     });

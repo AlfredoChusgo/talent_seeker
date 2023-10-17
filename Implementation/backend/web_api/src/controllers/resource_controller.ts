@@ -18,7 +18,7 @@ export class ResourceController {
         if (errors.length > 0) {
             return res.json(ResponseHelper.createErrorResponse(errors));
         }
-
+        
         try {
             const createModel = await ResourceModel.create(req.body);
             const response = ResponseHelper.createResponseSuccess("Resource created successfuly", createModel.toObject());

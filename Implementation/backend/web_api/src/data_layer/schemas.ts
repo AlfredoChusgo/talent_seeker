@@ -9,9 +9,12 @@ export interface TeamDocument extends Document {
 export interface RoleDocument extends Document {
   name: string;
 }
-
 export interface SkillDocument extends Document {
   name: string;
+}
+
+export interface ResourceSkillDocument{
+  skill: Types.ObjectId;
   skillLevel: SkillLevel;
 }
 
@@ -23,6 +26,14 @@ const skillSchema = new Schema<SkillDocument>({
     type: String,
     required: true
   },
+  // skillLevel: {
+  //   type: String, // You can store SkillLevel as a string in the database
+  //   enum: Object.values(SkillLevel), // Validate against SkillLevel values
+  // },
+});
+
+const resourceSkillSchema = new Schema<ResourceSkillDocument>({
+  skill: { type: Schema.Types.ObjectId, ref: 'Skill', required : true },
   skillLevel: {
     type: String, // You can store SkillLevel as a string in the database
     enum: Object.values(SkillLevel), // Validate against SkillLevel values
@@ -45,7 +56,8 @@ export interface ResourceDocument extends Document {
   locality: string;
   biography: string;
   role: Types.ObjectId;
-  skills: Types.ObjectId[];
+  // skills: Types.ObjectId[];
+  skills : ResourceSkillDocument[];
 }
 
 // Define the Resource schema
@@ -57,7 +69,15 @@ const resourceSchema = new Schema<ResourceDocument>({
   locality: String,
   biography: String,
   role: { type: Schema.Types.ObjectId, ref: 'Role', default: null }, // Reference the Role schema
-  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }], // Reference an array of Skills
+  // skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }], // Reference an array of Skills
+  // skills: [resourceSkillSchema], // Reference an array of Skills
+   skills: [{
+    skill: { type: Schema.Types.ObjectId, ref: 'Skill', required : true },
+    skillLevel: {
+      type: String, // You can store SkillLevel as a string in the database
+      enum: Object.values(SkillLevel), // Validate against SkillLevel values
+    },
+  }], // Reference an array of Skills
 });
 
 // Define the Team schema
