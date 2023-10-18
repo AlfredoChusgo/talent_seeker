@@ -1,4 +1,4 @@
-import { ResourceItem, RoleItem, SearchItem, SkillItem, SkillLevel, TeamCreateCommand, TeamItem, TeamUpdateCommand } from "./models";
+import { ResourceItem, RoleItem, SearchItem, SkillItem, SkillLevel, SkillResourceItem, TeamCreateCommand, TeamItem, TeamUpdateCommand } from "./models";
 
 
 export class DataParser{
@@ -18,25 +18,16 @@ export class DataParser{
 
     static Skill = class {
         
-        static fromWebApi(data:any[]):SkillItem[]{
-            return  data.map((e:any)=> ({
-                id: e?._id ?? "",
-                name: e?.name ?? "",
-                skillLevel : this.parseSkillLevel(e?.skillLevel ?? "")
-            }));
+        static fromWebApiArray(data:any[]):SkillItem[]{
+            return  data.map((e:any)=> (this.fromWebApiObject(e)));
         }
 
-        static parseSkillLevel(skillLevelStr: string): SkillLevel {
-            const skillLevelValues: SkillLevel[] = Object.values(SkillLevel);
-          
-            // Check if the input string is a valid enum value
-            if (skillLevelValues.includes(skillLevelStr as SkillLevel)) {
-              return skillLevelStr as SkillLevel;
+        static fromWebApiObject(data:any):SkillItem{
+            return  {
+                id: data?._id ?? "",
+                name: data?.name ?? ""                
             }
-          
-            // If the input string is not a valid enum value, return undefined or handle the error as needed
-            return SkillLevel.Undefined;
-          }
+        }
     };
 
     
@@ -54,10 +45,35 @@ export class DataParser{
                 occupation: data.occupation ?? "",
                 locality : data.location ?? "",
                 biography : data.biography ?? "",
-                role : DataParser.Role.fromWebApiObject(data.role) ?? { id:"",name:""},
-                skills : DataParser.Skill.fromWebApi(data.skills) ?? []
+                role : DataParser.Role.fromWebApiObject(data?.role) ?? { id:"",name:""},
+                skills : DataParser.SkillResource.fromWebApiArray(data?.skills ?? []) ?? []
             }
         }
+    };
+
+    static SkillResource = class {
+        static fromWebApiArray(data:any):SkillResourceItem[]{
+            return  data.map((resource:any)=> this.fromWebApiObject(resource));
+        }
+
+        static fromWebApiObject(data:any):SkillResourceItem{
+            return  {
+                skill : DataParser.Skill.fromWebApiObject(data.skills),
+                skillLevel : this.parseSkillLevel(data?.skillLevel ?? "")
+            }
+        }
+
+        static parseSkillLevel(skillLevelStr: string): SkillLevel {
+            const skillLevelValues: SkillLevel[] = Object.values(SkillLevel);
+          
+            // Check if the input string is a valid enum value
+            if (skillLevelValues.includes(skillLevelStr as SkillLevel)) {
+              return skillLevelStr as SkillLevel;
+            }
+          
+            // If the input string is not a valid enum value, return undefined or handle the error as needed
+            return SkillLevel.Undefined;
+          }
     };
 
     static Team = class {

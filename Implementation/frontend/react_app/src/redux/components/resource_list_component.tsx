@@ -60,13 +60,13 @@ export default function ResourceListComponent( {resourcesItems ,addButtonConfigu
         const skillsCards = skills.map(skill => {
 
             return (
-                <Grid key={skill.id} xs={3}>
+                <Grid key={skill.skill.id} xs={3}>
                     <Paper elevation={1}>
                         <Card sx={{ display: 'flex' }}>
 
                             <CardContent sx={{ flex: '1 0 auto' }}>
                                 <Typography variant="button" component="div" align="center" gutterBottom>
-                                    {skill.name}
+                                    {skill.skill.name}
                                 </Typography>
                                 <Typography variant="caption" color="text.secondary" align="center" gutterBottom>
                                     {getSkillLevelString(skill.skillLevel)}

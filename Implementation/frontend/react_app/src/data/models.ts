@@ -25,7 +25,12 @@ export interface ResourceItem{
     locality : string;
     biography : string;
     role: RoleItem;
-    skills: SkillItem[]
+    skills: SkillResourceItem[]
+}
+
+export interface SkillResourceItem{
+    skill: SkillItem;
+    skillLevel : SkillLevel;    
 }
 
 export interface RoleItem{
@@ -36,7 +41,6 @@ export interface RoleItem{
 export interface SkillItem{
     id: string;
     name : string;
-    skillLevel : SkillLevel
 }
 
 export enum PromiseState{
@@ -69,6 +73,12 @@ export interface TeamItem{
     name : string;
     resources : ResourceItem[];
 }
+
+// export interface SkillItem{
+//     id: string;
+//     name : string;
+//     resources : ResourceItem[];
+// }
 
 ///web api 
 

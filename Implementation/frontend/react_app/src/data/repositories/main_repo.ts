@@ -17,6 +17,7 @@ import { WebApiResourceRepository, WebApiTeamRepository, WebApiSearchRepository 
 // }
 
 let resourcesRepository: IResourceRepository = WebApiResourceRepository.getInstance();
+//let skillsRepository: ISkillRepository = WebApiSkillRepository.getInstance();
 let teamsRepository: ITeamRepository = WebApiTeamRepository.getInstance();
 let searchRepository: ISearchRepository = new WebApiSearchRepository();
 

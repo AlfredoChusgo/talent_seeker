@@ -31,14 +31,14 @@ const skillsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchItems.pending, (state) => {
-      state.loading = PromiseState.PENDING;
+      state.isLoading = true;
     })
       .addCase(fetchItems.fulfilled, (state, action) => {
-        state.loading = PromiseState.SUCCEDED;
+        state.isLoading = false;
         state.items = action.payload;
       })
       .addCase(fetchItems.rejected, (state, action) => {
-        state.loading = PromiseState.FAILED;
+        state.isLoading = false;
         state.error = action.error.message || i18next.t('error.common.anErrorOcurred');
       });
   }

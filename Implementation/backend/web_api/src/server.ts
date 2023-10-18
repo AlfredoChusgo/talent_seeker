@@ -5,7 +5,7 @@ dotenv.config(); // Load environment variables from .env file
 console.log(`envVariables: ${JSON.stringify(process.env)}`);
 const server = createServer();
 const port:number = +(process.env.PORT ?? 3000);
-const mongodbUri = process.env.MONGODB_URI || "";
+const mongodbUri = process.env.MONGODB_URI || "mongodb://myuser:mypassword@localhost:27017/";
 console.log(`mongoUri : ${mongodbUri}`);
 
 startServer(server, port,mongodbUri)

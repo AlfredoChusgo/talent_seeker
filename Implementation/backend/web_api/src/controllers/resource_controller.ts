@@ -8,7 +8,7 @@ export class ResourceController {
 
     public static async getAll(req: Request, res: Response) {
 
-        const models = await ResourceModel.find({}).populate("role").populate("skills");
+        const models = await ResourceModel.find({}).populate("role").populate("skills.skill");
         const response = ResponseHelper.createResponseSuccess("", models);
         return res.json(response);
     }
