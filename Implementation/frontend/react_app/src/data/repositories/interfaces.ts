@@ -1,4 +1,4 @@
-import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand, RoleItem, RoleCreateCommand } from "../models";
+import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, SkillItem, SkillCreateCommand, RoleItem, RoleCreateCommand } from "../models";
 
 export interface IResourceRepository{
     getAll(): Promise<ResourceItem[]>;

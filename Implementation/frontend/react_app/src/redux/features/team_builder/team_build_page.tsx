@@ -4,11 +4,10 @@ import { useSelector } from 'react-redux';
 import store, { RootState, useAppDispatch } from '../../store/store';
 import { fetchAllResourceItems } from '../resource_list/resource_list_slice';
 
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import ResourceListComponent from '../../components/resource_list_component';
-import { AutocompleteChangeReason, Button, IconButton, Paper } from '@mui/material';
-import { ResourceItem, SearchHomeItem, SearchItem, SnackbarSeverity } from '../../../data/models';
+import { AutocompleteChangeReason, IconButton, Paper } from '@mui/material';
+import { ResourceItem, SearchHomeItem, SearchItem } from '../../../data/models';
 import SearchResourceComponent from '../../components/search_resource_component';
 import { applyFilters } from '../resource_list/resource_list_slice';
 import { fetchItems } from '../search_home/search_home_slice';
@@ -16,14 +15,12 @@ import SearchTeamComponent from '../../components/search_team_component';
 import { fetchTeamItems } from '../search_team/search_team_slice';
 import TeamResourcesComponent from '../../components/team_resources_component';
 import { addResourceToTeam, fetchTeamDetail } from '../team_detail/team_detail_slice';
-import { useNavigate } from 'react-router-dom';
 import { selectResource } from '../resource_detail/resource_detail_slice';
 import { dispatchShowResourceDetailDialog } from '../global_dialog/global_dialog_slice';
 
 export default function TeamBuilderPage() {
     const dispatch = useAppDispatch;
     const { resourceList } = useSelector((state: RootState) => state.resourceList);
-    const navigate = useNavigate();
     useEffect(() => {
         store.dispatch(fetchAllResourceItems());
     }, [dispatch]);
@@ -48,7 +45,7 @@ export default function TeamBuilderPage() {
     };
 
     //const dispatch = useAppDispatch;
-    const { items, loading, error } = useSelector((state: RootState) => state.searchHome);
+    const { items } = useSelector((state: RootState) => state.searchHome);
 
     useEffect(() => {
         store.dispatch(fetchItems());
@@ -113,7 +110,7 @@ export default function TeamBuilderPage() {
                                 <SearchTeamComponent
                                     searchItems={teams}
                                     selectedValue={seletedTeam}
-                                    handleAutoCompleteChange={function (event: any, value: SearchItem | null, reason: AutocompleteChangeReason): void {
+                                    handleAutoCompleteChange={function (event: any, value: SearchItem | null): void {
                                         setSeletedTeam(value);
 
                                         if (value != null) {
