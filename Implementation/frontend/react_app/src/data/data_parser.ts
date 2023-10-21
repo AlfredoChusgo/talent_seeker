@@ -1,4 +1,4 @@
-import { ResourceItem, RoleItem, SearchItem, SkillItem, SkillLevel, SkillResourceItem, TeamCreateCommand, TeamItem, TeamUpdateCommand } from "./models";
+import { ResourceItem, RoleItem, SearchItem, SkillItem, SkillLevel, SkillResourceItem, SkillUpdateCommand, TeamCreateCommand, TeamItem, TeamUpdateCommand } from "./models";
 
 
 export class DataParser{
@@ -26,6 +26,13 @@ export class DataParser{
             return  {
                 id: data?._id ?? "",
                 name: data?.name ?? ""                
+            }
+        }
+
+        static toWebApiUpdate(data:SkillItem) : SkillUpdateCommand{
+            return {
+                id:data.id,
+                name: data.name,
             }
         }
     };
@@ -103,8 +110,6 @@ export class DataParser{
                 resources : data.resources.map((e:ResourceItem)=> e.id)
             }
         }
-
-
     };
 
     static SearchItem = class {

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand } from "../models";
-import { IResourceRepository, ISearchRepository, ITeamRepository } from "./interfaces";
+import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand } from "../models";
+import { IResourceRepository, ISearchRepository, ISkillRepository, ITeamRepository } from "./interfaces";
 import {appConfig} from '../../config/config_helper';
 import { DataParser } from "../data_parser";
 
@@ -187,6 +187,85 @@ export class WebApiSearchRepository implements ISearchRepository {
             }
             throw Error(response.data.errors);
         } catch (error) {
+            throw error;
+        }
+    }
+}
+
+export class WebApiSkillRepository implements ISkillRepository {
+    private static baseUrl : string = appConfig.backendWebApiUrl;
+    private static instance : WebApiSkillRepository;
+
+    private constructor() {
+        // private constructor to prevent constructing new instances of the Singleton outside the class
+    }
+
+    public static getInstance(): ISkillRepository {
+        if (!WebApiSkillRepository.instance) {
+            WebApiSkillRepository.instance = new WebApiSkillRepository();
+        }
+        return WebApiSkillRepository.instance;
+    }
+
+
+    async getAll(): Promise<SkillItem[]> {
+        try {
+            const response = await axios.get(`${WebApiSkillRepository.baseUrl}/api/skills`);
+            if(response.data.success){
+                return DataParser.Skill.fromWebApiArray(response.data.data);
+            }
+            throw Error(response.data.errors);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getById(id: string): Promise<SkillItem> {
+        try {
+            const response = await axios.get(`${WebApiSkillRepository.baseUrl}/api/skills/${id}`);
+            if(response.data.success){
+                return DataParser.Skill.fromWebApiObject(response.data.data);
+            }
+            throw Error(response.data.errors);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async create(item: SkillCreateCommand): Promise<SkillItem> {
+        
+        try {
+            const response = await axios.post(`${WebApiSkillRepository.baseUrl}/api/skills`,item);
+            if(!response.data.success){                
+                throw Error(response.data.errors);                
+            }
+            return DataParser.Skill.fromWebApiObject(response.data.data);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async update(item: SkillItem): Promise<void> {
+        try {
+            const updateCommand = DataParser.Skill.toWebApiUpdate(item);
+            const response = await axios.put(`${WebApiSkillRepository.baseUrl}/api/skills/${item.id}`,updateCommand);
+            if(!response.data.success){                
+                throw Error(response.data.errors);
+            }
+        } catch (error) {
+            console.error('There was an error!', error);
+            throw error;
+        }
+    }
+
+    async delete(itemId: string): Promise<void> {
+        try {
+            const response = await axios.delete(`${WebApiSkillRepository.baseUrl}/api/skills/${itemId}`);
+            if(!response.data.success){                
+                throw Error(response.data.errors);
+            }
+        } catch (error) {
+            console.error('There was an error!', error);
             throw error;
         }
     }

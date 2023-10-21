@@ -1,4 +1,4 @@
-import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand } from "../models";
+import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand } from "../models";
 
 export interface IResourceRepository{
     getAll(): Promise<ResourceItem[]>;
@@ -25,13 +25,13 @@ export interface ITeamRepository{
 }
 
 export interface ISkillRepository{
-    getAll(): Promise<TeamItem[]>;
+    getAll(): Promise<SkillItem[]>;
 
-    getById(id : string): Promise<TeamItem>;
+    getById(id : string): Promise<SkillItem>;
 
-    create(item : TeamCreateCommand) : Promise<TeamItem>;
+    create(item : SkillCreateCommand) : Promise<SkillItem>;
 
-    update(item : TeamItem) : Promise<void>;
+    update(item : SkillItem) : Promise<void>;
 
     delete(itemId : string) : Promise<void>;
 }

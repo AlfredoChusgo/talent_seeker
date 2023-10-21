@@ -36,10 +36,6 @@ export default function TeamsPage() {
     const { teamDetail } = useSelector((state: RootState) => state.teamDetail);
     //endTeam
 
-    const [openDialog, setOpenDialog] = useState(false);
-
-    const [dialogTeamName, setDialogTeamName] = useState<string>("");
-
     return <Box sx={{ flexGrow: 1 }}>
         <Grid container direction="row" spacing={1} style={{padding:'16px'}}>
             <Grid xs={12} sm={6}>

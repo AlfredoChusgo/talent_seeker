@@ -74,11 +74,6 @@ export interface TeamItem{
     resources : ResourceItem[];
 }
 
-// export interface SkillItem{
-//     id: string;
-//     name : string;
-//     resources : ResourceItem[];
-// }
 
 ///web api 
 
@@ -90,4 +85,14 @@ export interface TeamUpdateCommand{
     id:string;
     name : string;
     resources : string[];
+}
+
+
+export interface SkillCreateCommand{
+    name : string;    
+}
+
+export interface SkillUpdateCommand{
+    id:string;
+    name : string;    
 }

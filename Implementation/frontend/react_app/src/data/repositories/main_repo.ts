@@ -1,6 +1,6 @@
 import { appConfig } from "../../config/config_helper";
-import { IResourceRepository, ITeamRepository, ISearchRepository } from "./interfaces";
-import { WebApiResourceRepository, WebApiTeamRepository, WebApiSearchRepository } from "./web_api_repositories";
+import { IResourceRepository, ITeamRepository, ISearchRepository, ISkillRepository } from "./interfaces";
+import { WebApiResourceRepository, WebApiTeamRepository, WebApiSearchRepository, WebApiSkillRepository } from "./web_api_repositories";
 
 // let resourcesRepository: IResourceRepository = InMemoryResourceRepository.getInstance();
 // let teamsRepository: ITeamRepository = InMemoryTeamRepository.getInstance();
@@ -17,8 +17,8 @@ import { WebApiResourceRepository, WebApiTeamRepository, WebApiSearchRepository 
 // }
 
 let resourcesRepository: IResourceRepository = WebApiResourceRepository.getInstance();
-//let skillsRepository: ISkillRepository = WebApiSkillRepository.getInstance();
+let skillsRepository: ISkillRepository = WebApiSkillRepository.getInstance();
 let teamsRepository: ITeamRepository = WebApiTeamRepository.getInstance();
 let searchRepository: ISearchRepository = new WebApiSearchRepository();
 
-export default { resourcesRepository, teamsRepository, searchRepository }
+export default { resourcesRepository, teamsRepository, searchRepository, skillsRepository }

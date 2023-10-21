@@ -7,7 +7,7 @@ import { DialogActions, DialogContent, IconButton, TextField } from '@mui/materi
 import store, { RootState } from '../store/store';
 import { addTeam, editTeam } from '../features/team_detail/team_detail_slice';
 import { useSelector } from 'react-redux';
-import { teamDialog, updateAddEditTeamDialogConfig } from '../features/global_dialog/global_dialog_slice';
+import { showHideteamDialog, updateAddEditTeamDialogConfig } from '../features/global_dialog/global_dialog_slice';
 
 export function AddEditTeamDialog() {
   const { addEditTeamDialogConfig } = useSelector((state: RootState) => state.dialog);
@@ -23,7 +23,7 @@ export function AddEditTeamDialog() {
   };
 
   const hideDialog = () => {
-    store.dispatch(teamDialog({show:false}));
+    store.dispatch(showHideteamDialog({show:false}));
   }
 
   const dialogTitle = addEditTeamDialogConfig.isAdd ? i18next.t('teams.createNewTeam') : i18next.t('teams.editTeam');

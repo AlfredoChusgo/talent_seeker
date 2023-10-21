@@ -42,6 +42,16 @@ i18next.use(initReactI18next).init({
           addTeam : " Add Team",
           editTeam : " Edit Team",
         },
+        skills:{
+          search: "Search for a skill...",          
+          removed: "The Skill has been removed",
+          created : "Skill successfully created",
+          updated : "Skill successfully updated",
+          createNew : "Create new Skill",
+          labelNewName : "New Skill Name",
+          add : " Add Skill",
+          edit : " Edit Skill",
+        },
         error: {
           common: {
             anErrorOccurred: "Oops! An error occurred. Please try again later."

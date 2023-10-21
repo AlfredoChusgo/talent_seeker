@@ -31,8 +31,8 @@ export class SkillController {
             return res.json(ResponseHelper.createErrorResponse(errors));
         }
         const { id } = req.params;
-        const { name, skillLevel } = req.body;
-        const updateModel = await SkillModel.findOneAndUpdate({ _id: id }, { name, skillLevel },{ new: true });
+        const { name } = req.body;
+        const updateModel = await SkillModel.findOneAndUpdate({ _id: id }, { name },{ new: true });
 
         const response = ResponseHelper.createResponseSuccess("Skill updated successfuly", updateModel);
         return res.json(response);

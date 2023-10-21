@@ -1,5 +1,5 @@
 import { AutocompleteChangeReason } from "@mui/material/Autocomplete";
-import { ResourceItem, SearchHomeItem, SearchItem, TeamItem } from "./models";
+import { ResourceItem, SearchHomeItem, SearchItem, SkillItem, TeamItem } from "./models";
 
 export interface ResourceListComponentProps{
     resourcesItems : ResourceItem[];
@@ -35,6 +35,12 @@ export interface SearchTeamComponentProps {
     handleAutoCompleteChange : (event: any, value: SearchItem | null, reason : AutocompleteChangeReason) => void;
 }
 
+export interface SearchSkillComponentProps {
+    searchItems : SearchItem[];    
+    selectedValue : SearchItem | null;
+    handleAutoCompleteChange : (event: any, value: SearchItem | null, reason : AutocompleteChangeReason) => void;
+}
+
 export interface TeamDetailComponentProps{
     team : TeamItem;
 }
@@ -46,4 +52,11 @@ export interface AddTeamDialogProps {
     setSelectedValue : (newValue : string) => void; 
     onSave: (value: string) => void;
   }
+
+
+  export interface SkillListComponentProps{
+    skills : SkillItem[];
+}
+
+
   
