@@ -1,4 +1,4 @@
-import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand } from "../models";
+import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand, RoleItem, RoleCreateCommand } from "../models";
 
 export interface IResourceRepository{
     getAll(): Promise<ResourceItem[]>;
@@ -23,7 +23,7 @@ export interface ITeamRepository{
 
     delete(itemId : string) : Promise<void>;
 }
-
+/api/skills
 export interface ISkillRepository{
     getAll(): Promise<SkillItem[]>;
 
@@ -32,6 +32,18 @@ export interface ISkillRepository{
     create(item : SkillCreateCommand) : Promise<SkillItem>;
 
     update(item : SkillItem) : Promise<void>;
+
+    delete(itemId : string) : Promise<void>;
+}
+
+export interface IRoleRepository{
+    getAll(): Promise<RoleItem[]>;
+
+    getById(id : string): Promise<RoleItem>;
+
+    create(item : RoleCreateCommand) : Promise<RoleItem>;
+
+    update(item : RoleItem) : Promise<void>;
 
     delete(itemId : string) : Promise<void>;
 }

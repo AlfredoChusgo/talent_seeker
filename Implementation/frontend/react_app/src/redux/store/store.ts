@@ -8,6 +8,7 @@ import snackbarReducer from '../features/global_snackbar/global_snackbar_slice.t
 import dialogReducer from '../features/global_dialog/global_dialog_slice.ts';
 import resourceDetailReducer from '../features/resource_detail/resource_detail_slice.tsx';
 import skillsReducer from '../features/skills/skills_slice.tsx';
+import rolesReducer from '../features/roles/roles_slice.tsx';
 import { useDispatch } from 'react-redux'
 const store = configureStore({
   reducer: {
@@ -18,7 +19,8 @@ const store = configureStore({
     snackbar : snackbarReducer,
     dialog: dialogReducer,
     resourceDetail: resourceDetailReducer,
-    skills: skillsReducer
+    skills: skillsReducer,
+    roles: rolesReducer
   },
 });
 

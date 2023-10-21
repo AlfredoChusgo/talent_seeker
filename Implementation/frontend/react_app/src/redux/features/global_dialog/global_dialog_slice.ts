@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SkillItem, TeamItem } from '../../../data/models';
+import { RoleItem, SkillItem, TeamItem } from '../../../data/models';
 
 type DialogState = {
   addEditTeamDialogConfig: AddEditTeamDialogConfig,
   showResourceDetailDialog: boolean,
-  addEditSkillDialogConfig : AddEditSkillDialogConfig
+  addEditSkillDialogConfig: AddEditSkillDialogConfig,
+  addEditRoleDialogConfig: AddEditRoleDialogConfig
 };
 
 interface AddEditTeamDialogConfig {
@@ -19,6 +20,12 @@ interface AddEditSkillDialogConfig {
   skillItem: SkillItem
 }
 
+interface AddEditRoleDialogConfig {
+  isAdd: boolean
+  show: boolean,
+  roleItem: RoleItem
+}
+
 
 
 const initialState: DialogState = {
@@ -29,12 +36,20 @@ const initialState: DialogState = {
     teamItem: { id: "", name: "", resources: [] }
   },
   showResourceDetailDialog: false,
-  addEditSkillDialogConfig : {
-    isAdd:false,
-    show:false,
-    skillItem : {
-      id : "",
-      name : ""
+  addEditSkillDialogConfig: {
+    isAdd: false,
+    show: false,
+    skillItem: {
+      id: "",
+      name: ""
+    }
+  },
+  addEditRoleDialogConfig: {
+    isAdd: false,
+    show: false,
+    roleItem: {
+      id: "",
+      name: ""
     }
   }
 };
@@ -62,9 +77,18 @@ const dialogSlice = createSlice({
       state.addEditSkillDialogConfig.show = action.payload.show;
     },
     //Skill
+
+    //Role
+    updateAddEditRoleDialogConfig: (state, action: PayloadAction<AddEditRoleDialogConfig>) => {
+      state.addEditRoleDialogConfig = action.payload;
+    },
+    showHideRoleDialog: (state, action: PayloadAction<{ show: boolean }>) => {
+      state.addEditRoleDialogConfig.show = action.payload.show;
+    },
+    //Role
   },
 });
 
 export const { updateAddEditTeamDialogConfig, showHideteamDialog, dispatchShowResourceDetailDialog,
-  updateAddEditSkillDialogConfig,showHideSkillDialog } = dialogSlice.actions;
+  updateAddEditSkillDialogConfig, showHideSkillDialog, updateAddEditRoleDialogConfig, showHideRoleDialog } = dialogSlice.actions;
 export default dialogSlice.reducer;

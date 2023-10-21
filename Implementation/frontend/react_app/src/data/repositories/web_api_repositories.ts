@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand } from "../models";
-import { IResourceRepository, ISearchRepository, ISkillRepository, ITeamRepository } from "./interfaces";
+import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand, RoleItem } from "../models";
+import { IResourceRepository, IRoleRepository, ISearchRepository, ISkillRepository, ITeamRepository } from "./interfaces";
 import {appConfig} from '../../config/config_helper';
 import { DataParser } from "../data_parser";
 
@@ -261,6 +261,85 @@ export class WebApiSkillRepository implements ISkillRepository {
     async delete(itemId: string): Promise<void> {
         try {
             const response = await axios.delete(`${WebApiSkillRepository.baseUrl}/api/skills/${itemId}`);
+            if(!response.data.success){                
+                throw Error(response.data.errors);
+            }
+        } catch (error) {
+            console.error('There was an error!', error);
+            throw error;
+        }
+    }
+}
+
+export class WebApiRoleRepository implements IRoleRepository {
+    private static baseUrl : string = appConfig.backendWebApiUrl;
+    private static instance : WebApiRoleRepository;
+
+    private constructor() {
+        // private constructor to prevent constructing new instances of the Singleton outside the class
+    }
+
+    public static getInstance(): IRoleRepository {
+        if (!WebApiRoleRepository.instance) {
+            WebApiRoleRepository.instance = new WebApiRoleRepository();
+        }
+        return WebApiRoleRepository.instance;
+    }
+
+
+    async getAll(): Promise<RoleItem[]> {
+        try {
+            const response = await axios.get(`${WebApiRoleRepository.baseUrl}/api/roles`);
+            if(response.data.success){
+                return DataParser.Role.fromWebApiArray(response.data.data);
+            }
+            throw Error(response.data.errors);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getById(id: string): Promise<RoleItem> {
+        try {
+            const response = await axios.get(`${WebApiRoleRepository.baseUrl}/api/roles/${id}`);
+            if(response.data.success){
+                return DataParser.Role.fromWebApiObject(response.data.data);
+            }
+            throw Error(response.data.errors);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async create(item: SkillCreateCommand): Promise<RoleItem> {
+        
+        try {
+            const response = await axios.post(`${WebApiRoleRepository.baseUrl}/api/roles`,item);
+            if(!response.data.success){                
+                throw Error(response.data.errors);                
+            }
+            return DataParser.Role.fromWebApiObject(response.data.data);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async update(item: RoleItem): Promise<void> {
+        try {
+            const updateCommand = DataParser.Skill.toWebApiUpdate(item);
+            const response = await axios.put(`${WebApiRoleRepository.baseUrl}/api/roles/${item.id}`,updateCommand);
+            if(!response.data.success){                
+                throw Error(response.data.errors);
+            }
+        } catch (error) {
+            console.error('There was an error!', error);
+            throw error;
+        }
+    }
+
+    async delete(itemId: string): Promise<void> {
+        try {
+            const response = await axios.delete(`${WebApiRoleRepository.baseUrl}/api/roles/${itemId}`);
             if(!response.data.success){                
                 throw Error(response.data.errors);
             }

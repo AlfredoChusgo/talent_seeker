@@ -14,7 +14,7 @@ import { fetchItems } from '../redux/features/search_home/search_home_slice';
 
 //import MenuIcon from '@mui/icons-material/Menu';
 
-const pages = ['searchPageHome', 'resourceList', 'teamBuilder', 'Teams','Skills'];
+const pages = ['searchPageHome', 'resourceList', 'teamBuilder', 'Teams','Skills','Roles'];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ButtonAppBar() {

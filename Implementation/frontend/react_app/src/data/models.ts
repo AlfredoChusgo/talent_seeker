@@ -96,3 +96,12 @@ export interface SkillUpdateCommand{
     id:string;
     name : string;    
 }
+
+export interface RoleCreateCommand{
+    name : string;    
+}
+
+export interface RoleUpdateCommand{
+    id:string;
+    name : string;    
+}

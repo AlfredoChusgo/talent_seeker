@@ -52,6 +52,16 @@ i18next.use(initReactI18next).init({
           add : " Add Skill",
           edit : " Edit Skill",
         },
+        roles:{
+          search: "Search for a role...",          
+          removed: "The role has been removed",
+          created : "role successfully created",
+          updated : "role successfully updated",
+          createNew : "Create new role",
+          labelNewName : "New role Name",
+          add : " Add role",
+          edit : " Edit role",
+        },
         error: {
           common: {
             anErrorOccurred: "Oops! An error occurred. Please try again later."
