@@ -60,7 +60,7 @@ export const editSkill = createAsyncThunk<SkillItem, { itemUpdated: SkillUpdateC
 
     thunkAPI.dispatch(showSnackbar({ message: i18next.t('skills.updated'), severity: SnackbarSeverity.Success }));
     thunkAPI.dispatch(fetchItems());
-    return await repositories.teamsRepository.getById(itemUpdated.id);
+    return await repositories.skillsRepository.getById(itemUpdated.id);
   } catch (error: any) {
     const errorMessage = error ? error.message : i18next.t('error.common.anErrorOcurred');
     thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));

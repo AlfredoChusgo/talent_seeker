@@ -6,24 +6,18 @@ import { v4 as uuidv4 } from 'uuid';
 export class InMemoryResourceRepository implements IResourceRepository {
     private resources: ResourceItem[] = [];
     private isLoaded: boolean = false;
-    private static instance : InMemoryResourceRepository;
+    private static instance: InMemoryResourceRepository;
 
-    public constructor(private roleRepository:IRoleRepository ,private skillRepository: ISkillRepository) {
-        // private constructor to prevent constructing new instances of the Singleton outside the class
+    public constructor(private roleRepository: IRoleRepository, private skillRepository: ISkillRepository) {
+
     }
 
-    // public static getInstance(): InMemoryResourceRepository {
-    //     if (!InMemoryResourceRepository.instance) {
-    //         InMemoryResourceRepository.instance = new InMemoryResourceRepository();
-    //     }
-    //     return InMemoryResourceRepository.instance;
-    // }
 
     private async loadResources(): Promise<void> {
 
         try {
             const response = await axios.get("fake_data/resources_data.json");
-            this.resources = response.data;
+            this.resources = response.data.map((e:any)=>({...e,birthDate:new Date(e.birthDate)}));
             this.isLoaded = true;
         } catch (error) {
             throw error;
@@ -51,25 +45,25 @@ export class InMemoryResourceRepository implements IResourceRepository {
 
     async create(item: ResourceCreateCommand): Promise<ResourceItem> {
         await this.load();
-        let role:RoleItem = await this.roleRepository.getById(item.role);
-        let allSkills:SkillItem[] = await this.skillRepository.getAll();
-        let skillResources : SkillResourceItem[] = item.skills.map(e=> ({
-            skill: allSkills.find(skill => skill.id == e.skill) ?? { id : "", name:""},
-            skillLevel : e.skillLevel
+        let role: RoleItem = await this.roleRepository.getById(item.role);
+        let allSkills: SkillItem[] = await this.skillRepository.getAll();
+        let skillResources: SkillResourceItem[] = item.skills.map(e => ({
+            skill: allSkills.find(skill => skill.id == e.skill) ?? { id: "", name: "" },
+            skillLevel: e.skillLevel
         }));
 
         let resourceItem: ResourceItem = {
-            id : uuidv4(),
+            id: uuidv4(),
             name: item.name,
             lastName: item.lastName,
-            biography : item.biography,
-            birthDate : new Date(item.birthDate),
-            locality : item.locality,
-            occupation : item.occupation,
-            role : role,
-            skills : skillResources
+            biography: item.biography,
+            birthDate: new Date(item.birthDate),
+            locality: item.locality,
+            occupation: item.occupation,
+            role: role,
+            skills: skillResources
         }
-        this.resources.push(resourceItem);
+        this.resources = [...this.resources, resourceItem];
         return resourceItem;
     }
 
@@ -79,26 +73,27 @@ export class InMemoryResourceRepository implements IResourceRepository {
         const index = this.resources.findIndex(r => r.id === item.id);
         if (index === -1) throw new Error('Resource not found');
 
-        let role:RoleItem = await this.roleRepository.getById(item.role);
-        let allSkills:SkillItem[] = await this.roleRepository.getAll();
-        let skillResources : SkillResourceItem[] = item.skills.map(e=> ({
-            skill: allSkills.find(skill => skill.id == e.skill) ?? { id : "", name:""},
-            skillLevel : e.skillLevel
+        let role: RoleItem = await this.roleRepository.getById(item.role);
+        let allSkills: SkillItem[] = await this.roleRepository.getAll();
+        let skillResources: SkillResourceItem[] = item.skills.map(e => ({
+            skill: allSkills.find(skill => skill.id == e.skill) ?? { id: "", name: "" },
+            skillLevel: e.skillLevel
         }));
 
         let resourceItem: ResourceItem = {
-            id : item.id,
+            id: item.id,
             name: item.name,
             lastName: item.lastName,
-            biography : item.biography,
-            birthDate : new Date(item.birthDate),
-            locality : item.locality,
-            occupation : item.occupation,
-            role : role,
-            skills : skillResources
+            biography: item.biography,
+            birthDate: new Date(item.birthDate),
+            locality: item.locality,
+            occupation: item.occupation,
+            role: role,
+            skills: skillResources
         }
-
-        this.resources[index] = resourceItem;
+        let resourcesCopy = [...this.resources];
+        resourcesCopy[index] = resourceItem;
+        this.resources = resourcesCopy;
     }
 
     async delete(itemId: string): Promise<void> {
@@ -112,18 +107,10 @@ export class InMemoryTeamRepository implements ITeamRepository {
     private teams: TeamItem[] = [];
     private isLoaded: boolean = false;
 
-    private static instance : InMemoryTeamRepository;
 
-    public constructor(private resourceRepository:IResourceRepository) {
-        // private constructor to prevent constructing new instances of the Singleton outside the class
+    public constructor(private resourceRepository: IResourceRepository) {
+
     }
-
-    // public static getInstance(): InMemoryTeamRepository {
-    //     if (!InMemoryTeamRepository.instance) {
-    //         InMemoryTeamRepository.instance = new InMemoryTeamRepository();
-    //     }
-    //     return InMemoryTeamRepository.instance;
-    // }
 
     private async loadResources(): Promise<void> {
 
@@ -157,13 +144,12 @@ export class InMemoryTeamRepository implements ITeamRepository {
 
     async create(item: TeamCreateCommand): Promise<TeamItem> {
         await this.load();
-        //let role:RoleItem = await this.roleRepository.getById(item.role);
-        let allResources:ResourceItem[] = await this.resourceRepository.getAll();
-        
-        let resources:ResourceItem[] = allResources.filter(resource=>{item.resources.includes(resource.id)});
+        let allResources: ResourceItem[] = await this.resourceRepository.getAll();
+
+        let resources: ResourceItem[] = allResources.filter(resource => { item.resources.includes(resource.id) });
 
         let teamItem: TeamItem = {
-            id : uuidv4(),
+            id: uuidv4(),
             name: item.name,
             resources: resources
         }
@@ -195,7 +181,7 @@ export class InMemoryRoleRepository implements IRoleRepository {
         // private constructor to prevent constructing new instances of the Singleton outside the class
     }
 
-    
+
     private async loadRoles(): Promise<void> {
 
         try {
@@ -229,10 +215,10 @@ export class InMemoryRoleRepository implements IRoleRepository {
         await this.load();
 
         let roleItem: RoleItem = {
-            id : uuidv4(),
+            id: uuidv4(),
             name: item.name,
         }
-        this.roles.push(roleItem);
+        this.roles = [...this.roles, roleItem];
         return roleItem;
     }
 
@@ -240,7 +226,9 @@ export class InMemoryRoleRepository implements IRoleRepository {
         await this.load();
         const index = this.roles.findIndex(t => t.id === item.id);
         if (index === -1) throw new Error('Role not found');
-        this.roles[index] = item;
+        let rolesCopy = [...this.roles];
+        rolesCopy[index] = item;
+        this.roles = rolesCopy;
     }
 
     async delete(itemId: string): Promise<void> {
@@ -260,12 +248,12 @@ export class InMemorySkillRepository implements ISkillRepository {
         // private constructor to prevent constructing new instances of the Singleton outside the class
     }
 
-    
+
     private async loadSkills(): Promise<void> {
 
         try {
             const response = await axios.get("fake_data/skills_data.json");
-            this.skills = response.data;
+            this.skills = [...response.data];
             this.isLoaded = true;
         } catch (error) {
             throw error;
@@ -294,10 +282,10 @@ export class InMemorySkillRepository implements ISkillRepository {
         await this.load();
 
         let skillItem: SkillItem = {
-            id : uuidv4(),
+            id: uuidv4(),
             name: item.name,
         }
-        this.skills.push(skillItem);
+        this.skills = [...this.skills, skillItem];
         return skillItem;
     }
 
@@ -305,7 +293,9 @@ export class InMemorySkillRepository implements ISkillRepository {
         await this.load();
         const index = this.skills.findIndex(t => t.id === item.id);
         if (index === -1) throw new Error('Skill not found');
-        this.skills[index] = item;
+        let skillsCopy = [...this.skills];
+        skillsCopy[index] = item;
+        this.skills = skillsCopy;
     }
 
     async delete(itemId: string): Promise<void> {
@@ -323,7 +313,7 @@ export class InMemorySkillRepository implements ISkillRepository {
 export class InMemorySearchRepository implements ISearchRepository {
 
     constructor(private resourceRepository: IResourceRepository, private teamsRepository: ITeamRepository,
-         private skillRepository: ISkillRepository, private roleRepository: IRoleRepository) {
+        private skillRepository: ISkillRepository, private roleRepository: IRoleRepository) {
 
     }
     async getAllResources(): Promise<SearchItem[]> {
@@ -371,12 +361,4 @@ export class InMemorySearchRepository implements ISearchRepository {
         return result;
     }
 }
-
-// export const resourcesRepository : InMemoryResourceRepository = InMemoryResourceRepository.getInstance();
-// export const resourcesRepository : WebApiResourceRepository = InMemoryResourceRepository.getInstance();
-// export const teamsRepository : InMemoryTeamRepository = InMemoryTeamRepository.getInstance();
-// export const searchRepository : ISearchRepository = new InMemorySearchRepository(resourcesRepository,teamsRepository);
-// function useIntl() {
-//     throw new Error("Function not implemented.");
-// }
 

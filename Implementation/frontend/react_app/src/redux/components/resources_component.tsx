@@ -18,32 +18,26 @@ export default function ResourcesComponent({ resources }: ResourceComponentProps
 
     const buildCard = (resource: ResourceItem) => {
         return (
-            <List sx={{ width: '90%', bgcolor: 'background.paper' }}>
-                <ListItem key={resource.id} alignItems="center" secondaryAction={
+            <List key={resource.id} sx={{ width: '90%', bgcolor: 'background.paper' }}>
+                <ListItem  key={resource.id} alignItems="center" secondaryAction={
                     <Stack direction="row" spacing={1}>
-                        <IconButton edge="end" aria-label="comments">
-                            <Edit onClick={() => {
-                                // store.dispatch(updateAddEditResourceDialogConfig({
-                                //     isAdd: false,
-                                //     show: true,
-                                //     roleItem: role
-                                // }));
-                                //store.dispatch(loadResourceDialogAutoCompleteValues({isAdd:false}));
+                        <IconButton edge="end" aria-label="comments" onClick={() => {
                                 store.dispatch(updateAddEditResourceDialogConfig({isAdd:false,resourceItem:resource,isLoading:false,
                                 show:true,availableRoles:[],availableSkills:[]}));
                                 store.dispatch(loadResourceDialogAutoCompleteValues());
-                            }} />
+                            }}>
+                            <Edit  />
                         </IconButton>
-                        <IconButton edge="end" aria-label="comments">
-                            <DeleteForeverIcon onClick={() => {
+                        <IconButton edge="end" aria-label="comments"  onClick={() => {
                                 store.dispatch(removeResource({ roleId: resource.id }));
-                            }} />
+                            }}>
+                            <DeleteForeverIcon />
                         </IconButton>
 
                     </Stack>
 
                 }>
-                    <ListItemText
+                    <ListItemText 
                         primary={`${resource.name}`}
                     />
                 </ListItem>

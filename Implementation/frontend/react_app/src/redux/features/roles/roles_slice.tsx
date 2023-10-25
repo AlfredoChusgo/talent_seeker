@@ -60,7 +60,7 @@ export const editRole = createAsyncThunk<RoleItem, { itemUpdated: RoleUpdateComm
 
     thunkAPI.dispatch(showSnackbar({ message: i18next.t('roles.updated'), severity: SnackbarSeverity.Success }));
     thunkAPI.dispatch(fetchItems());
-    return await repositories.teamsRepository.getById(itemUpdated.id);
+    return await repositories.rolesRepository.getById(itemUpdated.id);
   } catch (error: any) {
     const errorMessage = error ? error.message : i18next.t('error.common.anErrorOcurred');
     thunkAPI.dispatch(showSnackbar({ message: errorMessage, severity: SnackbarSeverity.Error, }));
