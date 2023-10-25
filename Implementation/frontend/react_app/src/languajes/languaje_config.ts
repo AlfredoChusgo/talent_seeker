@@ -16,7 +16,20 @@ i18next.use(initReactI18next).init({
         resources: {
           searchResource: "Search for a resource...",
           resourceRemoved: "Resource has been removed.",
-          resourceDetail: "Resource detail"
+          resourceDetail: "Resource detail",
+          search: "Search for a resource...",          
+          removed: "The resource has been removed",
+          created : "resource successfully created",
+          updated : "resource successfully updated",
+          createNew : "Create new resource",
+          labelNewName : "New resource Name",
+          lastName : "Last name",
+          birthDate : "Birth date",
+          occupation : "Occupation",
+          locality : "Locality",
+          biography : "Biography",
+          add : " Add resource",
+          edit : " Edit resource",          
         },
         common: {
           noResults: "Sorry, no results to display at the moment...",
@@ -24,8 +37,10 @@ i18next.use(initReactI18next).init({
           edit: "Edit",
           cancel: "Cancel",
           skills: "Skills",
+          role : "Role",
           biography: "Biography",
-          okay:"Okay"
+          okay:"Okay",
+          helperDate:"Please use the dd/mm/yyyy format."
         },
         teams: {
           searchTeam: "Search for a team...",

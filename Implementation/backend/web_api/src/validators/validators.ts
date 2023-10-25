@@ -99,12 +99,12 @@ export class Validators {
                 const command = req.body as ResourceCreateCommand;
 
                 const schema = z.object({
-                    name: z.string().min(1, 'Name must not be empty'),
-                    lastName: z.string().min(3, 'Should be at least 3 characters long'),
+                    name: z.string().min(1, 'name must not be empty'),
+                    lastName: z.string().min(3, 'lastName should be at least 3 characters long'),
                     birthDate: Validators.isoDateStringSchema,
-                    occupation: z.string().min(3, 'Should be at least 3 characters long'),
-                    locality: z.string().min(3, 'Should be at least 3 characters long'),
-                    biography: z.string().min(10, 'Should be at least 3 characters long'),
+                    occupation: z.string().min(3, 'occupation Should be at least 3 characters long'),
+                    locality: z.string().min(3, 'locality should be at least 3 characters long'),
+                    biography: z.string().min(10, 'biography should be at least 10 characters long'),
                     role : Validators.optionalIdValidator,
                     // skills : z.array(Validators.idValidator).default([])
                     skills : z.array(Validators.skillValidator).default([])
@@ -121,12 +121,12 @@ export class Validators {
 
                 const schema = z.object({
                     id: Validators.idValidator,
-                    name: z.string().min(1, 'Name must not be empty'),
-                    lastName: z.string().min(3, 'Should be at least 3 characters long'),
+                    name: z.string().min(1, 'name must not be empty'),
+                    lastName: z.string().min(3, 'lastName should be at least 3 characters long'),
                     birthDate: Validators.isoDateStringSchema,
-                    occupation: z.string().min(3, 'Should be at least 3 characters long'),
-                    locality: z.string().min(3, 'Should be at least 3 characters long'),
-                    biography: z.string().min(10, 'Should be at least 3 characters long'),
+                    occupation: z.string().min(3, 'occupation Should be at least 3 characters long'),
+                    locality: z.string().min(3, 'locality should be at least 3 characters long'),
+                    biography: z.string().min(10, 'biography should be at least 3 characters long'),
                     role : Validators.optionalIdValidator,
                     // skills : z.array(Validators.idValidator).default([])                    
                     skills : z.array(Validators.skillValidator).default([])

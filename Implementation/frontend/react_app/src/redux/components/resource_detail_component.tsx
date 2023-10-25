@@ -5,12 +5,12 @@ import { useState } from "react";
 
 import { useSelector } from "react-redux";
 import i18next from "i18next";
-import { SkillItem, SkillLevel } from "../../data/models";
+import { SkillItem, SkillLevel, SkillResourceItem } from "../../data/models";
 import { RootState } from "../store/store";
 
 
 export interface SkillSliderProps {
-    skill: SkillItem;
+    skill: SkillResourceItem;
 }
 
 export default function ResourceDetailComponent() {
@@ -21,7 +21,7 @@ export default function ResourceDetailComponent() {
             <Card >
             <CardContent >
                 <Typography variant="body2" color="text.secondary" >
-                    {skill.name}
+                    {skill.skill.name}
                 </Typography>
                 <SkillSlider skill={skill} />
             </CardContent>
@@ -91,13 +91,13 @@ function SkillSlider({ skill }: SkillSliderProps) {
     const [sliderValue, setSliderValue] = useState(skill.skillLevel); // Initialize with the initial value
 
 
-    const marks = enumValues.map((value, index) => index==skill.skillLevel ? { value: index, label: value } : { value: index, label: "" });
+    const marks = enumValues.map((value, index) => value==skill.skillLevel ? { value: index, label: value } : { value: index, label: "" });
 
     return (
         <div style={{ padding: '16px' }}>
             <Slider
                 // defaultValue={skill.skillLevel}
-                value={sliderValue}
+                value={enumValues.indexOf(sliderValue)}
                 min={0}
                 max={enumValues.length - 1}
                 step={1}

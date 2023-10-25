@@ -20,6 +20,7 @@ import './languajes/languaje_config.ts';
 import { DialogComponent } from "./redux/dialogs/dialog_component.tsx";
 import SkillsPage from "./redux/features/skills/skills_page.tsx";
 import RolesPage from "./redux/features/roles/roles_page.tsx";
+import ResourcesPage from "./redux/features/resources/resources_page.tsx";
 
 
 const router = createBrowserRouter([
@@ -51,7 +52,12 @@ const router = createBrowserRouter([
       {
         path: "roles",
         element: <RolesPage></RolesPage>
+      },
+      {
+        path: "resources",
+        element: <ResourcesPage></ResourcesPage>
       }
+
 
     ]
   },

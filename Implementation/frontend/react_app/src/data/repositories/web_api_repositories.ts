@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand, RoleItem } from "../models";
+import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand, RoleItem, ResourceCreateCommand } from "../models";
 import { IResourceRepository, IRoleRepository, ISearchRepository, ISkillRepository, ITeamRepository } from "./interfaces";
 import {appConfig} from '../../config/config_helper';
 import { DataParser } from "../data_parser";
@@ -47,12 +47,16 @@ export class WebApiResourceRepository implements IResourceRepository {
           }
     }
 
-    async create(item: ResourceItem): Promise<void> {
+    async create(item: ResourceCreateCommand): Promise<ResourceItem> {
         try {
             const response = await axios.post(`${WebApiResourceRepository.baseUrl}/api/resources`,item);            
-            console.log(response.data);
+            if(!response.data.success){                
+                throw Error(response.data.errors);                
+            }
+            return DataParser.Resource.fromWebApiObject(response.data.data);
         } catch (error) {
             console.error('There was an error!', error);
+            throw error;
         }
     }
 

@@ -62,4 +62,8 @@ export interface RoleListComponentProps {
     roles: RoleItem[];
 }
 
+export interface ResourceComponentProps {
+    resources: ResourceItem[];
+}
+
 

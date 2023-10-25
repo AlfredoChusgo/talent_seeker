@@ -105,3 +105,31 @@ export interface RoleUpdateCommand{
     id:string;
     name : string;    
 }
+
+export interface ResourceCreateCommand{
+    name : string;
+    lastName : string ;
+    birthDate: string;
+    occupation : string;
+    locality : string;
+    biography : string;
+    role: string;
+    skills: SkillResourceCreateCommand[]
+}
+
+export interface SkillResourceCreateCommand{
+    skill:string;
+    skillLevel: SkillLevel;
+}
+
+export interface ResourceUpdateCommand{
+    id:string;
+    name : string;
+    lastName : string ;
+    birthDate: string;
+    occupation : string;
+    locality : string;
+    biography : string;
+    role: RoleItem;
+    skills: SkillResourceItem[]
+}
