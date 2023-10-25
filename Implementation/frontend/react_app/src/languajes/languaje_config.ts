@@ -29,7 +29,8 @@ i18next.use(initReactI18next).init({
           locality : "Locality",
           biography : "Biography",
           add : " Add resource",
-          edit : " Edit resource",          
+          edit : " Edit resource",
+          birthDateValidationError : "Please enter a valid birthdate",
         },
         common: {
           noResults: "Sorry, no results to display at the moment...",

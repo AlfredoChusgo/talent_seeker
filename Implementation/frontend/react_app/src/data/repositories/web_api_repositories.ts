@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand, RoleItem, ResourceCreateCommand } from "../models";
+import { ResourceItem, SearchItem, TeamItem, TeamCreateCommand, TeamUpdateCommand, SkillItem, SkillCreateCommand, RoleItem, ResourceCreateCommand, ResourceUpdateCommand } from "../models";
 import { IResourceRepository, IRoleRepository, ISearchRepository, ISkillRepository, ITeamRepository } from "./interfaces";
 import {appConfig} from '../../config/config_helper';
 import { DataParser } from "../data_parser";
@@ -60,7 +60,7 @@ export class WebApiResourceRepository implements IResourceRepository {
         }
     }
 
-    async update(item: ResourceItem): Promise<void> {
+    async update(item: ResourceUpdateCommand): Promise<void> {
         
         try {
             const response = await axios.put(`${WebApiResourceRepository.baseUrl}/api/resources/${item.id}`,item);

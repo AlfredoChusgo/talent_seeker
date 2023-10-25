@@ -20,7 +20,7 @@ export interface ResourceItem{
     id: string;
     name : string;
     lastName : string ;
-    birthDate: string;
+    birthDate: Date;
     occupation : string;
     locality : string;
     biography : string;
@@ -106,6 +106,13 @@ export interface RoleUpdateCommand{
     name : string;    
 }
 
+
+
+export interface SkillResourceCreateCommand{
+    skill:string;
+    skillLevel: SkillLevel;
+}
+
 export interface ResourceCreateCommand{
     name : string;
     lastName : string ;
@@ -117,11 +124,6 @@ export interface ResourceCreateCommand{
     skills: SkillResourceCreateCommand[]
 }
 
-export interface SkillResourceCreateCommand{
-    skill:string;
-    skillLevel: SkillLevel;
-}
-
 export interface ResourceUpdateCommand{
     id:string;
     name : string;
@@ -130,6 +132,6 @@ export interface ResourceUpdateCommand{
     occupation : string;
     locality : string;
     biography : string;
-    role: RoleItem;
-    skills: SkillResourceItem[]
+    role: string;
+    skills: SkillResourceCreateCommand[]
 }

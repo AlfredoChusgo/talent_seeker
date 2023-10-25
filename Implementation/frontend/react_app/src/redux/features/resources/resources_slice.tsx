@@ -29,7 +29,7 @@ export const addResource = createAsyncThunk<ResourceItem, { item: ResourceItem }
     const newResource: ResourceCreateCommand = {
       name: item.name,
       lastName: item.lastName,
-      birthDate: item.birthDate,
+      birthDate: item.birthDate.toISOString(),
       biography: item.biography,
       locality: item.locality,
       occupation: item.occupation,
@@ -63,7 +63,19 @@ export const removeResource = createAsyncThunk<void, { roleId: string }>('resour
 export const editResource = createAsyncThunk<ResourceItem, { itemUpdated: ResourceItem }>('resources/editResource', async ({ itemUpdated }, thunkAPI) => {
   try {
 
-    await repositories.resourcesRepository.update(itemUpdated);
+    const updatedResource: ResourceUpdateCommand = {
+      id: itemUpdated.id,
+      name: itemUpdated.name,
+      lastName: itemUpdated.lastName,
+      birthDate: itemUpdated.birthDate.toISOString(),
+      biography: itemUpdated.biography,
+      locality: itemUpdated.locality,
+      occupation: itemUpdated.occupation,
+      role: itemUpdated.role.id,
+      skills: itemUpdated.skills.map(e=>({skill:e.skill.id,skillLevel:e.skillLevel})),
+    };
+
+    await repositories.resourcesRepository.update(updatedResource);
 
     thunkAPI.dispatch(showSnackbar({ message: i18next.t('resources.updated'), severity: SnackbarSeverity.Success }));
     thunkAPI.dispatch(fetchItems());

@@ -48,9 +48,10 @@ export class DataParser{
                 id: data._id ?? "",
                 name: data.name ?? "",
                 lastName : data.lastName ?? "",
-                birthDate: data.birthDate ?? "",
+                // birthDate: data.birthDate ?? "", 
+                birthDate: new Date(data.birthDate) ?? new Date(),
                 occupation: data.occupation ?? "",
-                locality : data.location ?? "",
+                locality : data.locality ?? "",
                 biography : data.biography ?? "",
                 role : DataParser.Role.fromWebApiObject(data?.role) ?? { id:"",name:""},
                 skills : DataParser.SkillResource.fromWebApiArray(data?.skills ?? []) ?? []
@@ -65,7 +66,7 @@ export class DataParser{
 
         static fromWebApiObject(data:any):SkillResourceItem{
             return  {
-                skill : DataParser.Skill.fromWebApiObject(data.skills),
+                skill : DataParser.Skill.fromWebApiObject(data.skill),
                 skillLevel : this.parseSkillLevel(data?.skillLevel ?? "")
             }
         }

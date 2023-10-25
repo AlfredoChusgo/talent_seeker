@@ -8,7 +8,7 @@ export class ResourceHelper {
             name: "",
             lastName: "",
             biography: "",
-            birthDate: "",
+            birthDate: new Date(),
             locality: "",
             occupation: "",
             role: {

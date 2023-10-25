@@ -8,25 +8,31 @@ import store, { RootState } from '../store/store';
 import { useSelector } from 'react-redux';
 import { hideResourceDialog, loadResourceDialogAutoCompleteValues, updateAddEditResourceDialogConfig } from '../features/global_dialog/global_dialog_slice';
 import { addResource, editResource } from '../features/resources/resources_slice';
-import { ResourceItem, RoleItem, SkillItem, SkillResourceItem } from '../../data/models';
+import { ResourceItem, RoleItem, SkillItem, SkillResourceItem, SnackbarSeverity } from '../../data/models';
 import { useEffect, useState } from 'react';
+import { showSnackbar } from '../features/global_snackbar/global_snackbar_slice';
+import { DateHelper } from '../../helpers/date_helper';
 
 export function AddEditResourceDialog() {
   const { addEditResourceDialogConfig } = useSelector((state: RootState) => state.dialog);
   const [resourceItem, setResourceItem] = useState<ResourceItem>(addEditResourceDialogConfig.resourceItem);
+  const [birthDate,setBirthDate] = useState<string>("");
 
   useEffect(() => {
     setResourceItem(addEditResourceDialogConfig.resourceItem);
+    setBirthDate(DateHelper.formatDateToDdMmYyyy(addEditResourceDialogConfig.resourceItem.birthDate));
   }, [addEditResourceDialogConfig.resourceItem]); 
   
   const handleSave = () => {
     if(valid()){
       hideDialog();
       if (addEditResourceDialogConfig.isAdd) {
-        store.dispatch(addResource({item:{...resourceItem, birthDate:formatDateToISO(resourceItem.birthDate)}}));
+        store.dispatch(addResource({item:{...resourceItem, birthDate:new Date(formatDateToISO(birthDate))}}));
       } else {
-        store.dispatch(editResource({itemUpdated:{...resourceItem, birthDate:formatDateToISO(resourceItem.birthDate)}}));
+        store.dispatch(editResource({itemUpdated:{...resourceItem, birthDate:new Date(formatDateToISO(birthDate))}}));
       }
+    }else{
+      store.dispatch(showSnackbar({ message: i18next.t('resources.birthDateValidationError'), severity: SnackbarSeverity.Error }));
     }
 
   };
@@ -36,7 +42,7 @@ export function AddEditResourceDialog() {
   }
 
   function valid():boolean {
-    if(!validateDate(resourceItem.birthDate)){
+    if(!validateDate(birthDate)){
       return false;
     }
     return true;
@@ -120,9 +126,9 @@ export function AddEditResourceDialog() {
             id="outlined-basic"
             label={i18next.t('resources.birthDate')}
             variant="outlined"
-            value={resourceItem.birthDate}
+            value={birthDate}
             helperText={i18next.t("common.helperDate")}
-            onChange={(e) => setResourceItem({...resourceItem, birthDate:e.target.value})} //todo validate
+            onChange={(e) => setBirthDate(e.target.value)} //todo validate
           />
         </Box>
         <Box mb={2}> {/* Add margin bottom */}
