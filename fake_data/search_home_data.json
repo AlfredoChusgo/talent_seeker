@@ -1,0 +1,617 @@
+[
+  {
+    "id": "74635442",
+    "displayName": "Product Owner",
+    "objectType": "role"
+  },
+  {
+    "id": "94635441",
+    "displayName": "Developer",
+    "objectType": "role"
+  },
+  {
+    "id": "11635445",
+    "displayName": "Quality Assurance",
+    "objectType": "role"
+  },
+  {
+    "id": "1",
+    "displayName": "SQL",
+    "objectType": "skill"
+  },
+  {
+    "id": "2",
+    "displayName": "C#",
+    "objectType": "skill"
+  },
+  {
+    "id": "3",
+    "displayName": "React",
+    "objectType": "skill"
+  },
+  {
+    "id": "4",
+    "displayName": "Angular",
+    "objectType": "skill"
+  },
+  {
+    "id": "5",
+    "displayName": "JavaScript",
+    "objectType": "skill"
+  },
+  {
+    "id": "6",
+    "displayName": "HTML",
+    "objectType": "skill"
+  },
+  {
+    "id": "7",
+    "displayName": "CSS",
+    "objectType": "skill"
+  },
+  {
+    "id": "8",
+    "displayName": "Node.js",
+    "objectType": "skill"
+  },
+  {
+    "id": "9",
+    "displayName": "Python",
+    "objectType": "skill"
+  },
+  {
+    "id": "10",
+    "displayName": "Java",
+    "objectType": "skill"
+  },
+  {
+    "id": "11",
+    "displayName": "ASP.NET",
+    "objectType": "skill"
+  },
+  {
+    "id": "12",
+    "displayName": "Ruby on Rails",
+    "objectType": "skill"
+  },
+  {
+    "id": "13",
+    "displayName": "TypeScript",
+    "objectType": "skill"
+  },
+  {
+    "id": "14",
+    "displayName": "PHP",
+    "objectType": "skill"
+  },
+  {
+    "id": "15",
+    "displayName": "Vue.js",
+    "objectType": "skill"
+  },
+  {
+    "id": "16",
+    "displayName": "Django",
+    "objectType": "skill"
+  },
+  {
+    "id": "17",
+    "displayName": "MySQL",
+    "objectType": "skill"
+  },
+  {
+    "id": "18",
+    "displayName": "MongoDB",
+    "objectType": "skill"
+  },
+  {
+    "id": "19",
+    "displayName": "Express.js",
+    "objectType": "skill"
+  },
+  {
+    "id": "20",
+    "displayName": "Redux",
+    "objectType": "skill"
+  },
+  {
+    "id": "46702ec8-4e59-40d2-93d9-cfd99f73c17e",
+    "displayName": "Alivia Predovic",
+    "objectType": "resource"
+  },
+  {
+    "id": "9494745d-0db4-4afc-8231-0055a79db4ca",
+    "displayName": "Katrine Barton",
+    "objectType": "resource"
+  },
+  {
+    "id": "55bf7325-da62-4703-8257-455bf7095464",
+    "displayName": "Nathanial Reynolds",
+    "objectType": "resource"
+  },
+  {
+    "id": "a7c011da-dd64-4fcc-ab15-452ea96c60a2",
+    "displayName": "Peter Baumbach",
+    "objectType": "resource"
+  },
+  {
+    "id": "739012e3-ead3-478f-9b40-83aefc85dc32",
+    "displayName": "Kane Kuhic",
+    "objectType": "resource"
+  },
+  {
+    "id": "8d27ae80-162b-4d1b-8dcf-f28409e923a4",
+    "displayName": "Monty Upton",
+    "objectType": "resource"
+  },
+  {
+    "id": "da3bc629-2182-468c-afef-ed2e79b03f5c",
+    "displayName": "Tatyana Kuhlman",
+    "objectType": "resource"
+  },
+  {
+    "id": "d43fb9ff-989c-4faf-b774-816b0d0843b5",
+    "displayName": "Karl Rutherford",
+    "objectType": "resource"
+  },
+  {
+    "id": "7d4f0334-3521-4502-aa40-846e9fc4323c",
+    "displayName": "Irving Schoen",
+    "objectType": "resource"
+  },
+  {
+    "id": "bc603f2a-48c1-4d96-afb4-357d69202e32",
+    "displayName": "Keagan Torp",
+    "objectType": "resource"
+  },
+  {
+    "id": "3bb34c98-b105-4663-8269-abac41a82faf",
+    "displayName": "Kenyon Greenholt",
+    "objectType": "resource"
+  },
+  {
+    "id": "082197ed-0702-4823-99b8-b1867f7ae27a",
+    "displayName": "Maiya Thompson",
+    "objectType": "resource"
+  },
+  {
+    "id": "66066b2c-09d7-4e97-8132-9e90b7bae12d",
+    "displayName": "Gust Goodwin",
+    "objectType": "resource"
+  },
+  {
+    "id": "a14302a2-3333-4598-ae8d-9c91f7ec2006",
+    "displayName": "Abby Lemke",
+    "objectType": "resource"
+  },
+  {
+    "id": "16eb43ef-b87f-42d1-b2f2-d99dc20083c8",
+    "displayName": "Alberta Purdy",
+    "objectType": "resource"
+  },
+  {
+    "id": "05ca09ef-ef31-4d86-8e16-f9c7f420ce76",
+    "displayName": "Madelyn Dooley",
+    "objectType": "resource"
+  },
+  {
+    "id": "64f1e411-de6d-474f-a26f-0806da7f1790",
+    "displayName": "Lavina Bednar",
+    "objectType": "resource"
+  },
+  {
+    "id": "c8906ee1-7760-44b5-9b60-ea5c83d93355",
+    "displayName": "Dasia Mills",
+    "objectType": "resource"
+  },
+  {
+    "id": "4af4839e-050a-4bae-abf0-8d5d1a86a2ed",
+    "displayName": "Lizeth Price",
+    "objectType": "resource"
+  },
+  {
+    "id": "0ea2bbd3-893e-4632-a814-bef1eddea112",
+    "displayName": "Jamarcus Ratke",
+    "objectType": "resource"
+  },
+  {
+    "id": "49f393a3-c3ba-4a3d-9430-25d67b583680",
+    "displayName": "General Stehr",
+    "objectType": "resource"
+  },
+  {
+    "id": "8209c09c-3ae3-4e3f-8cdb-cb3291602892",
+    "displayName": "Kristina Lesch",
+    "objectType": "resource"
+  },
+  {
+    "id": "c8f52173-0968-4ef7-a6e4-6bfedea946d2",
+    "displayName": "Kian Swaniawski",
+    "objectType": "resource"
+  },
+  {
+    "id": "979d3251-7049-47ff-b3a4-429bff97939d",
+    "displayName": "Stephan White",
+    "objectType": "resource"
+  },
+  {
+    "id": "ad86a97c-1517-4a50-a7a3-f3481518745f",
+    "displayName": "Brandt Grant",
+    "objectType": "resource"
+  },
+  {
+    "id": "894d9040-c2d3-454c-8fdd-d73e70cfa808",
+    "displayName": "Tyrell Gerlach",
+    "objectType": "resource"
+  },
+  {
+    "id": "882fc59b-016c-4c20-87e2-78de95895171",
+    "displayName": "Rowland Bahringer",
+    "objectType": "resource"
+  },
+  {
+    "id": "90835526-dafb-4f9c-b23d-29d969f8cfbc",
+    "displayName": "Irma Ratke",
+    "objectType": "resource"
+  },
+  {
+    "id": "d755290e-c230-468e-9eab-c1213b0afca1",
+    "displayName": "Kevin Collins",
+    "objectType": "resource"
+  },
+  {
+    "id": "0506e19b-ecba-47fc-8fbd-0dca76aa46ac",
+    "displayName": "Winifred Hammes",
+    "objectType": "resource"
+  },
+  {
+    "id": "8f37be7a-a456-47c5-9b3f-60ce31435c8e",
+    "displayName": "Sabrina Wuckert",
+    "objectType": "resource"
+  },
+  {
+    "id": "a887addb-e622-4ffc-8f58-b3023ea24e95",
+    "displayName": "Carey Treutel",
+    "objectType": "resource"
+  },
+  {
+    "id": "1092aae3-7570-45b7-b333-68020ba99eaf",
+    "displayName": "Bell Spencer",
+    "objectType": "resource"
+  },
+  {
+    "id": "71d78e2d-e793-4fcb-93ea-affc3610c553",
+    "displayName": "Natalie Herzog-Yundt",
+    "objectType": "resource"
+  },
+  {
+    "id": "e1739bd0-ef88-45cf-9b66-9b611abba0c5",
+    "displayName": "General Herman",
+    "objectType": "resource"
+  },
+  {
+    "id": "d71a9b59-45a7-4714-9edf-e8aea16ba110",
+    "displayName": "Niko Hackett",
+    "objectType": "resource"
+  },
+  {
+    "id": "9460b198-13c6-46e7-8d21-c8df5e6c086c",
+    "displayName": "Alaina Lubowitz",
+    "objectType": "resource"
+  },
+  {
+    "id": "aaff6461-9566-4ee0-83db-b02df200418b",
+    "displayName": "Eino Heaney",
+    "objectType": "resource"
+  },
+  {
+    "id": "5ea417c3-45ae-4758-98d8-37228419a20d",
+    "displayName": "Kali Heathcote",
+    "objectType": "resource"
+  },
+  {
+    "id": "ea42ae52-958d-4eb2-8fbc-cc30dcd38eec",
+    "displayName": "Elinor Mann",
+    "objectType": "resource"
+  },
+  {
+    "id": "d0ccf483-fbd1-4cdf-8845-a12b10d2e6c2",
+    "displayName": "Jeff Boyer-Rath",
+    "objectType": "resource"
+  },
+  {
+    "id": "c28656fa-ea6a-4932-99ce-4dd58ce56301",
+    "displayName": "Crystal Miller",
+    "objectType": "resource"
+  },
+  {
+    "id": "8cca6246-2172-47be-aafe-9be0a15c7ee0",
+    "displayName": "Blaise Bernhard",
+    "objectType": "resource"
+  },
+  {
+    "id": "179ca2c7-22f7-4837-9d21-a1f1eb08a915",
+    "displayName": "Lily Abshire",
+    "objectType": "resource"
+  },
+  {
+    "id": "350bb54e-dcd5-45cf-bc1a-80bac285ce28",
+    "displayName": "Evelyn Veum",
+    "objectType": "resource"
+  },
+  {
+    "id": "de185bb5-3d4b-4fca-92b3-ba41ac6c4f0c",
+    "displayName": "Melba Lynch-Stehr",
+    "objectType": "resource"
+  },
+  {
+    "id": "c076432e-cc98-4326-8899-47c142f6cba7",
+    "displayName": "Camila McGlynn",
+    "objectType": "resource"
+  },
+  {
+    "id": "2a38e29c-dbb7-41de-a215-844b3a5b4f4d",
+    "displayName": "Tyson Beahan",
+    "objectType": "resource"
+  },
+  {
+    "id": "bbeda813-c0f9-46f5-bdb1-8208c2081bab",
+    "displayName": "Vicky Erdman",
+    "objectType": "resource"
+  },
+  {
+    "id": "780b1fbe-ffca-4aa2-ae49-987c807eaf25",
+    "displayName": "Lois Tromp",
+    "objectType": "resource"
+  },
+  {
+    "id": "2ff0f403-af45-4739-a066-dc38d8747983",
+    "displayName": "Norma Stiedemann",
+    "objectType": "resource"
+  },
+  {
+    "id": "4d17dd9f-82bc-4349-adf1-759d4dae73de",
+    "displayName": "Chyna Boyle",
+    "objectType": "resource"
+  },
+  {
+    "id": "f8d73777-c386-449e-935b-ad8865029b4b",
+    "displayName": "Domingo Murray",
+    "objectType": "resource"
+  },
+  {
+    "id": "113672d5-a34f-4ee5-b3ec-e3cd17aa23df",
+    "displayName": "Lavonne Dach",
+    "objectType": "resource"
+  },
+  {
+    "id": "5fdd8938-4866-45b3-b02c-bc4fe400e0c8",
+    "displayName": "Nelle Douglas",
+    "objectType": "resource"
+  },
+  {
+    "id": "c3f4f33d-7330-4b8d-ab85-a8161581613f",
+    "displayName": "Tanner Bradtke",
+    "objectType": "resource"
+  },
+  {
+    "id": "fdfe2fe0-8b6e-4e53-9af0-6cd214ba4570",
+    "displayName": "Torey Moore",
+    "objectType": "resource"
+  },
+  {
+    "id": "6c83ba64-6bd5-4066-831b-fe989bffa358",
+    "displayName": "Elvis King",
+    "objectType": "resource"
+  },
+  {
+    "id": "9228eebc-3092-4958-9087-d099fd935279",
+    "displayName": "Oleta Howe",
+    "objectType": "resource"
+  },
+  {
+    "id": "f590c7d8-f545-44e6-be40-aa6fc280538e",
+    "displayName": "Thalia O'Connell",
+    "objectType": "resource"
+  },
+  {
+    "id": "bc03f8d5-7b49-4753-b0c4-4b3d23744fda",
+    "displayName": "Yoshiko Nikolaus",
+    "objectType": "resource"
+  },
+  {
+    "id": "5e6f9302-9776-43fa-96c5-031a813bd26b",
+    "displayName": "Kobe Beatty",
+    "objectType": "resource"
+  },
+  {
+    "id": "0f167049-21b8-4d7b-be30-384c2cc34399",
+    "displayName": "Wilford Huel",
+    "objectType": "resource"
+  },
+  {
+    "id": "a03194f9-c58c-4b7b-9201-d52954a590e0",
+    "displayName": "Ben Fritsch-Abbott",
+    "objectType": "resource"
+  },
+  {
+    "id": "cb24c38d-fe2e-4aa3-8ec0-46c9deaae4e5",
+    "displayName": "Ariane Schamberger",
+    "objectType": "resource"
+  },
+  {
+    "id": "26024b25-3220-453a-81a3-f5786ef73097",
+    "displayName": "Esmeralda Abernathy",
+    "objectType": "resource"
+  },
+  {
+    "id": "42f53f4a-06b5-44ca-9358-ba1e27507fac",
+    "displayName": "Cordia Effertz",
+    "objectType": "resource"
+  },
+  {
+    "id": "78b877b7-59f3-4d64-9dda-86a52d5095ba",
+    "displayName": "Cory Hauck",
+    "objectType": "resource"
+  },
+  {
+    "id": "121a3d73-9370-4f70-b282-9a85ebbedff6",
+    "displayName": "Virgil Fay",
+    "objectType": "resource"
+  },
+  {
+    "id": "dbf31f0d-f809-4c4f-93cf-b7aee9f05d75",
+    "displayName": "Reece Dooley",
+    "objectType": "resource"
+  },
+  {
+    "id": "a9f5175b-e7aa-49a9-b8f1-c7b6c5769a47",
+    "displayName": "Royal Lang-Bruen",
+    "objectType": "resource"
+  },
+  {
+    "id": "5dfcfa28-1a32-4797-bfaa-daaba1fbd2c0",
+    "displayName": "Adriel Bernhard",
+    "objectType": "resource"
+  },
+  {
+    "id": "57b15683-23ab-40e1-9758-93fb623e6904",
+    "displayName": "Pablo Russel",
+    "objectType": "resource"
+  },
+  {
+    "id": "50e9d944-2a96-41a7-8f4f-609f5b1492eb",
+    "displayName": "Kendall Harvey",
+    "objectType": "resource"
+  },
+  {
+    "id": "f4401577-45ee-4b37-87de-1fb5ff688f7b",
+    "displayName": "Henriette Franey",
+    "objectType": "resource"
+  },
+  {
+    "id": "1a78af76-78cf-480a-b92e-3cb8e155ce6f",
+    "displayName": "Brando Swift",
+    "objectType": "resource"
+  },
+  {
+    "id": "070e3985-37ba-471c-bbe6-8049dc60ba9c",
+    "displayName": "Lionel Greenfelder",
+    "objectType": "resource"
+  },
+  {
+    "id": "03cefaaa-644c-41e5-8b91-eb9fb2d81d53",
+    "displayName": "Deborah Keebler",
+    "objectType": "resource"
+  },
+  {
+    "id": "93af64d4-381b-494e-9aed-cda9383b2ed5",
+    "displayName": "Merle Johns",
+    "objectType": "resource"
+  },
+  {
+    "id": "eeeb5556-85c7-4064-9bcf-b07bad380812",
+    "displayName": "Gunnar Kemmer",
+    "objectType": "resource"
+  },
+  {
+    "id": "675bb93a-c394-4152-bafd-c8b5ab15303b",
+    "displayName": "Cordia Turcotte",
+    "objectType": "resource"
+  },
+  {
+    "id": "19a95b73-c00d-4256-9273-553e4933f122",
+    "displayName": "Benton Walker",
+    "objectType": "resource"
+  },
+  {
+    "id": "01b2b458-e79f-4107-94e0-2771286e5101",
+    "displayName": "Adaline Reilly",
+    "objectType": "resource"
+  },
+  {
+    "id": "1620f43a-a25f-4e9b-956b-36ebfa8410e4",
+    "displayName": "Duane Boehm",
+    "objectType": "resource"
+  },
+  {
+    "id": "5427bc79-0284-48b7-bcf0-1a7c906ed713",
+    "displayName": "Bonita Bahringer",
+    "objectType": "resource"
+  },
+  {
+    "id": "08460240-3fd6-42a9-b95a-2c96a9f211f1",
+    "displayName": "Jett Rutherford",
+    "objectType": "resource"
+  },
+  {
+    "id": "6bd9cead-a0b3-43d9-9147-e57d1ef6f27d",
+    "displayName": "Damon Kerluke",
+    "objectType": "resource"
+  },
+  {
+    "id": "cbb72259-5702-4f1f-bec7-e64813ff8bcd",
+    "displayName": "Alvena O'Keefe",
+    "objectType": "resource"
+  },
+  {
+    "id": "8ba7743b-785f-4957-a616-68ae5d9090b5",
+    "displayName": "Ova Hahn",
+    "objectType": "resource"
+  },
+  {
+    "id": "87af95bd-3276-4b6a-b9ff-d89a9511d4d1",
+    "displayName": "Darren Spinka",
+    "objectType": "resource"
+  },
+  {
+    "id": "304bd7be-c79d-434c-9dcf-cc96db398ddc",
+    "displayName": "Cleveland Veum",
+    "objectType": "resource"
+  },
+  {
+    "id": "3c189c17-6bae-4267-b97e-f79939638453",
+    "displayName": "Dino Gusikowski",
+    "objectType": "resource"
+  },
+  {
+    "id": "db344d85-da41-411d-b3d6-86ceb5598ffb",
+    "displayName": "Cielo Gulgowski",
+    "objectType": "resource"
+  },
+  {
+    "id": "d87aca31-173f-4124-89f6-8380e0df8299",
+    "displayName": "Cletus Rice",
+    "objectType": "resource"
+  },
+  {
+    "id": "1232cf2d-a94e-4147-815b-cde92c4ef3a5",
+    "displayName": "Vanessa Morar",
+    "objectType": "resource"
+  },
+  {
+    "id": "c37481c6-c1ca-4de5-adf0-32080060b18e",
+    "displayName": "Elnora Hansen",
+    "objectType": "resource"
+  },
+  {
+    "id": "b419699a-099a-4ea4-a4cb-b67faee04fbf",
+    "displayName": "Will Roberts",
+    "objectType": "resource"
+  },
+  {
+    "id": "058e21c0-a30e-4c7b-9c8f-97951589480d",
+    "displayName": "Evelyn Wolf",
+    "objectType": "resource"
+  },
+  {
+    "id": "89a04591-2cf3-4619-8a80-1bd8f62d257a",
+    "displayName": "Baron Wunsch",
+    "objectType": "resource"
+  },
+  {
+    "id": "dbddff37-681f-4332-883d-d674fcac4667",
+    "displayName": "Marley Rolfson-Senger",
+    "objectType": "resource"
+  }
+]

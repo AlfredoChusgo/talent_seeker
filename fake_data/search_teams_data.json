@@ -1,0 +1,152 @@
+[
+  {
+    "id": "6f01ec69-5175-40d6-862c-11e7c6247248",
+    "displayName": "Model Y",
+    "objectType": "team"
+  },
+  {
+    "id": "15d22880-b536-4fdf-9070-e5e1be0a1202",
+    "displayName": "Explorer",
+    "objectType": "team"
+  },
+  {
+    "id": "c30ec1ec-521f-4d27-8440-2670649f3f86",
+    "displayName": "Fiesta",
+    "objectType": "team"
+  },
+  {
+    "id": "9c7f519a-6b99-4354-8810-6cdbea11b67b",
+    "displayName": "CX-9",
+    "objectType": "team"
+  },
+  {
+    "id": "6e9074bb-3c2c-4648-a2f5-0141ff7a7dc8",
+    "displayName": "Prius",
+    "objectType": "team"
+  },
+  {
+    "id": "87bd405e-e21f-40ec-b1d7-0976a5643bb3",
+    "displayName": "ATS",
+    "objectType": "team"
+  },
+  {
+    "id": "0f7011d9-354e-428b-91ec-306c98bcaa29",
+    "displayName": "Wrangler",
+    "objectType": "team"
+  },
+  {
+    "id": "fe185861-e42a-4a31-a39c-e0958b9fc640",
+    "displayName": "911",
+    "objectType": "team"
+  },
+  {
+    "id": "86b4b78c-80a9-4a05-8624-f0466954a42f",
+    "displayName": "El Camino",
+    "objectType": "team"
+  },
+  {
+    "id": "3592c7b5-19d1-4135-8ebe-6ee186b1a1cb",
+    "displayName": "Escalade",
+    "objectType": "team"
+  },
+  {
+    "id": "2cd63f45-fdca-4adb-90ee-83aa39977d4d",
+    "displayName": "Volt",
+    "objectType": "team"
+  },
+  {
+    "id": "9f908ec8-439b-4ce3-8ef9-10ff701fbadd",
+    "displayName": "Durango",
+    "objectType": "team"
+  },
+  {
+    "id": "87409418-904a-44d7-8da8-c871effcf0e2",
+    "displayName": "Camry",
+    "objectType": "team"
+  },
+  {
+    "id": "a35b963d-0ee7-4cca-8633-849f8e30eadd",
+    "displayName": "ATS",
+    "objectType": "team"
+  },
+  {
+    "id": "d73d6c9b-0a78-42a0-acf0-e32e4452833b",
+    "displayName": "Camry",
+    "objectType": "team"
+  },
+  {
+    "id": "dffb7a3b-6c64-46ba-af8f-7affb0377319",
+    "displayName": "Camaro",
+    "objectType": "team"
+  },
+  {
+    "id": "fa3cb803-ccfe-4b2c-83b4-555792e728d5",
+    "displayName": "Expedition",
+    "objectType": "team"
+  },
+  {
+    "id": "8403ae30-3c3a-4d7b-9d10-d9df59333986",
+    "displayName": "V90",
+    "objectType": "team"
+  },
+  {
+    "id": "7ed9022e-9331-40af-8750-5e627e78e1ec",
+    "displayName": "Spyder",
+    "objectType": "team"
+  },
+  {
+    "id": "dc2cb8b3-f339-4f39-9b56-bae370f5541f",
+    "displayName": "Explorer",
+    "objectType": "team"
+  },
+  {
+    "id": "a40ae96c-5450-4adf-b2e5-b5e41f6f0df1",
+    "displayName": "El Camino",
+    "objectType": "team"
+  },
+  {
+    "id": "64a10d50-f7f3-4c8c-9513-27be7abdbccb",
+    "displayName": "Model S",
+    "objectType": "team"
+  },
+  {
+    "id": "011a5769-d792-4be5-9c44-7749447cbdce",
+    "displayName": "A8",
+    "objectType": "team"
+  },
+  {
+    "id": "ba40ed3d-068c-4b41-9da8-74ee770b18da",
+    "displayName": "ATS",
+    "objectType": "team"
+  },
+  {
+    "id": "dd26703e-6b11-4758-aa34-9f43e12baab5",
+    "displayName": "Ranchero",
+    "objectType": "team"
+  },
+  {
+    "id": "ce4b1925-3ec8-48ab-90a4-4ed250bcf344",
+    "displayName": "Golf",
+    "objectType": "team"
+  },
+  {
+    "id": "e7d1bec0-1d6f-47f7-9d55-8895557d0da6",
+    "displayName": "Charger",
+    "objectType": "team"
+  },
+  {
+    "id": "bcd74c63-a32d-4e08-9af3-3758f8763325",
+    "displayName": "Silverado",
+    "objectType": "team"
+  },
+  {
+    "id": "e7e1e856-46cb-462d-9df5-f96cee7bce98",
+    "displayName": "Mercielago",
+    "objectType": "team"
+  },
+  {
+    "id": "72f16f1e-cb55-4590-a7f8-49fab31ce355",
+    "displayName": "Focus",
+    "objectType": "team"
+  }
+]
