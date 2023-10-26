@@ -6,8 +6,9 @@ interface AppConfig {
   debug: boolean
 }
 
+let isProduction:boolean = import.meta.env.VITE_APP_MODE === 'PRODUCTION';
 export const appConfig: AppConfig = {
-  isProduction: parseBoolean(import.meta.env.PROD, false),
+  isProduction: isProduction,
   backendWebApiUrl: import.meta.env.VITE_APP_BACKEND_WEB_API_URL?.toString() ?? "test",
   // backendWebApiUrl: window.BACKEND_WEB_API_URL ?? "test",
   // backendWebApiUrl: BACKEND_WEB_API_URL ?? "test",

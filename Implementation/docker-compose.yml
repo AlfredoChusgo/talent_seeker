@@ -20,14 +20,31 @@ services:
       - mongodb2  # Ensure the 'mongodb' service starts first
     command: npm run start
 
-  reactapp:
+  reactapp_pro:
     build:
       context: ./frontend/react_app  # Path to your React app Dockerfile
+      args:
+        VITE_APP_BACKEND_WEB_API_URL: http://localhost:3000
+        VITE_APP_DEBUG: TRUE
+        VITE_APP_MODE: PRODUCTION
     ports:
       - '8080:80'           # Map the container's port to host port
-    environment:
-      - BACKEND_WEB_API_URL=http://webapi:3000
-      - VITE_APP_DEBUG=TRUE
+    # environment:
+    #   - VITE_APP_BACKEND_WEB_API_URL=http://webapi:3000
+    #   - VITE_APP_DEBUG=TRUE
     depends_on:
       - webapi
+
+  reactapp_dev:
+    build:
+      context: ./frontend/react_app  # Path to your React app Dockerfile
+      args:
+        # VITE_APP_BACKEND_WEB_API_URL: http://webapi:3000 # this will work inside the container because it has access to the webapi service
+        VITE_APP_BACKEND_WEB_API_URL: http://localhost:3000
+        VITE_APP_DEBUG: TRUE
+        VITE_APP_MODE: DEVELOPMENT
+    ports:
+      - '5050:80'           # Map the container's port to host port
+
+
 

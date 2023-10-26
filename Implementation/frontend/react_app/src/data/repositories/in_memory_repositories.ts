@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 export class InMemoryResourceRepository implements IResourceRepository {
     private resources: ResourceItem[] = [];
     private isLoaded: boolean = false;
-    private static instance: InMemoryResourceRepository;
 
     public constructor(private roleRepository: IRoleRepository, private skillRepository: ISkillRepository) {
 
