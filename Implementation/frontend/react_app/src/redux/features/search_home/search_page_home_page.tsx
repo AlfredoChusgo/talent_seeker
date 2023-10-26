@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import store, { RootState, useAppDispatch } from '../../store/store';
 import { fetchItems } from './search_home_slice';
 import {applyFilters} from '../resource_list/resource_list_slice';
-import {  IconButton } from '@mui/material';
+import {  IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchHomeItem } from '../../../data/models';
 import { useNavigate } from 'react-router-dom';
@@ -39,6 +39,7 @@ export default function Grouped() {
 
   return (
     <Grid xs>
+      <Paper>
       <SearchResourceComponent searchItems={items} selectedValues={selectedValues}
         searchButtonConfiguration={{
           isEnabled: true,
@@ -50,6 +51,7 @@ export default function Grouped() {
         }}
         handleAutoCompleteChange={handleAutocompleteChange}
       />
+      </Paper>
     </Grid>
   );
 }

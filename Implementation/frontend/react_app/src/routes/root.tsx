@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { Link, Outlet } from 'react-router-dom';
-import { Avatar, Chip, Grid, Tooltip } from '@mui/material';
+import { Avatar, Chip, Grid, Paper, Tooltip } from '@mui/material';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import { useEffect } from 'react';
 import store, { useAppDispatch } from '../redux/store/store';
@@ -116,25 +116,23 @@ export default function Root() {
   return (
     <>
       <div className="App" >
-        <ButtonAppBar></ButtonAppBar>
-        <Container
-          maxWidth="md"
-          style={{
-            minHeight: 'calc(100vh - 64px)', // Subtract app bar height (64px)
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Grid container
+        <Paper>
+          <ButtonAppBar></ButtonAppBar>
+          <Container
+            maxWidth="md"
+            style={{
+              minHeight: 'calc(100vh - 64px)', // Subtract app bar height (64px)
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
           >
-            <Outlet />
-          </Grid>
-        </Container>
-
-
-
+            <Grid container>
+              <Outlet />
+            </Grid>
+          </Container>
+        </Paper>
       </div>
     </>
   );

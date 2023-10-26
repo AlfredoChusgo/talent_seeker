@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import {appConfig} from "./config/config_helper.ts";
+import { appConfig } from "./config/config_helper.ts";
 
 import "./index.css";
 import ErrorPage from "./pages/error_page";
@@ -21,7 +21,8 @@ import { DialogComponent } from "./redux/dialogs/dialog_component.tsx";
 import SkillsPage from "./redux/features/skills/skills_page.tsx";
 import RolesPage from "./redux/features/roles/roles_page.tsx";
 import ResourcesPage from "./redux/features/resources/resources_page.tsx";
-
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "./config/theme.ts";
 
 const router = createBrowserRouter([
   {
@@ -71,10 +72,13 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-      <Provider store={store}>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
         <RouterProvider router={router} />
         <SnackbarComponent />
-        <DialogComponent/>
-      </Provider>
+        <DialogComponent />
+      </ThemeProvider>
+
+    </Provider>
   </React.StrictMode>
 );
