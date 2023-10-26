@@ -8,6 +8,7 @@
     "dev": "vite --mode development",
     "pro": "vite --mode development",
     "build": "vite build",
+    "build:github": "vite build --base=/talent_seeker",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "deploy:github" : "gh-pages -d dist --remote github"
