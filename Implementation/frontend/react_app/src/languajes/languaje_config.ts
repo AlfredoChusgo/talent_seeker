@@ -41,7 +41,8 @@ i18next.use(initReactI18next).init({
           role : "Role",
           biography: "Biography",
           okay:"Okay",
-          helperDate:"Please use the dd/mm/yyyy format."
+          helperDate:"Please use the dd/mm/yyyy format.",
+          demoTooltip :"This website serves as a demonstration platform; any modifications made are stored solely in temporary memory and are not permanently saved."
         },
         teams: {
           searchTeam: "Search for a team...",

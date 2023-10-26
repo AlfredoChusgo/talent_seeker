@@ -30,6 +30,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "/",
+        element: <SearchPageHome></SearchPageHome>
+      },
+      {
         path: "searchPageHome",
         element: <SearchPageHome></SearchPageHome>
       },

@@ -6,15 +6,16 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { Link, Outlet } from 'react-router-dom';
-import { Grid } from '@mui/material';
+import { Avatar, Chip, Grid, Tooltip } from '@mui/material';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import { useEffect } from 'react';
 import store, { useAppDispatch } from '../redux/store/store';
 import { fetchItems } from '../redux/features/search_home/search_home_slice';
+import i18next from 'i18next';
 
 //import MenuIcon from '@mui/icons-material/Menu';
 
-const pages = ['searchPageHome', 'resourceList', 'teamBuilder', 'Teams','Skills','Roles','Resources'];
+const pages = ['searchPageHome', 'resourceList', 'teamBuilder', 'Teams', 'Skills', 'Roles', 'Resources'];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ButtonAppBar() {
@@ -24,7 +25,7 @@ function ButtonAppBar() {
   useEffect(() => {
     store.dispatch(fetchItems());
   }, [dispatch]);
-  
+
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -62,9 +63,14 @@ function ButtonAppBar() {
             }}
           >
             Talent Seeker
+            <Tooltip title={i18next.t("common.demoTooltip")}>
+              <Chip color="secondary" label="Demo" />
+            </Tooltip>
+
           </Typography>
 
           <PersonSearchIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+
           <Typography
             variant="h5"
             noWrap
@@ -121,8 +127,8 @@ export default function Root() {
             justifyContent: 'center',
           }}
         >
-          <Grid container 
->
+          <Grid container
+          >
             <Outlet />
           </Grid>
         </Container>

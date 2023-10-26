@@ -16,7 +16,7 @@ export default function TeamInfoSmallComponent({ team }: TeamDetailComponentProp
 
     const resourcesSkills: Set<string> = new Set();
     team.resources.forEach((resource) => {
-        resource.skills.forEach((skill) => resourcesSkills.add(skill.name));
+        resource.skills.forEach((skill) => resourcesSkills.add(skill.skill.name));
     });
 
     const skillChips = [...resourcesSkills].map((skill) => {
