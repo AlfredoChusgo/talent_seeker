@@ -24,7 +24,7 @@ import ResourcesPage from "./redux/features/resources/resources_page.tsx";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./config/theme.ts";
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: "/",
     element: <Root />,
@@ -66,7 +66,8 @@ const router = createBrowserRouter([
 
     ]
   },
-]);
+];
+const router = createBrowserRouter(routes,{basename:"/talent_seeker"});
 
 
 
