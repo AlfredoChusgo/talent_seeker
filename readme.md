@@ -1,7 +1,7 @@
 # Talent Seeker 🌟
 Discover and manage talents with efficiency. A comprehensive solution for team and skill management.
 
-
+### Demo site: https://alfredochusgo.github.io/talent_seeker/
 
 ## Table of Contents
 - [Features](#features)
@@ -21,18 +21,6 @@ Discover and manage talents with efficiency. A comprehensive solution for team a
 - Define and manage roles.
 - Create resources with detailed profiles.
 - Build teams with multiple resources.
-
-## Domain Model
-### Skill Levels
-- Undefined
-- Novice
-- Beginner
-- Intermediate
-- Proficient
-- Advanced
-- Expert
-
-Detailed domain models can be found [here](link-to-domain-model-details). 
 
 ## Installation
 ### Steps
