@@ -16,6 +16,7 @@ services:
     environment:
       - MONGODB_URI=mongodb://myuser:mypassword@mongodb2:27017
       - NODE_ENV=development
+      - PORT= 3000
     depends_on:
       - mongodb2  # Ensure the 'mongodb' service starts first
     command: npm run start

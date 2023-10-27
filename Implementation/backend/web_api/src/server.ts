@@ -2,11 +2,11 @@ import app, { createServer, startServer } from "./app";
 import * as dotenv from 'dotenv';
 
 dotenv.config(); // Load environment variables from .env file
-console.log(`envVariables: ${JSON.stringify(process.env)}`);
+
 const server = createServer();
 const port:number = +(process.env.PORT ?? 3000);
-const mongodbUri = process.env.MONGODB_URI || "mongodb://myuser:mypassword@localhost:27017/";
-console.log(`mongoUri : ${mongodbUri}`);
+// const mongodbUri = process.env.MONGODB_URI || "mongodb://myuser:mypassword@localhost:27017/";
+const mongodbUri = process.env.MONGODB_URI || "";
 
 startServer(server, port,mongodbUri)
   .then(() => {
