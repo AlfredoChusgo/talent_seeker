@@ -26,7 +26,7 @@ Discover and manage talents with efficiency. A comprehensive solution for team a
 ### Steps
 1. Clone the repository:
 
-`git clone https://github.com/yourusername/TalentSeeker.git`
+        git clone https://github.com/AlfredoChusgo/talent_seeker.git
 
 
 ## Development
